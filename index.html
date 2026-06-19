@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custodia Silentis — Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f8f7f5;
+    --bg-dark: #111111;
+    --ink: #2b2b2b;
+    --ink-2: #333333;
+    --ink-mute: #555555;
+    --ink-dim: #888888;
+    --line: #e6e6e6;
+    --line-dark: rgba(255,255,255,0.12);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    font-feature-settings: 'kern', 'liga';
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  p { margin: 0; }
+
+  /* ===== Container ===== */
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  /* ============================================ */
+  /* REVEAL ANIMATION                              */
+  /* ============================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* ============================================ */
+  /* HERO (dark)                                   */
+  /* ============================================ */
+  .hero {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 200px 0 180px 0;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(197,165,90,0.85);
+    margin-bottom: 48px;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: 104px;
+    line-height: 0.95;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 56px;
+    max-width: 1100px;
+    color: #fff;
+  }
+
+  .hero-gold-line {
+    width: 80px;
+    height: 1px;
+    background: rgba(197,165,90,0.9);
+    margin-bottom: 48px;
+  }
+
+  .hero-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.78);
+    max-width: 780px;
+    margin-bottom: 40px;
+  }
+
+  .hero-scope {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    max-width: 720px;
+  }
+
+  /* hero-scope как пилюли (вместо параграфа) */
+  .hero-scope-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 820px;
+  }
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 18px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgba(255,255,255,0.82);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 4px;
+    line-height: 1.2;
+    transition: border-color 0.18s, background 0.18s;
+  }
+  .hero-pill::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(197,165,90,0.85);
+    flex-shrink: 0;
+  }
+  .hero-pill:hover {
+    border-color: rgba(197,165,90,0.5);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .hero-bridge {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.62);
+    margin-top: 64px;
+    max-width: 760px;
+    letter-spacing: -0.005em;
+  }
+
+  /* ============================================ */
+  /* SECTION OPENER                                */
+  /* ============================================ */
+  .section-opener {
+    padding: 200px 0 140px 0;
+    background: var(--bg-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .section-opener-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-roman {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink-dim);
+    margin-bottom: 20px;
+  }
+
+  .section-meta {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 48px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 104px;
+    line-height: 0.9;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 56px;
+    color: var(--ink);
+  }
+
+  .section-subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ink-mute);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* Dark variant */
+  .section-opener.dark {
+    background: var(--bg-dark);
+    border-top: 1px solid var(--line-dark);
+    border-bottom: none;
+  }
+  .section-opener.dark .section-roman { color: rgba(255,255,255,0.4); }
+  .section-opener.dark .section-meta { color: rgba(255,255,255,0.55); }
+  .section-opener.dark .section-title { color: #fff; }
+  .section-opener.dark .section-subtitle { color: rgba(255,255,255,0.7); }
+
+  /* ============================================ */
+  /* CONTEXT BODY                                  */
+  /* ============================================ */
+  .context-body {
+    padding: 40px 0 120px 0;
+  }
+
+  .context-body-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .context-body p {
+    font-family: var(--sans);
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+    margin-bottom: 28px;
+  }
+
+  .context-body p:last-of-type { margin-bottom: 0; }
+
+  .context-body strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* Causes 2x2 grid */
+  .causes-grid {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px 80px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cause-cell {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
+
+  .cause-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink-dim);
+    margin-bottom: 10px;
+  }
+
+  .cause-headline {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .cause-body {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink-mute);
+  }
+
+  /* Отбивка перед causes-grid */
+  .context-summary {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .context-summary-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    margin: 0 0 28px;
+  }
+  .context-summary-rule {
+    width: 60px;
+    height: 2px;
+    background: rgba(197,165,90,0.85);
+    margin: 0 auto;
+  }
+
+  /* ============================================ */
+  /* CONTEXT STATS — объём как диагноз             */
+  /* ============================================ */
+  .context-stats {
+    padding: 100px 0 110px 0;
+    background: var(--bg);
+  }
+  .stats-eyebrow {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 36px;
+    text-align: center;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px 120px;
+    max-width: 1000px;
+    margin: 0 auto 90px auto;
+  }
+  .stat-cell {
+    padding: 0;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 68px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .stat-num .stat-plus {
+    color: rgba(197,165,90,0.95);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 0.5em;
+    margin-left: 2px;
+    vertical-align: 0.45em;
+  }
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .stat-note {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-mute);
+  }
+  .stat-pull {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 4px 0 4px 44px;
+    border-left: 3px solid rgba(197,165,90,0.85);
+  }
+  .stat-pull-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.4;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .stat-pull-text em {
+    color: rgba(197,165,90,0.95);
+    font-style: italic;
+  }
+  .stat-diagnosis {
+    max-width: 940px;
+    margin: 36px auto 0;
+    text-align: right;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink-mute);
+  }
+
+  /* ============================================ */
+  /* CONTEXT INSIGHTS — что это меняет в игре      */
+  /* ============================================ */
+  .context-insights {
+    padding: 0 0 60px 0;
+    background: var(--bg);
+  }
+  .insights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 88px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .insight-card {
+    padding-top: 32px;
+    border-top: 2px solid rgba(197,165,90,0.85);
+  }
+  .insight-eyebrow {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(197,165,90,0.95);
+    margin-bottom: 24px;
+  }
+  .insight-headline {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.22;
+    color: var(--ink);
+    letter-spacing: -0.012em;
+    margin-bottom: 28px;
+  }
+  .insight-body {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--ink-mute);
+  }
+  .insight-body strong { color: var(--ink); font-weight: 600; }
+  .insight-body-tail {
+    margin-top: 20px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ============================================ */
+  /* TESTIMONIAL — client quotes                   */
+  /* ============================================ */
+  .testimonial {
+    max-width: 720px;
+    margin: 64px auto 0 auto;
+    padding: 32px 40px 30px;
+    background: rgba(26, 22, 18, 0.045);
+    border-radius: 4px;
+    text-align: left;
+  }
+  .testimonial-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .testimonial-reply {
+    margin-top: 12px;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-mute);
+  }
+  .testimonial-attr {
+    margin-top: 22px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink-dim);
+  }
+  .testimonial-note {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(26, 22, 18, 0.1);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink-dim);
+  }
+  .testimonial.dark { background: rgba(255,255,255,0.05); }
+  .testimonial.dark .testimonial-quote { color: #fff; }
+  .testimonial.dark .testimonial-reply { color: rgba(255,255,255,0.7); }
+  .testimonial.dark .testimonial-attr { color: rgba(255,255,255,0.55); }
+  .testimonial.dark .testimonial-note {
+    color: rgba(255,255,255,0.5);
+    border-top-color: rgba(255,255,255,0.12);
+  }
+
+  /* inline variant — inside another card/column */
+  .testimonial-inline {
+    margin-top: 28px;
+    padding: 22px 26px 20px;
+    background: rgba(26, 22, 18, 0.045);
+    border-radius: 4px;
+    text-align: left;
+  }
+  .testimonial-inline .testimonial-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .testimonial-inline .testimonial-attr {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-dim);
+  }
+
+  /* ============================================ */
+  /* CONTEXT THESIS — финальный тезис главы        */
+  /* ============================================ */
+  .context-thesis {
+    padding: 140px 0 160px 0;
+    background: var(--bg-soft);
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .thesis-headline {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 900px;
+    margin: 0 auto 56px;
+  }
+  .thesis-headline em {
+    font-style: italic;
+    font-weight: 500;
+    color: rgba(197,165,90,0.95);
+  }
+  .thesis-lead {
+    font-family: var(--sans);
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink-mute);
+    max-width: 780px;
+    margin: 0 auto 64px;
+  }
+  .thesis-examples {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 64px;
+    max-width: 940px;
+    margin: 0 auto 96px;
+    text-align: left;
+  }
+  .thesis-example {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.3;
+    color: var(--ink);
+    padding: 14px 0 14px 26px;
+    border-left: 2px solid rgba(197,165,90,0.85);
+  }
+  .thesis-finale {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .thesis-finale-line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.45;
+    color: var(--ink-mute);
+    margin: 0;
+  }
+  .thesis-finale-line + .thesis-finale-line { margin-top: 8px; }
+  .thesis-finale-rule {
+    width: 60px;
+    height: 1px;
+    background: rgba(197,165,90,0.85);
+    margin: 48px auto;
+  }
+  .thesis-strike {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 96px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+
+  /* ============================================ */
+  /* PRACTICE — modules grid (dark)                */
+  /* ============================================ */
+  .practice-body {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 64px 0 160px 0;
+  }
+
+  .practice-narrative {
+    max-width: 800px;
+    margin: 0 auto 100px auto;
+  }
+
+  .practice-narrative p {
+    font-family: var(--sans);
+    font-size: 19px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 28px;
+  }
+
+  .practice-narrative p:last-child { margin-bottom: 0; }
+
+  .practice-narrative strong {
+    color: #fff;
+    font-weight: 500;
+  }
+
+  /* Modules — symmetric numbered grid (technical spec feel) */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 56px 64px;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .module-cell {
+    border-top: 1px solid var(--line-dark);
+    padding-top: 28px;
+  }
+
+  .module-num {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: rgba(197,165,90,0.85);
+    margin-bottom: 14px;
+  }
+
+  .module-name {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .module-text {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ============================================ */
+  /* HOW WE WORK — модули + скрины интерфейсов     */
+  /* ============================================ */
+  .howwework-divider {
+    margin-top: 0;
+    margin-bottom: 72px;
+    text-align: center;
+  }
+  .howwework-eyebrow {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 38px;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    text-transform: none;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+  .howwework-rule {
+    width: 56px;
+    height: 1px;
+    background: rgba(255,255,255,0.35);
+    margin: 0 auto;
+  }
+  .howwework-modules {
+    display: flex;
+    flex-direction: column;
+    gap: 160px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  /* Модуль = вертикальный поток: текст наверху, под ним — большой скрин */
+  .howwework-module {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .howwework-module-text {
+    max-width: 720px;
+  }
+  .howwework-module-num {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: rgba(197,165,90,0.85);
+    margin-bottom: 14px;
+  }
+  .howwework-module-name {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 22px;
+  }
+  .howwework-module-desc {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+  }
+  .howwework-module-desc strong {
+    color: rgba(255,255,255,0.94);
+    font-weight: 600;
+  }
+  /* Скрин-блок: рамка + приборная шапка */
+  .howwework-screen {
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.03);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .howwework-screen-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .howwework-screen-head .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(197,165,90,0.9);
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  /* Пустой плейсхолдер — тёмный фон с приглушённой меткой по центру */
+  .howwework-screen-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-size: 15px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+    text-align: center;
+    padding: 24px;
+    aspect-ratio: 16 / 10;
+    background: rgba(255,255,255,0.02);
+  }
+  /* Реальная картинка — фон белый (она сама бумага), aspect-ratio убирается */
+  .howwework-screen-body.has-image {
+    aspect-ratio: auto;
+    padding: 0;
+    background: #fff;
+  }
+  .howwework-screen-body img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ============================================ */
+  /* TECHNOLOGY (Hound Engine)                     */
+  /* ============================================ */
+  .technology-body {
+    padding: 140px 0 140px 0;
+  }
+
+  .technology-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .technology-lead {
+    font-family: var(--sans);
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+    margin-bottom: 60px;
+  }
+
+  .technology-lead strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .technology-pillar {
+    margin-bottom: 56px;
+  }
+
+  .technology-pillar-name {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .technology-pillar-num {
+    font-style: italic;
+    font-weight: 500;
+    color: rgba(197,165,90,0.95);
+    margin-right: 14px;
+  }
+
+  .technology-pillar-text {
+    font-family: var(--sans);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+  }
+
+  .technology-pillar-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .technology-coda {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--ink);
+    padding-left: 32px;
+    border-left: 2px solid var(--ink);
+    margin-top: 32px;
+  }
+
+  /* ============================================ */
+  /* SCENARIOS — story cards (NOT grid)            */
+  /* Distinct visual treatment from modules        */
+  /* ============================================ */
+  .scenarios {
+    padding: 80px 0 160px 0;
+  }
+
+  .scenarios-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .scenario {
+    padding-top: 56px;
+    border-top: 1px solid var(--line);
+  }
+
+  .scenario:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .scenario-title {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .scenario-lead {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ink-2);
+    padding-left: 28px;
+    border-left: 2px solid var(--ink);
+    margin-bottom: 28px;
+  }
+
+  .scenario-body {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--ink-mute);
+  }
+
+  .scenario-body strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ============================================ */
+  /* BATTLE — battle cases (Section V)             */
+  /* ============================================ */
+  .battle-body {
+    background: var(--bg);
+    padding: 80px 0 140px 0;
+  }
+
+  .battle-list {
+    max-width: 940px;
+    margin: 0 auto;
+  }
+
+  .battle-case {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 48px;
+    padding: 72px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+
+  .battle-case:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .battle-case:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .battle-roman {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+    color: rgba(197,165,90,0.9);
+    padding-top: 4px;
+  }
+
+  .battle-meta {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 22px;
+  }
+
+  .battle-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin-bottom: 28px;
+    max-width: 32ch;
+  }
+
+  .battle-text {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.72;
+    color: var(--ink-mute);
+    margin-bottom: 32px;
+    max-width: 62ch;
+  }
+
+  .battle-moment {
+    border-left: 2px solid rgba(197,165,90,0.85);
+    padding: 6px 0 6px 28px;
+    margin-bottom: 36px;
+    max-width: 60ch;
+  }
+
+  .battle-moment p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.42;
+    color: var(--ink);
+  }
+
+  .battle-moment em {
+    font-style: italic;
+    color: rgba(168,135,55,1);
+    font-weight: 500;
+  }
+
+  .battle-outcome {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 24px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    align-items: start;
+    max-width: 64ch;
+  }
+
+  .battle-outcome-label {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding-top: 4px;
+  }
+
+  .battle-outcome p {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+
+  /* ============================================ */
+  /* FORMAT — 4 steps grid (dark)                  */
+  /* ============================================ */
+  .format-body {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 140px 0 160px 0;
+  }
+
+  .format-intro {
+    max-width: 760px;
+    margin: 0 auto 100px auto;
+    font-family: var(--sans);
+    font-size: 19px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .format-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .format-step {
+    border-top: 1px solid var(--line-dark);
+    padding-top: 28px;
+  }
+
+  .format-step-num {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: rgba(197,165,90,0.85);
+    margin-bottom: 14px;
+  }
+
+  .format-step-name {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .format-step-text {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ============================================ */
+  /* TEAM                                          */
+  /* ============================================ */
+  .team {
+    padding: 140px 0 160px 0;
+  }
+
+  .team-attribution {
+    max-width: 800px;
+    margin: 0 auto 100px auto;
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ink-2);
+    text-align: center;
+  }
+
+  .team-attribution strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px 100px;
+    max-width: 1000px;
+    margin: 0 auto 100px auto;
+  }
+
+  .team-member {
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+  }
+
+  .team-member-photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  .team-member-name {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .team-member-role {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink-mute);
+    margin-bottom: 20px;
+  }
+
+  .team-member-bio {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+  }
+
+  .team-network {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 64px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .team-network-label {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 20px;
+  }
+
+  .team-network-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .team-network-text {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+  }
+
+  .caliber-header {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    text-align: center;
+    margin-top: 64px;
+    margin-bottom: 36px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .caliber-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 56px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .caliber-card {
+    padding: 20px 0 22px 0;
+    border-top: 1px solid var(--line);
+    text-align: left;
+  }
+  .caliber-card:nth-child(1),
+  .caliber-card:nth-child(2) {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .caliber-stat {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .caliber-stat .accent {
+    color: rgba(168,135,55,1);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .caliber-text {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-mute);
+  }
+
+  /* ============================================ */
+  /* BORDERS                                       */
+  /* ============================================ */
+  .borders {
+    padding: 120px 0 160px 0;
+  }
+
+  .borders-list {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .border-item {
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 60px;
+    align-items: baseline;
+  }
+
+  .border-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .border-name {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+
+  .border-text {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+  }
+
+  .border-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ============================================ */
+  /* CTA                                           */
+  /* ============================================ */
+  .cta {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 200px 0;
+    text-align: center;
+  }
+
+  .cta-eyebrow {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 48px;
+  }
+
+  .cta-title {
+    font-family: var(--serif);
+    font-size: 88px;
+    line-height: 0.95;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #fff;
+    margin-bottom: 56px;
+  }
+
+  .cta-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.75);
+    max-width: 720px;
+    margin: 0 auto 80px auto;
+  }
+
+  .cta-contact-name {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .cta-contact-line {
+    font-family: var(--sans);
+    font-size: 17px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 6px;
+  }
+
+  .cta-buttons {
+    margin-top: 56px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    padding: 18px 32px;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .cta-btn:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* ============================================ */
+  /* RESPONSIVE                                    */
+  /* ============================================ */
+  @media (max-width: 1024px) {
+    .container { padding: 0 40px; }
+    .hero h1 { font-size: 72px; }
+    .section-title { font-size: 72px; }
+    .scenario-title { font-size: 30px; }
+    .cta-title { font-size: 60px; }
+    .modules-grid { grid-template-columns: 1fr 1fr; }
+    .technology-pillar-name { font-size: 28px; }
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 28px; }
+
+    .hero { padding: 100px 0 80px 0; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 2px; margin-bottom: 32px; }
+    .hero h1 { font-size: 42px; margin-bottom: 32px; }
+    .hero-tagline { font-size: 21px; }
+    .hero-scope { font-size: 16px; }
+
+    .section-opener { padding: 100px 0 80px 0; }
+    .section-roman { font-size: 20px; margin-bottom: 16px; }
+    .section-meta { font-size: 11px; letter-spacing: 3px; margin-bottom: 32px; }
+    .section-title { font-size: 48px; margin-bottom: 32px; }
+    .section-subtitle { font-size: 20px; }
+
+    .context-body { padding: 24px 0 60px 0; }
+    .context-body p { font-size: 17px; }
+    .causes-grid { grid-template-columns: 1fr; gap: 36px; margin-top: 48px; }
+    .cause-headline { font-size: 21px; }
+    .context-summary-title { font-size: 34px; }
+
+    .context-stats { padding: 60px 0 70px 0; }
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .stat-cell { padding: 0; }
+    .stat-num { font-size: 50px; }
+    .stat-pull { padding-left: 22px; }
+    .stat-pull-text { font-size: 22px; }
+    .stat-diagnosis { font-size: 15px; text-align: left; margin-top: 24px; }
+
+    .context-insights { padding-bottom: 40px; }
+
+    .testimonial { margin-top: 48px; }
+    .testimonial-quote { font-size: 19px; }
+    .testimonial-attr { font-size: 14px; }
+    .insights-grid { grid-template-columns: 1fr; gap: 56px; }
+    .insight-headline { font-size: 24px; }
+    .insight-body { font-size: 15px; }
+
+    .context-thesis { padding: 80px 0 90px 0; }
+    .thesis-headline { font-size: 36px; }
+    .thesis-lead { font-size: 16px; margin-bottom: 44px; }
+    .thesis-examples { grid-template-columns: 1fr; gap: 12px; margin-bottom: 56px; }
+    .thesis-example { font-size: 19px; padding-left: 18px; }
+    .thesis-finale-line { font-size: 19px; }
+    .thesis-finale-rule { margin: 36px auto; }
+    .thesis-strike { font-size: 52px; }
+    .cause-body { font-size: 15px; }
+
+    .practice-body { padding: 80px 0 100px 0; }
+    .practice-narrative { margin-bottom: 60px; }
+    .practice-narrative p { font-size: 17px; }
+    .modules-grid { grid-template-columns: 1fr; gap: 40px; }
+    .module-name { font-size: 22px; }
+
+    .howwework-divider { margin-top: 0; margin-bottom: 48px; }
+    .howwework-eyebrow { font-size: 28px; }
+    .howwework-modules { gap: 96px; }
+    .howwework-module { gap: 28px; }
+    .howwework-module-name { font-size: 26px; }
+    .howwework-module-desc { font-size: 15px; }
+
+    .technology-body { padding: 80px 0; }
+    .technology-lead { font-size: 17px; margin-bottom: 48px; }
+    .technology-pillar { margin-bottom: 40px; }
+    .technology-pillar-name { font-size: 24px; }
+    .technology-pillar-text { font-size: 16px; }
+    .technology-coda { font-size: 19px; padding-left: 20px; }
+
+    .scenarios { padding: 40px 0 80px 0; }
+    .scenarios-list { gap: 56px; }
+    .scenario { padding-top: 40px; }
+    .scenario-title { font-size: 26px; }
+    .scenario-lead { font-size: 19px; padding-left: 20px; }
+    .scenario-body { font-size: 16px; }
+
+    .battle-body { padding: 40px 0 80px 0; }
+    .battle-case { grid-template-columns: 1fr; gap: 20px; padding: 48px 0; }
+    .battle-roman { font-size: 48px; padding-top: 0; }
+    .battle-title { font-size: 24px; margin-bottom: 22px; }
+    .battle-text { font-size: 16px; margin-bottom: 24px; }
+    .battle-moment { padding-left: 20px; margin-bottom: 28px; }
+    .battle-moment p { font-size: 19px; }
+    .battle-outcome { grid-template-columns: 1fr; gap: 10px; padding-top: 22px; }
+    .battle-outcome p { font-size: 15px; }
+
+    .format-body { padding: 80px 0 100px 0; }
+    .format-intro { font-size: 17px; margin-bottom: 56px; }
+    .format-steps { grid-template-columns: 1fr; gap: 40px; }
+    .format-step-name { font-size: 22px; }
+
+    .team { padding: 80px 0; }
+    .team-attribution { font-size: 21px; margin-bottom: 56px; }
+    .team-grid { grid-template-columns: 1fr; gap: 48px; margin-bottom: 56px; }
+    .team-member-name { font-size: 26px; }
+    .team-network { padding-top: 40px; }
+    .team-network-title { font-size: 24px; }
+    .caliber-grid { grid-template-columns: 1fr; gap: 0; }
+    .caliber-card:nth-child(2) { border-top: 1px solid var(--line); padding-top: 20px; }
+    .caliber-stat { font-size: 22px; }
+
+    .borders { padding: 80px 0; }
+    .border-item { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+    .border-name { font-size: 22px; }
+    .border-text { font-size: 16px; }
+
+    .cta { padding: 100px 0; }
+    .cta-eyebrow { font-size: 11px; letter-spacing: 3px; margin-bottom: 32px; }
+    .cta-title { font-size: 40px; margin-bottom: 36px; }
+    .cta-text { font-size: 19px; margin-bottom: 56px; }
+    .cta-contact-name { font-size: 22px; }
+    .cta-contact-line { font-size: 15px; }
+    .cta-buttons { margin-top: 40px; }
+    .cta-btn { font-size: 13px; padding: 14px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- HERO                                          -->
+<!-- ============================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Custodia Silentis · Intelligence</div>
+    <h1>Информационное<br>доминирование<br>в кейсах с высокими<br>ставками.</h1>
+    <div class="hero-gold-line"></div>
+    <p class="hero-tagline">
+      Аналитический разбор сложных кейсов — там, где счёт идёт на дни, документов слишком много, а цена ошибки слишком высока для импровизации.
+    </p>
+    <div class="hero-scope-pills">
+      <span class="hero-pill">Корпоративные конфликты</span>
+      <span class="hero-pill">Due&nbsp;diligence перед сделкой</span>
+      <span class="hero-pill">Восстановление структуры владения</span>
+      <span class="hero-pill">Защита активов</span>
+      <span class="hero-pill">Подготовка позиции до&nbsp;первого хода</span>
+    </div>
+    <p class="hero-bridge">
+      В каждом из&nbsp;этих кейсов за&nbsp;последние десять лет правила игры изменились. Покажем&nbsp;— что и&nbsp;почему.
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- I. КОНТЕКСТ                                   -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">I</div>
+      <div class="section-meta">Контекст</div>
+      <h2 class="section-title">Привычные подходы<br>перестали работать</h2>
+      <p class="section-subtitle">
+        Документов кратно больше. Сроков кратно меньше. Цена ошибки — кратно выше. То, что работало десять лет назад, сегодня просто не&nbsp;успевает.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- I.1 — ОБЪЁМ КАК ДИАГНОЗ                       -->
+<!-- ============================================ -->
+<section class="context-stats">
+  <div class="container">
+    <div class="reveal">
+
+      <div class="stats-grid">
+        <div class="stat-cell">
+          <div class="stat-num">3 000<span class="stat-plus">+</span></div>
+          <div class="stat-label">страниц</div>
+          <div class="stat-note">типовое среднекалиберное дело: материалы суда, выписки из&nbsp;ЕГРЮЛ, переписка, открытые источники, аудио заседаний</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">30 000<span class="stat-plus">+</span></div>
+          <div class="stat-label">документов</div>
+          <div class="stat-note">крупный корпоративный конфликт — разнесён по&nbsp;десятку процессов и&nbsp;нескольким юрисдикциям</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">~&thinsp;73<span class="stat-plus">%</span></div>
+          <div class="stat-label">времени юриста</div>
+          <div class="stat-note">уходит на&nbsp;ручную работу с&nbsp;документами — структура затрат не&nbsp;меняется десять&nbsp;лет (RAND&nbsp;e-discovery study)</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">~&thinsp;60<span class="stat-plus">&thinsp;документов</span></div>
+          <div class="stat-label">за&nbsp;1&nbsp;час</div>
+          <div class="stat-note">средняя скорость изучения документов опытного аналитика. На&nbsp;пике — успевает изучить до&nbsp;75 документов за&nbsp;1&nbsp;час. Дальше — кофе, перерывы, исчезновение фокуса, потеря деталей</div>
+        </div>
+      </div>
+
+      <div class="stat-pull">
+        <p class="stat-pull-text">
+          Один человек физически не&nbsp;может удержать структуру владения из&nbsp;60&nbsp;юрлиц, цепочку решений за&nbsp;восемь лет, граф из&nbsp;ста персон, противоречия между двадцатью договорами и&nbsp;хронологию событий в&nbsp;трёх юрисдикциях <em>одновременно.</em>
+        </p>
+      </div>
+
+      <div class="stat-diagnosis">
+        Это не&nbsp;нехватка квалификации. Это объём, который человек физически обработать не&nbsp;может.
+      </div>
+
+      <div class="testimonial" style="text-align: right; margin: 64px 60px 0 auto; max-width: 560px;">
+        <p class="testimonial-quote">«За&nbsp;год мы&nbsp;не&nbsp;смогли восстановить даже половину картины.»</p>
+        <p class="testimonial-reply">Custodia собрала её&nbsp;полностью — за&nbsp;две недели.</p>
+        <div class="testimonial-attr">Наследник&nbsp;·&nbsp;многопрофильный холдинг</div>
+        <p class="testimonial-note">Имён не&nbsp;называем — конфиденциальность входит в&nbsp;услугу.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- I.2 — ЧТО ЭТО МЕНЯЕТ В ИГРЕ                   -->
+<!-- ============================================ -->
+<section class="context-insights">
+  <div class="container">
+    <div class="reveal">
+      <div class="insights-grid">
+
+        <div class="insight-card">
+          <div class="insight-eyebrow">Сигнал в&nbsp;шуме</div>
+          <h3 class="insight-headline">За последние 15&nbsp;лет мировой объём данных вырос в&nbsp;90+ раз.</h3>
+          <p class="insight-body">
+            Это значит, что не&nbsp;только у&nbsp;вас стало больше информации — больше её&nbsp;и&nbsp;у&nbsp;тех, кто играет против вас. Чтобы найти прежнее количество значимых фактов, всем приходится прочесать кратно больший объём шума.
+          </p>
+          <p class="insight-body insight-body-tail">
+            Преимущество получает не&nbsp;тот, у&nbsp;кого данных больше, а&nbsp;тот, кто быстрее их&nbsp;вычищает.
+          </p>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-eyebrow">Структура переросла голову</div>
+          <h3 class="insight-headline">В&nbsp;собственной структуре теряется и&nbsp;сам владелец.</h3>
+          <p class="insight-body">
+            Корпоративные группы давно выросли в&nbsp;<strong>десятки, сотни, а&nbsp;иногда и&nbsp;тысячи</strong> аффилированных юрлиц. Сложность стала такой, что полную и&nbsp;актуальную карту в&nbsp;голове не&nbsp;держит уже никто — <strong>в&nbsp;том числе тот, кто эту структуру построил.</strong>
+          </p>
+          <p class="insight-body insight-body-tail">
+            Оппонент здесь оказывается в&nbsp;равных условиях с&nbsp;владельцем. Выигрывает не&nbsp;тот, кто знает структуру наизусть, а&nbsp;тот, у&nbsp;кого есть инструмент её&nbsp;быстро восстановить.
+          </p>
+
+          <div class="testimonial-inline">
+            <p class="testimonial-quote">«Я&nbsp;сама не&nbsp;знала всего по&nbsp;своим&nbsp;же объектам — а&nbsp;в&nbsp;отчёте оказалось даже то, чего не&nbsp;было в&nbsp;наших документах.»</p>
+            <div class="testimonial-attr">Совладелица&nbsp;·&nbsp;группа активов</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="context-body">
+  <div class="container">
+    <div class="context-body-inner reveal">
+      <div class="context-summary">
+        <h3 class="context-summary-title">В&nbsp;сухом остатке.</h3>
+        <div class="context-summary-rule"></div>
+      </div>
+
+      <div class="causes-grid">
+        <div class="cause-cell">
+          <div class="cause-num">i.</div>
+          <div class="cause-headline">Время работает против вас</div>
+          <div class="cause-body">
+            В корпоративном конфликте у вас может быть 72 часа до критического процессуального действия. Три недели ручного анализа — это три недели, которых нет.
+          </div>
+        </div>
+        <div class="cause-cell">
+          <div class="cause-num">ii.</div>
+          <div class="cause-headline">Документы — хаос, не архив</div>
+          <div class="cause-body">
+            Тысячи файлов разного формата, качества и возраста, в разных юрисдикциях, на разных языках. Ни один человек не удержит полную картину.
+          </div>
+        </div>
+        <div class="cause-cell">
+          <div class="cause-num">iii.</div>
+          <div class="cause-headline">Ошибки стоят как бизнес</div>
+          <div class="cause-body">
+            Пропущенный договор залога, незамеченная цессия, устаревшая выписка — каждая может разрушить позицию.
+          </div>
+        </div>
+        <div class="cause-cell">
+          <div class="cause-num">iv.</div>
+          <div class="cause-headline">Масштаб растёт быстрее инструментов</div>
+          <div class="cause-body">
+            Объём данных на кейс растёт каждый год. Инструмент, способный его осилить, появился только что — и системно им владеют единицы.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- I.3 — ФИНАЛЬНЫЙ ТЕЗИС ГЛАВЫ                  -->
+<!-- ============================================ -->
+<section class="context-thesis">
+  <div class="container">
+    <div class="reveal">
+
+      <h3 class="thesis-headline">
+        Побеждает тот, кто первым видит <em>всю доску.</em>
+      </h3>
+
+      <p class="thesis-lead">
+        Победа определяется не&nbsp;на&nbsp;заседании. Победа предопределяется в&nbsp;тот момент, когда одна сторона знает про дело то, чего не&nbsp;знает другая:
+      </p>
+
+      <div class="thesis-examples">
+        <div class="thesis-example">Забытое решение суда</div>
+        <div class="thesis-example">Аффилированность оппонента с&nbsp;третьими лицами</div>
+        <div class="thesis-example">Подменённый документ</div>
+        <div class="thesis-example">Оценщик со&nbsp;своим интересом</div>
+      </div>
+
+      <div class="thesis-finale">
+        <p class="thesis-finale-line">Эта информация почти всегда уже&nbsp;существует.</p>
+        <p class="thesis-finale-line">Её&nbsp;просто пока никто не&nbsp;достал.</p>
+
+        <div class="thesis-finale-rule"></div>
+
+        <div class="thesis-strike">Мы&nbsp;— достаём.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- II. ПРАКТИКА — modules grid (dark)            -->
+<!-- ============================================ -->
+<section class="section-opener dark">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">II</div>
+      <div class="section-meta">Методология</div>
+      <h2 class="section-title">Из материалов —<br>в&nbsp;карту.<br>За один проход.</h2>
+      <p class="section-subtitle">
+        Аналитики, инженеры и&nbsp;юристы&nbsp;— и&nbsp;Hound, движок, которым мы&nbsp;это делаем.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="practice-body">
+  <div class="container">
+
+    <div class="howwework-divider reveal">
+      <div class="howwework-eyebrow">Как мы работаем</div>
+      <div class="howwework-rule"></div>
+    </div>
+
+    <div class="practice-narrative reveal">
+      <p>
+        Берём кейс. Изучаем материалы. Возвращаем то, что должно быть на руках у того, кто принимает решение: <strong>полная картина, связанные факты, выявленные риски, готовая аналитика для следующего шага</strong>.
+      </p>
+    </div>
+
+    <div class="howwework-modules">
+
+      <!-- 01 — Обработка документов, бриф и хронология · timeline_case_I -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">01</div>
+          <div class="howwework-module-name">Обработка документов, формирование брифа и&nbsp;хронологии</div>
+          <p class="howwework-module-desc">
+            Мы загружаем материалы любого формата — сканы, аудио, фото, многоязычные тексты, переписку, выписки. Hound извлекает факты, события и&nbsp;даты и&nbsp;сводит их в&nbsp;<strong>структурированный бриф по&nbsp;делу</strong> и&nbsp;<strong>хронологическую ленту</strong> — с&nbsp;маркировкой поворотных моментов и&nbsp;комментарием «почему это важно» к&nbsp;каждой точке.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span><span class="dot"></span>Timeline</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/timeline_case_I.png" alt="Hound · Хронология ключевых событий · case I" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 — Структура владения · ownership_graph_case_I -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">02</div>
+          <div class="howwework-module-name">Структура владения</div>
+          <p class="howwework-module-desc">
+            Мы восстанавливаем реальную структуру контроля — юрлица, физлица, трасты, офшоры, цепочки и&nbsp;неочевидные связи. Hound собирает граф из&nbsp;ваших документов за&nbsp;часы; мы читаем по&nbsp;нему, где она разорвана.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span><span class="dot"></span>Ownership Graph</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/ownership_graph_case_I.png" alt="Hound · Граф владения · case I" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 — Due Diligence полного цикла · dd_operation -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">03</div>
+          <div class="howwework-module-name">Due Diligence полного цикла</div>
+          <p class="howwework-module-desc">
+            Мы доводим кейс от&nbsp;загрузки документов до&nbsp;структурированного отчёта — с&nbsp;выводами, источниками и&nbsp;приоритизацией рисков. Применимо к&nbsp;сделкам, инвестициям, проверке контрагентов перед переговорами.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span><span class="dot"></span>DD Operation</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/dd_operation.png" alt="Hound · Due Diligence · операция компиляции отчёта" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 — Правовая аналитика -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">04</div>
+          <div class="howwework-module-name">Правовая аналитика</div>
+          <p class="howwework-module-desc">
+            Мы выстраиваем правовую позицию: проверка по&nbsp;действующему законодательству и&nbsp;судебной практике, подготовка процессуальных документов. Hound привязывает каждый довод к&nbsp;актуальной норме и&nbsp;прецеденту.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span><span class="dot"></span>Legal Reasoner</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/legal_position.png" alt="Hound · Legal Reasoner · правовая позиция со ссылками на судебную практику" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 — OSINT-разведка · profile_vedeneva -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">05</div>
+          <div class="howwework-module-name">OSINT-разведка</div>
+          <p class="howwework-module-desc">
+            Мы собираем досье на&nbsp;персону или компанию из&nbsp;открытых источников — связи, аффилированность, история, репутационные риски. Hound сводит разрозненные следы в&nbsp;один профиль.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span><span class="dot"></span>Профиль персоны</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/profile_vedeneva.png" alt="Hound · Профиль персоны · Веденёва А. С." loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial dark" style="margin-top: 24px;">
+        <p class="testimonial-quote">«Такого полного досье мне не&nbsp;приносила даже собственная служба безопасности.»</p>
+        <div class="testimonial-attr">Бенефициар&nbsp;·&nbsp;промышленная группа</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- III. ТЕХНОЛОГИЯ — Hound Engine                -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">III</div>
+      <div class="section-meta">Нечестное преимущество</div>
+      <h2 class="section-title">Оружие, которого<br>нет у&nbsp;других</h2>
+      <p class="section-subtitle">
+        У&nbsp;практики есть инструмент, которого нет на&nbsp;рынке. Его нельзя купить, нельзя лицензировать, нельзя получить в&nbsp;обход нас. Он работает только в&nbsp;наших руках&nbsp;— и&nbsp;только на&nbsp;ваших кейсах.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="technology-body">
+  <div class="container">
+    <div class="technology-inner reveal">
+
+      <div class="technology-pillar">
+        <h3 class="technology-pillar-name"><span class="technology-pillar-num">I.</span> Скорость без потери качества</h3>
+        <p class="technology-pillar-text">
+          Задачи, на которые ручной команде нужны недели, через Hound проходят за часы. Не потому что AI заменил юриста, а потому что <strong>техническая часть</strong> работы — распознавание, нормализация, индексация, поиск связей — автоматизирована полностью. Юристы и аналитики работают не с документами, а с <strong>уже подготовленной картиной</strong>.
+        </p>
+      </div>
+
+      <div class="technology-pillar">
+        <h3 class="technology-pillar-name"><span class="technology-pillar-num">II.</span> Глубина анализа, недоступная вручную</h3>
+        <p class="technology-pillar-text">
+          В кейсе на 7000 документов человек физически не может удержать связи. Hound удерживает. Это позволяет видеть то, что традиционные команды пропускают: <strong>скрытые альянсы, неоформленные договорённости, противоречия в логике сделок, аномалии в структуре владения</strong>.
+        </p>
+      </div>
+
+      <p class="technology-coda">
+        Hound — <strong>не продукт</strong>. Это причина работать с&nbsp;нами. Доступ к&nbsp;движку вы получаете, только став клиентом.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- IV. БОЕВАЯ ПРАКТИКА                           -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">IV</div>
+      <div class="section-meta">Боевая практика</div>
+      <h2 class="section-title">Три кейса.<br>Три перелома.</h2>
+      <p class="section-subtitle">
+        Это не показ возможностей и не каталог услуг. Это часть результатов, которые получились на нашем пути.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="battle-body">
+  <div class="container">
+    <div class="battle-list">
+
+      <article class="battle-case reveal">
+        <div class="battle-roman">I</div>
+        <div class="battle-content">
+          <div class="battle-meta">9 связанных дел&nbsp;&nbsp;·&nbsp;&nbsp;7 уровней владения&nbsp;&nbsp;·&nbsp;&nbsp;на&nbsp;кону 1&nbsp;млрд&nbsp;₽</div>
+          <h3 class="battle-title">Государственное изъятие актива в&nbsp;интересах теневого бенефициара. Юристы на&nbsp;старте говорили: «ловить нечего».</h3>
+          <p class="battle-text">
+            Наследник промышленного состояния получает контроль над комплексом — и&nbsp;почти сразу попытку изъять его под предлогом инфраструктурной стройки. Реальный выгодоприобретатель — частный девелопер при одном из&nbsp;крупнейших застройщиков страны. На&nbsp;бумаге всё чисто.
+          </p>
+          <div class="battle-moment">
+            <p>Структура атакующей стороны раскрылась за&nbsp;двое суток — выяснилось, что несколько ключевых игроков связаны между собой, и&nbsp;дело пошло трещиной. Потом всплыли документы: <em>тот&nbsp;же интересант со&nbsp;стороны оппонента сам предлагал городу альтернативное решение — то&nbsp;есть изъятие никогда не&nbsp;было исключительной мерой.</em></p>
+          </div>
+          <div class="battle-outcome">
+            <div class="battle-outcome-label">Исход</div>
+            <p>Клиент вышел из&nbsp;обороны в&nbsp;наступление — встречные ходатайства об&nbsp;истребовании внутренней переписки госоргана и&nbsp;об&nbsp;отводе экспертов. Безнадёжное стало выигрываемым.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="battle-case reveal">
+        <div class="battle-roman">II</div>
+        <div class="battle-content">
+          <div class="battle-meta">1&nbsp;293 файла&nbsp;&nbsp;·&nbsp;&nbsp;аудио&nbsp;16&nbsp;мин&nbsp;&nbsp;·&nbsp;&nbsp;решение конца&nbsp;1990-х</div>
+          <h3 class="battle-title">Снос вступил в&nbsp;силу. Апелляция проиграна. Прежняя защита сдалась.</h3>
+          <p class="battle-text">
+            Суд признал постройки самовольными и&nbsp;постановил снести. Срок добровольного сноса истёк. В&nbsp;массиве из&nbsp;1&nbsp;293&nbsp;файлов мы&nbsp;— через Hound&nbsp;— нашли решение суда конца&nbsp;1990-х, прямо признающее право собственности на&nbsp;те самые постройки&nbsp;— в&nbsp;записке предыдущего юриста этого документа не&nbsp;было вовсе.
+          </p>
+          <div class="battle-moment">
+            <p>Один документ, пролежавший в&nbsp;архиве двадцать пять лет, <em>обнулил всё, на&nbsp;чём строилось решение о&nbsp;сносе.</em></p>
+          </div>
+          <div class="battle-outcome">
+            <div class="battle-outcome-label">Исход</div>
+            <p>Проигранная позиция получила законное основание для&nbsp;пересмотра — там, где прежняя защита уже сдалась.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="battle-case reveal">
+        <div class="battle-roman">III</div>
+        <div class="battle-content">
+          <div class="battle-meta">30+ юрлиц&nbsp;&nbsp;·&nbsp;&nbsp;Family Office на&nbsp;120 человек&nbsp;&nbsp;·&nbsp;&nbsp;7 дней</div>
+          <h3 class="battle-title">30+ юрлиц. Family Office на&nbsp;120 человек. 7&nbsp;дней до&nbsp;большой войны.</h3>
+          <p class="battle-text">
+            Группу из&nbsp;более чем тридцати связанных юрлиц с&nbsp;собственным Family Office на&nbsp;120 сотрудников нужно было за&nbsp;неделю пересобрать под предстоящий конфликт: уставы, оргструктура, система владения, центры прибыли и&nbsp;убытков, досье на&nbsp;ключевых лиц с&nbsp;обеих сторон.
+          </p>
+          <div class="battle-moment">
+            <p>Когда началась война, клиент не&nbsp;оборонялся. <em>Он&nbsp;уже стоял на&nbsp;заранее выбранной позиции&nbsp;— с&nbsp;просчитанными ходами оппонента.</em></p>
+          </div>
+          <div class="battle-outcome">
+            <div class="battle-outcome-label">Исход</div>
+            <p>Вошёл в&nbsp;конфликт не&nbsp;реактивно, а&nbsp;с&nbsp;перестроенной под войну структурой и&nbsp;готовым сценарием.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- V. СЦЕНАРИИ — story cards                     -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">V</div>
+      <div class="section-meta">Сценарии обращения</div>
+      <h2 class="section-title">Шесть ситуаций,<br>в которых нас ищут</h2>
+      <p class="section-subtitle">
+        Не каталог услуг — типы кейсов, с которыми приходят клиенты.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="scenarios">
+  <div class="container">
+    <div class="scenarios-list">
+
+      <div class="scenario reveal">
+        <h3 class="scenario-title">Корпоративный конфликт в активной фазе</h3>
+        <p class="scenario-lead">
+          Споры между владельцами. Попытки враждебных поглощений. Оспаривание сделок прошлых лет. Борьба за контроль над юрлицами.
+        </p>
+        <p class="scenario-body">
+          Внутренняя команда юристов держит позицию, но не успевает разобрать всю картину. Противник действует быстрее, потому что готовился заранее. Нужно за дни выйти на тот же уровень осведомлённости — или опередить.
+        </p>
+      </div>
+
+      <div class="scenario reveal">
+        <h3 class="scenario-title">Due Diligence перед крупной сделкой</h3>
+        <p class="scenario-lead">
+          Покупка компании. Вход в сложный актив. Инвестиция в незнакомый бизнес.
+        </p>
+        <p class="scenario-body">
+          Формальное Due Diligence закрывает чек-листы и не отвечает на главный вопрос: <strong>что мы покупаем на самом деле?</strong> Нужен глубокий разбор: скрытые обязательства, аффилированность сторон, история актива за всё время существования, реальные риски.
+        </p>
+      </div>
+
+      <div class="scenario reveal">
+        <h3 class="scenario-title">Восстановление структуры владения</h3>
+        <p class="scenario-lead">
+          Сложный холдинг через несколько юрисдикций. Утерянные документы. Путаница в цепочках контроля. Наследство, в котором никто не разобрался.
+        </p>
+        <p class="scenario-body">
+          Нужно восстановить полную картину: кто чем владеет, на каких основаниях, с какими ограничениями, какие документы существуют и какие отсутствуют.
+        </p>
+      </div>
+
+      <div class="scenario reveal">
+        <h3 class="scenario-title">Защита активов и антирейдер</h3>
+        <p class="scenario-lead">
+          Признаки готовящейся атаки. Тихая скупка долей. Подозрительная активность вокруг компании. Или уже активная фаза — обеспечительные меры, иски, попытки захвата.
+        </p>
+        <p class="scenario-body">
+          Карта уязвимостей собственного периметра. Профили оппонентов и их ресурсной базы. Варианты защитных действий. Оценка времени до критической точки.
+        </p>
+      </div>
+
+      <div class="scenario reveal">
+        <h3 class="scenario-title">Расследование внутри компании</h3>
+        <p class="scenario-lead">
+          Подозрение на злоупотребления. Утечки информации. Теневые договорённости менеджмента. Странные финансовые потоки.
+        </p>
+        <p class="scenario-body">
+          Внутренние службы могут быть частью проблемы — или просто не иметь необходимой технической базы. Нужен независимый аналитический разбор: что произошло, кто участвовал, какие у этого следы в документах и цифровых артефактах.
+        </p>
+      </div>
+
+      <div class="scenario reveal">
+        <h3 class="scenario-title">Подготовка к крупной сделке или переговорам</h3>
+        <p class="scenario-lead">
+          Не Due Diligence контрагента — разведка перед столом.
+        </p>
+        <p class="scenario-body">
+          Кто противоположная сторона на самом деле. Какие у неё ограничения. Кто за ней стоит. Какие альтернативы у вас. Какие — у них. Какие сценарии она будет разыгрывать. <strong>Что вам не сказали.</strong>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- VI. ФОРМАТ                                    -->
+<!-- ============================================ -->
+<section class="section-opener dark">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">VI</div>
+      <div class="section-meta">Формат</div>
+      <h2 class="section-title">Проектный<br>формат</h2>
+      <p class="section-subtitle">
+        Каждый кейс — отдельный проект. Сначала разбираемся в задаче, потом фиксируем формат и стоимость, потом работаем.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="format-body">
+  <div class="container">
+    <div class="format-steps reveal">
+
+      <div class="format-step">
+        <div class="format-step-num">01</div>
+        <div class="format-step-name">Установочный разговор</div>
+        <div class="format-step-text">
+          45–90 минут с командой. Описываете ситуацию, цели, ключевые вопросы. Определяем, в нашем ли это профиле, и какой формат работы подходит.
+        </div>
+      </div>
+
+      <div class="format-step">
+        <div class="format-step-num">02</div>
+        <div class="format-step-name">Оценка кейса</div>
+        <div class="format-step-text">
+          Изучаем материалы и контекст, определяем объём работы, формулируем результат, который вы получите. Фиксируем сроки и стоимость после того, как видели кейс — не на входе.
+        </div>
+      </div>
+
+      <div class="format-step">
+        <div class="format-step-num">03</div>
+        <div class="format-step-name">Работа</div>
+        <div class="format-step-text">
+          Сбор и обработка материалов, аналитика через наш движок и команду, контрольные точки на ключевых развилках. Прямой доступ к команде проекта — без посредников и менеджеров.
+        </div>
+      </div>
+
+      <div class="format-step">
+        <div class="format-step-num">04</div>
+        <div class="format-step-name">Результат</div>
+        <div class="format-step-text">
+          Структурированный отчёт, визуализации, карты, шаблоны документов — то, что нужно для следующего шага. Передача результата с разбором и ответами на вопросы.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- VII. КОМАНДА                                  -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">VII</div>
+      <div class="section-meta">Команда</div>
+      <h2 class="section-title">Команда,<br>которая лично<br>в проекте</h2>
+      <p class="section-subtitle">
+        Под каждый проект подключаются специалисты с глубокой экспертизой.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="container">
+
+    <p class="team-attribution reveal">
+      <strong>Custodia Silentis · Intelligence</strong> — аналитическая практика <strong>Custodia Silentis</strong>. В основе — методология, отработанная в работе с private wealth, корпоративными конфликтами и высокоставочными переходными состояниями.
+    </p>
+
+    <div class="team-grid reveal">
+      <div class="team-member">
+        <img class="team-member-photo" src="uploads/David_Asatryan.png" alt="Давид Асатрян" loading="lazy">
+        <div class="team-member-name">Давид Асатрян</div>
+        <div class="team-member-role">Сооснователь&nbsp;·&nbsp;Управляющий партнёр</div>
+        <div class="team-member-bio">
+          Предприниматель второго поколения. Прошёл преемственность изнутри — с семью открытыми судебными делами, тысячами документов и хаотичным архивом, который пришлось разбирать в острой фазе. Из этого опыта родились методологии Custodia и движок Hound.
+        </div>
+      </div>
+      <div class="team-member">
+        <img class="team-member-photo" src="uploads/Jiri_FinalPhoto.png" alt="Йиржи Новак" loading="lazy">
+        <div class="team-member-name">Йиржи Новак</div>
+        <div class="team-member-role">Сооснователь&nbsp;·&nbsp;CTO</div>
+        <div class="team-member-bio">
+          Чувствительная инфраструктура: T-Mobile, госпиталь Motol (Прага). 9+ лет разработки, 5+ лет управления международными командами. Cross-border операции: Россия, Чехия, Армения. Построил Hound Engine от идеи до production.
+        </div>
+      </div>
+    </div>
+
+    <div class="team-network reveal">
+      <div class="team-network-label">Закрытый круг</div>
+      <h4 class="team-network-title">Доступ — часть того,<br>что мы привносим</h4>
+
+      <div style="max-width: 720px; margin: 0 auto 56px auto; text-align: center;">
+        <p style="font-family: var(--sans); font-size: 17px; line-height: 1.7; color: var(--ink-mute); margin-bottom: 18px;">
+          За годы работы выстроен круг практиков, к которым обращаемся под конкретные задачи: <strong style="color: var(--ink); font-weight: 500;">юристы по корпоративным конфликтам, специалисты по антирейдеру, аналитики OSINT, эксперты по структурам владения в мульти-юрисдикции</strong>.
+        </p>
+        <p style="font-family: var(--sans); font-size: 17px; line-height: 1.7; color: var(--ink-mute);">
+          Этот круг — не штат и не партнёрство. Это люди, которые работают <strong style="color: var(--ink); font-weight: 500;">по приглашению, а не по контракту</strong>. Их экспертиза не публична. Доступ к ним — часть того, что мы привносим в проект.
+        </p>
+      </div>
+
+      <div class="caliber-header">Калибр</div>
+      <div class="caliber-grid">
+        <div class="caliber-card">
+          <div class="caliber-stat">$20&nbsp;млрд</div>
+          <div class="caliber-text">капиталы под управлением</div>
+        </div>
+        <div class="caliber-card">
+          <div class="caliber-stat">30+ кейсов</div>
+          <div class="caliber-text">обработано через Hound Engine</div>
+        </div>
+        <div class="caliber-card">
+          <div class="caliber-stat">10+ юрисдикций</div>
+          <div class="caliber-text">cross-border операций</div>
+        </div>
+        <div class="caliber-card">
+          <div class="caliber-stat">25+ лет</div>
+          <div class="caliber-text">private wealth&nbsp;·&nbsp;корпоративное структурирование</div>
+        </div>
+        <div class="caliber-card">
+          <div class="caliber-stat">Участие в&nbsp;40+</div>
+          <div class="caliber-text">корпоративных конфликтах высокой интенсивности</div>
+        </div>
+        <div class="caliber-card">
+          <div class="caliber-stat"><span class="accent">Top-tier</span> институты</div>
+          <div class="caliber-text">McKinsey&nbsp;·&nbsp;Citibank&nbsp;·&nbsp;Renaissance Capital&nbsp;·&nbsp;Альфа-Банк</div>
+        </div>
+        <div class="caliber-card">
+          <div class="caliber-stat">M&amp;A&nbsp;+ litigation</div>
+          <div class="caliber-text">противодействие враждебным атакам</div>
+        </div>
+        <div class="caliber-card">
+          <div class="caliber-stat"><span class="accent">SECO</span>&nbsp;/&nbsp;<span class="accent">OFAC</span></div>
+          <div class="caliber-text">разморозка замороженных активов</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- VIII. ГРАНИЦЫ                                 -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">VIII</div>
+      <div class="section-meta">Границы</div>
+      <h2 class="section-title">Когда мы<br>не подходим</h2>
+      <p class="section-subtitle">
+        Наша методология работает в узкой полосе ситуаций. Знание своих границ — наш главный инструмент отбора.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="borders">
+  <div class="container">
+    <div class="borders-list reveal">
+
+      <div class="border-item">
+        <div class="border-name">Задача стандартная и решается обычным анализом</div>
+        <div class="border-text">
+          Если ситуация типовая и не требует глубокого разбора — обычная юрфирма справится лучше и дешевле.
+        </div>
+      </div>
+
+      <div class="border-item">
+        <div class="border-name">Нужен исполнитель, а не аналитик</div>
+        <div class="border-text">
+          Мы не ведём процесс вместо ваших юристов. <strong>Hound наводит — спуск за вашей командой.</strong> Мы даём ей превосходство, с которым она входит в конфликт, уже зная исход.
+        </div>
+      </div>
+
+      <div class="border-item">
+        <div class="border-name">Не готовы дать доступ к материалам</div>
+        <div class="border-text">
+          Без полного доступа к документам и контексту аналитика становится поверхностной. Если есть ограничения — обсудим, но без минимума работа не получится.
+        </div>
+      </div>
+
+      <div class="border-item">
+        <div class="border-name">Хотите купить или лицензировать движок</div>
+        <div class="border-text">
+          Hound не продаётся ни за какие деньги. Это часть нашей архитектуры и методологии, а не товар. Он приходит только вместе с нами.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- TESTIMONIAL → CTA                             -->
+<!-- ============================================ -->
+<section style="padding: 0 0 32px 0;">
+  <div class="container reveal">
+    <div class="testimonial" style="margin-top: 0;">
+      <p class="testimonial-quote">«Будь у&nbsp;нас доступ к&nbsp;этому в&nbsp;самом начале конфликта, мы&nbsp;бы не&nbsp;потеряли один из&nbsp;активов. И&nbsp;за&nbsp;свою долю выручили бы&nbsp;вдвое больше.»</p>
+      <div class="testimonial-attr">Наследник&nbsp;·&nbsp;промышленный холдинг</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- CTA                                           -->
+<!-- ============================================ -->
+<section class="cta">
+  <div class="container reveal">
+    <div class="cta-eyebrow">Связаться</div>
+    <h2 class="cta-title">Если кейс<br>звучит знакомо</h2>
+    <p class="cta-text">
+      Напишите, опишите ситуацию в двух абзацах. Если это в нашем профиле — назначим установочный разговор. Если нет — скажем сразу и честно.
+    </p>
+
+    <div class="cta-contact-name">Давид Асатрян</div>
+    <div class="cta-contact-line">owner@custodia-silentis.com</div>
+    <div class="cta-contact-line">+7 995 110 92 98</div>
+
+    <div class="cta-buttons">
+      <a href="https://t.me/real_davidasatryan" class="cta-btn" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a href="https://calendar.app.google/CbV9XEJUwTrV16Cr5" class="cta-btn" target="_blank" rel="noopener">Календарь</a>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  (function() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        el.classList.add('is-visible');
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -80px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>
+
+</body>
+</html>
