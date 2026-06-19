@@ -529,6 +529,13 @@
     border-top-color: rgba(255,255,255,0.12);
   }
 
+  /* right-aligned standalone variant (используется в Контексте, под stat-diagnosis) */
+  .testimonial.testimonial-right {
+    text-align: right;
+    margin: 64px 60px 0 auto;
+    max-width: 560px;
+  }
+
   /* inline variant — inside another card/column */
   .testimonial-inline {
     margin-top: 28px;
@@ -1475,9 +1482,10 @@
 
     .context-insights { padding-bottom: 40px; }
 
-    .testimonial { margin-top: 48px; }
+    .testimonial { margin-top: 48px; padding: 24px 24px 22px; }
     .testimonial-quote { font-size: 19px; }
     .testimonial-attr { font-size: 14px; }
+    .testimonial.testimonial-right { margin: 48px auto 0; max-width: none; }
     .insights-grid { grid-template-columns: 1fr; gap: 56px; }
     .insight-headline { font-size: 24px; }
     .insight-body { font-size: 15px; }
@@ -1643,7 +1651,7 @@
         Это не&nbsp;нехватка квалификации. Это объём, который человек физически обработать не&nbsp;может.
       </div>
 
-      <div class="testimonial" style="text-align: right; margin: 64px 60px 0 auto; max-width: 560px;">
+      <div class="testimonial testimonial-right">
         <p class="testimonial-quote">«За&nbsp;год мы&nbsp;не&nbsp;смогли восстановить даже половину картины.»</p>
         <p class="testimonial-reply">Custodia собрала её&nbsp;полностью — за&nbsp;две недели.</p>
         <div class="testimonial-attr">Наследник&nbsp;·&nbsp;многопрофильный холдинг</div>
@@ -1816,10 +1824,10 @@
         </div>
         <div class="howwework-screen">
           <div class="howwework-screen-head">
-            <span><span class="dot"></span>Timeline</span>
+            <span></span>
             <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
               <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
             </span>
           </div>
           <div class="howwework-screen-body has-image">
@@ -1839,10 +1847,10 @@
         </div>
         <div class="howwework-screen">
           <div class="howwework-screen-head">
-            <span><span class="dot"></span>Ownership Graph</span>
+            <span></span>
             <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
               <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
             </span>
           </div>
           <div class="howwework-screen-body has-image">
@@ -1862,10 +1870,10 @@
         </div>
         <div class="howwework-screen">
           <div class="howwework-screen-head">
-            <span><span class="dot"></span>DD Operation</span>
+            <span></span>
             <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
               <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
             </span>
           </div>
           <div class="howwework-screen-body has-image">
@@ -1885,10 +1893,10 @@
         </div>
         <div class="howwework-screen">
           <div class="howwework-screen-head">
-            <span><span class="dot"></span>Legal Reasoner</span>
+            <span></span>
             <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
               <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
             </span>
           </div>
           <div class="howwework-screen-body has-image">
@@ -1908,10 +1916,10 @@
         </div>
         <div class="howwework-screen">
           <div class="howwework-screen-head">
-            <span><span class="dot"></span>Профиль персоны</span>
+            <span></span>
             <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
               <span style="width:5px; height:5px; border-radius:50%; background:rgba(197,165,90,0.95); display:inline-block;"></span>
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные анонимизированы&nbsp;·&nbsp;имена и&nbsp;названия вымышленные
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
             </span>
           </div>
           <div class="howwework-screen-body has-image">
