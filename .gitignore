@@ -1,0 +1,4 @@
+# Working drafts (не для прода)
+_*.md
+_*.html
+.DS_Store
