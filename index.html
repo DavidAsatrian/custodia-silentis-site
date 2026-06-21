@@ -322,6 +322,95 @@
     background: rgba(255,255,255,0.05);
   }
 
+  /* ============================================ */
+  /* EXEC SUMMARY (between hero and Section I)     */
+  /* ============================================ */
+  .exec-summary {
+    padding: 140px 0 160px 0;
+    background: var(--bg);
+    text-align: center;
+  }
+  .exec-summary-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 72px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 auto 72px auto;
+    max-width: 22ch;
+  }
+  .exec-summary-results {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 820px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    text-align: left;
+  }
+  .exec-summary-results li {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--ink-mute);
+    padding-left: 36px;
+    position: relative;
+    letter-spacing: -0.005em;
+    font-weight: 400;
+  }
+  .exec-summary-results li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(197,165,90,0.95);
+    font-style: normal;
+  }
+  .exec-summary-results li strong {
+    color: var(--ink);
+    font-weight: 600;
+    font-style: normal;
+  }
+  .exec-summary-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 64px auto 0 auto;
+    max-width: 820px;
+    padding-left: 36px;
+    box-sizing: border-box;
+  }
+  .exec-summary-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 18px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    background: rgba(17,17,17,0.025);
+    border: 1px solid rgba(17,17,17,0.14);
+    border-radius: 4px;
+    line-height: 1.2;
+    transition: border-color 0.18s, background 0.18s;
+  }
+  .exec-summary-pill::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(197,165,90,0.95);
+    flex-shrink: 0;
+  }
+  .exec-summary-pill:hover {
+    border-color: rgba(197,165,90,0.5);
+    background: rgba(17,17,17,0.045);
+  }
+
   .hero-bridge {
     font-family: var(--serif);
     font-style: italic;
@@ -911,6 +1000,15 @@
     font-weight: 500;
     letter-spacing: 3px;
     color: rgba(197,165,90,0.85);
+    margin-bottom: 14px;
+  }
+  .howwework-module-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
     margin-bottom: 14px;
   }
   .howwework-module-name {
@@ -1616,6 +1714,12 @@
     .hero-tagline { font-size: 21px; }
     .hero-scope { font-size: 16px; }
 
+    .exec-summary { padding: 80px 0 100px 0; }
+    .exec-summary-title { font-size: 38px; margin-bottom: 48px; }
+    .exec-summary-results li { font-size: 19px; padding-left: 26px; }
+    .exec-summary-pills { margin-top: 44px; gap: 8px; padding-left: 26px; }
+    .exec-summary-pill { font-size: 14px; padding: 9px 14px; }
+
     .section-opener { padding: 100px 0 80px 0; }
     .section-roman { font-size: 20px; margin-bottom: 16px; }
     .section-meta { font-size: 11px; letter-spacing: 3px; margin-bottom: 32px; }
@@ -1776,34 +1880,193 @@
     <div class="hero-eyebrow">Custodia Silentis · Intelligence</div>
     <h1>Информационное<br>доминирование<br>в кейсах с высокими<br>ставками.</h1>
     <div class="hero-gold-line"></div>
-    <p class="hero-tagline">
-      Аналитический разбор сложных кейсов — там, где счёт идёт на дни, документов слишком много, а цена ошибки слишком высока для импровизации.
-    </p>
-    <div class="hero-scope-pills">
-      <span class="hero-pill">Корпоративные конфликты</span>
-      <span class="hero-pill">Due&nbsp;diligence перед сделкой</span>
-      <span class="hero-pill">Восстановление структуры владения</span>
-      <span class="hero-pill">Защита активов</span>
-      <span class="hero-pill">Подготовка позиции до&nbsp;первого хода</span>
-    </div>
-    <p class="hero-bridge">
-      В каждом из&nbsp;этих кейсов за&nbsp;последние десять лет правила игры изменились. Покажем&nbsp;— что и&nbsp;почему.
-    </p>
   </div>
 </section>
 
 
 <!-- ============================================ -->
-<!-- I. КОНТЕКСТ                                   -->
+<!-- EXEC SUMMARY                                  -->
+<!-- ============================================ -->
+<section class="exec-summary">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="exec-summary-title">За&nbsp;72&nbsp;часа превращаем тысячи файлов вашего дела в&nbsp;карту всей доски.</h2>
+      <ul class="exec-summary-results">
+        <li><strong>Кто кем владеет на&nbsp;самом деле</strong> — структура контроля и&nbsp;разорванные звенья</li>
+        <li><strong>Что произошло и&nbsp;когда</strong> — хронология с&nbsp;точками, где трещит</li>
+        <li><strong>Где у&nbsp;оппонента слабое место</strong> — ранжированная карта уязвимостей</li>
+      </ul>
+      <div class="exec-summary-pills">
+        <span class="exec-summary-pill">Корпоративные конфликты</span>
+        <span class="exec-summary-pill">Due&nbsp;diligence перед сделкой</span>
+        <span class="exec-summary-pill">Восстановление структуры владения</span>
+        <span class="exec-summary-pill">Защита активов</span>
+        <span class="exec-summary-pill">Подготовка позиции до&nbsp;первого хода</span>
+        <span class="exec-summary-pill">Подготовка к&nbsp;преемственности</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- I. МЕТОДОЛОГИЯ — modules grid (dark)         -->
 <!-- ============================================ -->
 <section class="section-opener">
   <div class="container reveal">
     <div class="section-opener-inner">
       <div class="section-roman">I</div>
-      <div class="section-meta">Контекст</div>
-      <h2 class="section-title">Привычные подходы<br>перестали работать</h2>
+      <div class="section-meta">Как мы работаем · Методология</div>
+      <h2 class="section-title">Из материалов —<br>в&nbsp;карту.<br>За один проход.</h2>
       <p class="section-subtitle">
-        Документов кратно больше. Сроков кратно меньше. Цена ошибки — кратно выше. То, что работало десять лет назад, сегодня просто не&nbsp;успевает.
+        Берём кейс. Изучаем материалы. Возвращаем то, что должно быть на&nbsp;руках у&nbsp;того, кто принимает решение: <strong>полная картина, связанные факты, выявленные риски, готовая аналитика для следующего шага</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="practice-body">
+  <div class="container">
+
+    <div class="howwework-modules">
+
+      <!-- 01 — Обработка документов, бриф и хронология · timeline_case_I -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">01</div>
+          <div class="howwework-module-eyebrow">Хронология и&nbsp;бриф</div>
+          <div class="howwework-module-name">Что произошло и&nbsp;когда — на&nbsp;одной ленте</div>
+          <p class="howwework-module-desc">
+            Сканы, аудио, фото, переписка, выписки — любой формат. Hound сводит всё в&nbsp;<strong>бриф по&nbsp;делу</strong> и&nbsp;<strong>хронологию</strong> с&nbsp;маркировкой поворотных моментов и&nbsp;пометкой «почему это важно» к&nbsp;каждой точке.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span></span>
+            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/timeline_case_I.webp" alt="Hound · Хронология ключевых событий · case I" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 — Структура владения · ownership_graph_case_I -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">02</div>
+          <div class="howwework-module-eyebrow">Структура владения</div>
+          <div class="howwework-module-name">Кто кем владеет на&nbsp;самом деле</div>
+          <p class="howwework-module-desc">
+            Граф контроля по&nbsp;вашим документам: юрлица, физлица, трасты, офшоры, цепочки. Видно, где структура разорвана.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span></span>
+            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/ownership_graph_case_I.webp" alt="Hound · Граф владения · case I" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 — Due Diligence полного цикла · dd_operation -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">03</div>
+          <div class="howwework-module-eyebrow">Due Diligence</div>
+          <div class="howwework-module-name">Что вы покупаете на&nbsp;самом деле</div>
+          <p class="howwework-module-desc">
+            Полный цикл — от&nbsp;загрузки документов до&nbsp;отчёта с&nbsp;выводами, источниками и&nbsp;ранжированными рисками. Сделки, инвестиции, проверка контрагента перед переговорами.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span></span>
+            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/dd_verdict.webp" alt="Hound · Due Diligence · executive verdict с ранжированной картой рисков" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 — Правовая аналитика -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">04</div>
+          <div class="howwework-module-eyebrow">Правовая аналитика</div>
+          <div class="howwework-module-name">Готовая правовая позиция — со&nbsp;ссылками на&nbsp;практику</div>
+          <p class="howwework-module-desc">
+            Проверка по&nbsp;действующему закону и&nbsp;судебной практике, проект процессуальных документов. Hound привязывает каждый довод к&nbsp;актуальной норме и&nbsp;прецеденту.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span></span>
+            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/legal_position.webp" alt="Hound · Legal Reasoner · правовая позиция со ссылками на судебную практику" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 — OSINT-разведка · profile_vedeneva -->
+      <div class="howwework-module reveal">
+        <div class="howwework-module-text">
+          <div class="howwework-module-num">05</div>
+          <div class="howwework-module-eyebrow">OSINT</div>
+          <div class="howwework-module-name">Досье глубже официальных документов</div>
+          <p class="howwework-module-desc">
+            Персона или компания по&nbsp;открытым источникам: связи, аффилированность, история, репутационные риски. Hound сводит разрозненные следы в&nbsp;один профиль — и&nbsp;часто находит то, чего нет в&nbsp;бумагах.
+          </p>
+        </div>
+        <div class="howwework-screen">
+          <div class="howwework-screen-head">
+            <span></span>
+            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
+              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
+            </span>
+          </div>
+          <div class="howwework-screen-body has-image">
+            <img src="screens/img/profile_vedeneva.webp" alt="Hound · Профиль персоны · Веденёва А. С." loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial dark" style="margin-top: 24px;">
+        <p class="testimonial-quote">«Такого полного досье мне не&nbsp;приносила даже собственная служба безопасности.»</p>
+        <div class="testimonial-attr">Бенефициар&nbsp;·&nbsp;промышленная группа</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- II. КОНТЕКСТ                                  -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner" style="max-width: 1180px;">
+      <div class="section-roman">II</div>
+      <div class="section-meta">Контекст</div>
+      <h2 class="section-title" style="max-width: none; font-size: 84px;">Документов стало кратно больше.<br>Сроков кратно меньше.<br>Цена ошибки — кратно выше.</h2>
+      <p class="section-subtitle">
+        То, что работало десять лет назад, сегодня просто не&nbsp;успевает.
       </p>
     </div>
   </div>
@@ -1975,159 +2238,6 @@
       </div>
 
     </div>
-  </div>
-</section>
-
-
-<!-- ============================================ -->
-<!-- II. ПРАКТИКА — modules grid (dark)            -->
-<!-- ============================================ -->
-<section class="section-opener dark">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">II</div>
-      <div class="section-meta">Методология</div>
-      <h2 class="section-title">Из материалов —<br>в&nbsp;карту.<br>За один проход.</h2>
-      <p class="section-subtitle">
-        Аналитики, инженеры и&nbsp;юристы&nbsp;— и&nbsp;Hound, движок, которым мы&nbsp;это делаем.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="practice-body">
-  <div class="container">
-
-    <div class="howwework-divider reveal">
-      <div class="howwework-eyebrow">Как мы работаем</div>
-      <div class="howwework-rule"></div>
-    </div>
-
-    <div class="practice-narrative reveal">
-      <p>
-        Берём кейс. Изучаем материалы. Возвращаем то, что должно быть на руках у того, кто принимает решение: <strong>полная картина, связанные факты, выявленные риски, готовая аналитика для следующего шага</strong>.
-      </p>
-    </div>
-
-    <div class="howwework-modules">
-
-      <!-- 01 — Обработка документов, бриф и хронология · timeline_case_I -->
-      <div class="howwework-module reveal">
-        <div class="howwework-module-text">
-          <div class="howwework-module-num">01</div>
-          <div class="howwework-module-name">Обработка документов, формирование брифа и&nbsp;хронологии</div>
-          <p class="howwework-module-desc">
-            Мы загружаем материалы любого формата — сканы, аудио, фото, многоязычные тексты, переписку, выписки. Hound извлекает факты, события и&nbsp;даты и&nbsp;сводит их в&nbsp;<strong>структурированный бриф по&nbsp;делу</strong> и&nbsp;<strong>хронологическую ленту</strong> — с&nbsp;маркировкой поворотных моментов и&nbsp;комментарием «почему это важно» к&nbsp;каждой точке.
-          </p>
-        </div>
-        <div class="howwework-screen">
-          <div class="howwework-screen-head">
-            <span></span>
-            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
-            </span>
-          </div>
-          <div class="howwework-screen-body has-image">
-            <img src="screens/img/timeline_case_I.webp" alt="Hound · Хронология ключевых событий · case I" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <!-- 02 — Структура владения · ownership_graph_case_I -->
-      <div class="howwework-module reveal">
-        <div class="howwework-module-text">
-          <div class="howwework-module-num">02</div>
-          <div class="howwework-module-name">Структура владения</div>
-          <p class="howwework-module-desc">
-            Мы восстанавливаем реальную структуру контроля — юрлица, физлица, трасты, офшоры, цепочки и&nbsp;неочевидные связи. Hound собирает граф из&nbsp;ваших документов за&nbsp;часы; мы читаем по&nbsp;нему, где она разорвана.
-          </p>
-        </div>
-        <div class="howwework-screen">
-          <div class="howwework-screen-head">
-            <span></span>
-            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
-            </span>
-          </div>
-          <div class="howwework-screen-body has-image">
-            <img src="screens/img/ownership_graph_case_I.webp" alt="Hound · Граф владения · case I" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <!-- 03 — Due Diligence полного цикла · dd_operation -->
-      <div class="howwework-module reveal">
-        <div class="howwework-module-text">
-          <div class="howwework-module-num">03</div>
-          <div class="howwework-module-name">Due Diligence полного цикла</div>
-          <p class="howwework-module-desc">
-            Мы доводим кейс от&nbsp;загрузки документов до&nbsp;структурированного отчёта — с&nbsp;выводами, источниками и&nbsp;приоритизацией рисков. Применимо к&nbsp;сделкам, инвестициям, проверке контрагентов перед переговорами.
-          </p>
-        </div>
-        <div class="howwework-screen">
-          <div class="howwework-screen-head">
-            <span></span>
-            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
-            </span>
-          </div>
-          <div class="howwework-screen-body has-image">
-            <img src="screens/img/dd_operation.webp" alt="Hound · Due Diligence · операция компиляции отчёта" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <!-- 04 — Правовая аналитика -->
-      <div class="howwework-module reveal">
-        <div class="howwework-module-text">
-          <div class="howwework-module-num">04</div>
-          <div class="howwework-module-name">Правовая аналитика</div>
-          <p class="howwework-module-desc">
-            Мы выстраиваем правовую позицию: проверка по&nbsp;действующему законодательству и&nbsp;судебной практике, подготовка процессуальных документов. Hound привязывает каждый довод к&nbsp;актуальной норме и&nbsp;прецеденту.
-          </p>
-        </div>
-        <div class="howwework-screen">
-          <div class="howwework-screen-head">
-            <span></span>
-            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
-            </span>
-          </div>
-          <div class="howwework-screen-body has-image">
-            <img src="screens/img/legal_position.webp" alt="Hound · Legal Reasoner · правовая позиция со ссылками на судебную практику" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <!-- 05 — OSINT-разведка · profile_vedeneva -->
-      <div class="howwework-module reveal">
-        <div class="howwework-module-text">
-          <div class="howwework-module-num">05</div>
-          <div class="howwework-module-name">OSINT-разведка</div>
-          <p class="howwework-module-desc">
-            Мы собираем досье на&nbsp;персону или компанию из&nbsp;открытых источников — связи, аффилированность, история, репутационные риски. Hound сводит разрозненные следы в&nbsp;один профиль.
-          </p>
-        </div>
-        <div class="howwework-screen">
-          <div class="howwework-screen-head">
-            <span></span>
-            <span style="display:inline-flex; align-items:center; justify-content:center; text-align:center; padding:4px 11px; border-radius:999px; background:rgba(197,165,90,0.12); border:1px solid rgba(197,165,90,0.35); color:rgba(197,165,90,0.95); letter-spacing:0.14em; text-transform:uppercase;">
-              на&nbsp;базе реального кейса&nbsp;·&nbsp;данные, имена и&nbsp;названия заменены
-            </span>
-          </div>
-          <div class="howwework-screen-body has-image">
-            <img src="screens/img/profile_vedeneva.webp" alt="Hound · Профиль персоны · Веденёва А. С." loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial dark" style="margin-top: 24px;">
-        <p class="testimonial-quote">«Такого полного досье мне не&nbsp;приносила даже собственная служба безопасности.»</p>
-        <div class="testimonial-attr">Бенефициар&nbsp;·&nbsp;промышленная группа</div>
-      </div>
-
-    </div>
-
   </div>
 </section>
 
