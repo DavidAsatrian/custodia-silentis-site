@@ -131,21 +131,20 @@
   /* Mobile overlay (kebab open state) */
   .topmenu-overlay {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: #0c0c0c;
+    inset: 0;
+    background-color: #0c0c0c;
     color: #fff;
-    z-index: 200;
+    z-index: 9999;
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 96px 28px 56px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  .topmenu-overlay.is-open {
-    display: flex;
-    opacity: 1;
-  }
+  .topmenu-overlay.is-open { display: flex; }
   .topmenu-overlay-close {
     position: absolute;
     top: 18px;
@@ -1759,15 +1758,15 @@
       <span></span><span></span><span></span>
     </button>
   </div>
-  <div class="topmenu-overlay" id="topmenu-overlay">
-    <button class="topmenu-overlay-close" aria-label="Закрыть меню" id="topmenu-close">×</button>
-    <nav class="topmenu-overlay-nav">
-      <a href="/" class="active">Intelligence</a>
-      <a href="/dynasty">Преемственность</a>
-      <a href="#contact">Связаться с&nbsp;нами</a>
-    </nav>
-  </div>
 </header>
+<div class="topmenu-overlay" id="topmenu-overlay">
+  <button class="topmenu-overlay-close" aria-label="Закрыть меню" id="topmenu-close">×</button>
+  <nav class="topmenu-overlay-nav">
+    <a href="/" class="active">Intelligence</a>
+    <a href="/dynasty">Преемственность</a>
+    <a href="#contact">Связаться с&nbsp;нами</a>
+  </nav>
+</div>
 
 <!-- ============================================ -->
 <!-- HERO                                          -->
@@ -2643,20 +2642,29 @@
     function smoothScrollTo(target, duration) {
       duration = duration || 700;
       var menuOffset = 64;
-      var startScroll = window.pageYOffset;
       var startTime = performance.now();
+      var prevEased = 0;
 
       function tick(now) {
         var elapsed = now - startTime;
         var progress = Math.min(elapsed / duration, 1);
         var eased = easeInOutCubic(progress);
 
-        // Пересчитываем позицию таргета на каждом кадре —
-        // если картинки догружаются, layout shift не сломает скролл
-        var targetScroll = target.getBoundingClientRect().top + window.pageYOffset - menuOffset;
-        var currentScroll = startScroll + (targetScroll - startScroll) * eased;
+        // Текущая реальная позиция (учитывает scroll anchoring от lazy-img)
+        var currentScroll = window.pageYOffset;
+        // Live позиция таргета (пересчитываем — layout мог сдвинуться)
+        var targetScroll = target.getBoundingClientRect().top + currentScroll - menuOffset;
 
-        window.scrollTo(0, currentScroll);
+        // Прирост easing-фракции с прошлого кадра
+        var deltaEased = eased - prevEased;
+        var remainingProgress = 1 - prevEased;
+        // Какую долю ОСТАВШЕГОСЯ расстояния пройти за этот кадр
+        var stepFraction = remainingProgress > 0 ? deltaEased / remainingProgress : 1;
+
+        var newScroll = currentScroll + (targetScroll - currentScroll) * stepFraction;
+        window.scrollTo(0, newScroll);
+
+        prevEased = eased;
 
         if (progress < 1) {
           requestAnimationFrame(tick);
