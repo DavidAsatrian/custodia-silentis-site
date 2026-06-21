@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custodia Silentis — Архитектура Преемственности</title>
+<meta name="description" content="Практика Dynasty Engineering. Проектируем передачу власти, контроля и знаний — от вас к следующему поколению. Только по рекомендации.">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f8f7f5;
+    --bg-dark: #111111;
+    --ink: #2b2b2b;
+    --ink-2: #333333;
+    --ink-mute: #555555;
+    --ink-dim: #888888;
+    --line: #e6e6e6;
+    --line-dark: rgba(255,255,255,0.12);
+    --gold: rgba(197,165,90,0.95);
+    --gold-soft: rgba(197,165,90,0.85);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    font-feature-settings: 'kern', 'liga';
+  }
+
+  /* ============================================ */
+  /* TOPMENU — sticky glass bar                    */
+  /* ============================================ */
+  .topmenu {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(17, 17, 17, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .topmenu-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topmenu-logo {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+  .topmenu-logo-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(197,165,90,0.95);
+  }
+  .topmenu-logo:hover { color: #fff; }
+  .topmenu-nav {
+    display: flex;
+    gap: 40px;
+  }
+  .topmenu-link {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.68);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .topmenu-link:hover { color: #fff; }
+  .topmenu-link.active { color: rgba(197,165,90,0.95); }
+  .topmenu-burger {
+    display: none;
+    width: 26px;
+    height: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .topmenu-burger span {
+    width: 100%;
+    height: 1.5px;
+    background: #fff;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  /* Mobile overlay (kebab open state) */
+  .topmenu-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #0c0c0c;
+    color: #fff;
+    z-index: 200;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .topmenu-overlay.is-open {
+    display: flex;
+    opacity: 1;
+  }
+  .topmenu-overlay-close {
+    position: absolute;
+    top: 18px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: var(--serif);
+    font-size: 44px;
+    line-height: 0.7;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 8px 12px;
+  }
+  .topmenu-overlay-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    text-align: center;
+  }
+  .topmenu-overlay-nav a {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.012em;
+  }
+  .topmenu-overlay-nav a.active {
+    color: rgba(197,165,90,0.95);
+    font-style: italic;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  p { margin: 0; }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  /* ============================================ */
+  /* REVEAL ANIMATION                              */
+  /* ============================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ============================================ */
+  /* HERO (dark)                                   */
+  /* ============================================ */
+  .hero {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 200px 0 180px 0;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(197,165,90,0.85);
+    margin-bottom: 48px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: 92px;
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 0 auto 48px auto;
+    max-width: 18ch;
+    color: #fff;
+  }
+  .hero-gold-line {
+    width: 80px;
+    height: 1px;
+    background: rgba(197,165,90,0.9);
+    margin: 0 auto 48px auto;
+  }
+  .hero-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.78);
+    max-width: 600px;
+    margin: 0 auto 28px auto;
+  }
+  .hero-foot {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ============================================ */
+  /* SECTION OPENER                                */
+  /* ============================================ */
+  .section-opener {
+    padding: 160px 0 100px 0;
+    text-align: center;
+  }
+  .section-opener.dark {
+    background: var(--bg-dark);
+    color: #fff;
+  }
+  .section-opener-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .section-roman {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: 28px;
+    letter-spacing: -0.005em;
+  }
+  .section-meta {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 40px;
+  }
+  .section-opener.dark .section-meta { color: rgba(255,255,255,0.55); }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    margin: 0 auto;
+    max-width: 18ch;
+  }
+  .section-opener.dark .section-title { color: #fff; }
+  .section-subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--ink-mute);
+    margin: 36px auto 0 auto;
+    max-width: 620px;
+    font-weight: 400;
+  }
+  .section-opener.dark .section-subtitle { color: rgba(255,255,255,0.7); }
+
+  /* ============================================ */
+  /* ECHO (I. Контекст — приглушённые эхо-строки)  */
+  /* ============================================ */
+  .echo {
+    padding: 0 0 180px 0;
+    text-align: center;
+  }
+  .echo p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 32px;
+    line-height: 2.0;
+    color: var(--ink-dim);
+    letter-spacing: -0.005em;
+  }
+  .echo p + p { margin-top: 6px; }
+
+  /* ============================================ */
+  /* 72 ЧАСА — сигнатура страницы                  */
+  /* ============================================ */
+  .seventytwo-body {
+    padding: 0 0 200px 0;
+  }
+  .seventytwo-title {
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    margin-bottom: 140px;
+  }
+  .seventytwo-list {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
+  .seventytwo-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+  }
+  .seventytwo-num {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 220px;
+    line-height: 0.85;
+    color: #e6e6e6;
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .seventytwo-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.35;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  /* LEFT variant: цифра слева, текст справа */
+  .seventytwo-item.left .seventytwo-num {
+    order: 1;
+    text-align: left;
+    padding-left: 0;
+  }
+  .seventytwo-item.left .seventytwo-text {
+    order: 2;
+    text-align: left;
+  }
+  /* RIGHT variant: текст слева, цифра справа */
+  .seventytwo-item.right .seventytwo-text {
+    order: 1;
+    text-align: right;
+  }
+  .seventytwo-item.right .seventytwo-num {
+    order: 2;
+    text-align: right;
+    padding-right: 0;
+  }
+  .seventytwo-finale {
+    margin-top: 160px;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    max-width: 22ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ============================================ */
+  /* ЦЕНА ТИШИНЫ — статистика                      */
+  /* ============================================ */
+  .stats-section {
+    padding: 0 0 200px 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .stat-cell { text-align: left; }
+  .stat-num {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 84px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .stat-num .stat-plus {
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 0.5em;
+    margin-left: 2px;
+    vertical-align: 0.45em;
+  }
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .stat-note {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    font-weight: 400;
+    max-width: 36ch;
+  }
+  .stat-source {
+    margin-top: 14px;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    letter-spacing: 0.02em;
+  }
+
+  /* ============================================ */
+  /* ПОЗИЦИОННЫЙ РАЗРЫВ — pull-quote               */
+  /* ============================================ */
+  .gap-section {
+    background: var(--bg-soft);
+    padding: 200px 0;
+    text-align: center;
+  }
+  .gap-block {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 4px 0 4px 36px;
+    border-left: 3px solid rgba(197,165,90,0.85);
+    text-align: left;
+  }
+  .gap-block p {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1.3;
+    color: var(--ink);
+    letter-spacing: -0.012em;
+    margin-bottom: 4px;
+  }
+  .gap-block p.gap-question {
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 28px;
+    color: var(--ink);
+  }
+
+  /* ============================================ */
+  /* 4 СТОЛПА — Что нужно, чтобы всё работало      */
+  /* ============================================ */
+  .pillars-section {
+    padding: 0 0 200px 0;
+  }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px 100px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .pillar {
+    border-top: 1px solid var(--line);
+    padding-top: 36px;
+  }
+  .pillar-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    letter-spacing: -0.012em;
+    margin-bottom: 20px;
+  }
+  .pillar-body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+
+  /* ============================================ */
+  /* МАНИФЕСТ — тёмная инверсная секция            */
+  /* ============================================ */
+  .manifest {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 200px 0;
+    text-align: center;
+  }
+  .manifest-text {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 48px;
+    line-height: 1.3;
+    color: #fff;
+    letter-spacing: -0.015em;
+    max-width: 26ch;
+    margin: 0 auto;
+  }
+  .manifest-text em {
+    font-style: italic;
+    color: rgba(197,165,90,0.95);
+    font-weight: 500;
+  }
+
+  /* ============================================ */
+  /* 4 СЛОЯ — Мы инженеры, не советники            */
+  /* ============================================ */
+  .layers-section {
+    padding: 0 0 200px 0;
+  }
+  .layers-list {
+    max-width: 940px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+  .layer {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 36px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .layer-icon {
+    width: 72px;
+    height: 72px;
+    opacity: 0.95;
+  }
+  .layer-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .layer-content {
+    padding-top: 4px;
+  }
+  .layer-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 16px;
+    letter-spacing: -0.012em;
+  }
+  .layer-body {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+  }
+  .layer-body em {
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ============================================ */
+  /* 2 АРТЕФАКТА                                   */
+  /* ============================================ */
+  .artifacts-section {
+    background: var(--bg-soft);
+    padding: 160px 0 200px 0;
+  }
+  .artifacts-list {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+  .artifact {
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+  .artifact-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  .artifact-title {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 24px;
+    letter-spacing: -0.012em;
+  }
+  .artifact-body {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+    max-width: 60ch;
+  }
+  /* Placeholder для возможного экрана */
+  .artifact-visual {
+    margin-top: 56px;
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    background: rgba(0,0,0,0.015);
+    padding: 80px 40px;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* ============================================ */
+  /* 4 ФАЗЫ                                        */
+  /* ============================================ */
+  .phases {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 160px 0 200px 0;
+  }
+  .phases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .phase {
+    border-top: 1px solid var(--line-dark);
+    padding-top: 32px;
+  }
+  .phase-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 500;
+    color: rgba(197,165,90,0.95);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .phase-title {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 16px;
+    letter-spacing: -0.012em;
+  }
+  .phase-title-suffix {
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7em;
+  }
+  .phase-body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    font-weight: 400;
+  }
+
+  /* ============================================ */
+  /* ДЛЯ КОГО                                      */
+  /* ============================================ */
+  .audience-section {
+    padding: 0 0 200px 0;
+  }
+  .criteria {
+    max-width: 720px;
+    margin: 0 auto 120px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .criterion {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink);
+    padding-left: 32px;
+    position: relative;
+    letter-spacing: -0.005em;
+  }
+  .criterion::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+  .scale-block {
+    text-align: center;
+    margin-bottom: 96px;
+  }
+  .scale-num {
+    font-family: var(--serif);
+    font-size: 96px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin-bottom: 28px;
+  }
+  .scale-num em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .scale-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink-mute);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  .referral-block {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 56px;
+    border: 1px solid var(--ink);
+    text-align: center;
+  }
+  .referral-eyebrow {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+  .referral-text {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+
+  /* ============================================ */
+  /* КОМАНДА                                       */
+  /* ============================================ */
+  .team {
+    padding: 0 0 200px 0;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px 100px;
+    max-width: 1000px;
+    margin: 0 auto 140px auto;
+  }
+  .team-member {
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+  }
+  .team-member-photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    margin-bottom: 28px;
+    display: block;
+  }
+  .team-member-name {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.012em;
+  }
+  .team-member-role {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink-mute);
+    margin-bottom: 20px;
+  }
+  .team-member-bio {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+  }
+  .team-divider {
+    max-width: 880px;
+    margin: 0 auto 64px auto;
+    text-align: center;
+    padding-top: 56px;
+    border-top: 1px solid var(--line);
+  }
+  .team-divider-label {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .team-divider-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    max-width: 28ch;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+  .advisors-list {
+    max-width: 880px;
+    margin: 0 auto 100px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .advisor {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+  }
+  .advisor:last-child { border-bottom: 1px solid var(--line); }
+  .advisor strong {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .advisor em {
+    font-style: italic;
+    font-family: var(--serif);
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .team-closing {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.5;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+
+  /* ============================================ */
+  /* ГРАНИЦЫ                                       */
+  /* ============================================ */
+  .borders {
+    background: var(--bg-soft);
+    padding: 160px 0 200px 0;
+  }
+  .borders-list {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+  .border-item {
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .border-name {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 16px;
+    letter-spacing: -0.012em;
+  }
+  .border-text {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+  }
+
+  /* ============================================ */
+  /* ФИНАЛ (без CTA)                               */
+  /* ============================================ */
+  .final {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 200px 0;
+    text-align: center;
+  }
+  .final-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 96px;
+    line-height: 1.05;
+    color: #fff;
+    letter-spacing: -0.022em;
+    max-width: 16ch;
+    margin: 0 auto 48px auto;
+  }
+  .final-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 0 auto 96px auto;
+  }
+  .final-referral {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 56px;
+    border: 1px solid rgba(255,255,255,0.18);
+    font-family: var(--serif);
+    font-size: 24px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.92);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .final-referral em {
+    font-style: italic;
+    color: rgba(197,165,90,0.95);
+    font-weight: 500;
+  }
+
+  /* ============================================ */
+  /* FOOTER                                        */
+  /* ============================================ */
+  footer {
+    background: var(--bg-dark);
+    color: rgba(255,255,255,0.4);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 40px 0;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* ============================================ */
+  /* RESPONSIVE                                    */
+  /* ============================================ */
+  @media (max-width: 1024px) {
+    .container { padding: 0 40px; }
+    .hero h1 { font-size: 72px; }
+    .section-title { font-size: 52px; }
+    .seventytwo-title { font-size: 52px; }
+    .seventytwo-num { font-size: 180px; }
+    .manifest-text { font-size: 38px; }
+    .final-title { font-size: 72px; }
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 28px; }
+
+    .topmenu-inner { padding: 14px 28px; }
+    .topmenu-logo { font-size: 18px; }
+    .topmenu-nav { display: none; }
+    .topmenu-burger { display: flex; }
+    .topmenu-overlay-nav a { font-size: 30px; }
+
+    .hero { padding: 120px 0 90px 0; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 2px; margin-bottom: 32px; }
+    .hero h1 { font-size: 42px; margin-bottom: 32px; }
+    .hero-tagline { font-size: 20px; }
+    .hero-foot { font-size: 12px; }
+
+    .section-opener { padding: 100px 0 70px 0; }
+    .section-roman { font-size: 18px; margin-bottom: 16px; }
+    .section-meta { font-size: 11px; letter-spacing: 3px; margin-bottom: 28px; }
+    .section-title { font-size: 38px; }
+    .section-subtitle { font-size: 18px; }
+
+    .echo { padding-bottom: 100px; }
+    .echo p { font-size: 22px; line-height: 1.8; }
+
+    .seventytwo-body { padding-bottom: 120px; }
+    .seventytwo-title { font-size: 38px; margin-bottom: 80px; }
+    .seventytwo-list { gap: 60px; }
+    .seventytwo-item { grid-template-columns: 1fr; gap: 12px; }
+    .seventytwo-item.left .seventytwo-num,
+    .seventytwo-item.right .seventytwo-num {
+      order: 1;
+      font-size: 140px;
+      text-align: left;
+    }
+    .seventytwo-item.left .seventytwo-text,
+    .seventytwo-item.right .seventytwo-text {
+      order: 2;
+      text-align: left;
+      font-size: 22px;
+    }
+    .seventytwo-finale { font-size: 28px; margin-top: 100px; }
+
+    .stats-section { padding-bottom: 120px; }
+    .stats-grid { grid-template-columns: 1fr; gap: 56px; max-width: 480px; }
+    .stat-num { font-size: 64px; }
+
+    .gap-section { padding: 100px 0; }
+    .gap-block { padding-left: 24px; }
+    .gap-block p { font-size: 26px; }
+
+    .pillars-section { padding-bottom: 120px; }
+    .pillars-grid { grid-template-columns: 1fr; gap: 48px; }
+    .pillar-title { font-size: 26px; }
+
+    .manifest { padding: 100px 0; }
+    .manifest-text { font-size: 28px; }
+
+    .layers-section { padding-bottom: 120px; }
+    .layers-list { gap: 48px; }
+    .layer { grid-template-columns: 1fr; gap: 18px; }
+    .layer-icon { width: 56px; height: 56px; }
+    .layer-title { font-size: 26px; }
+    .layer-body { font-size: 16px; }
+
+    .artifacts-section { padding: 100px 0 120px 0; }
+    .artifacts-list { gap: 60px; }
+    .artifact-title { font-size: 30px; }
+    .artifact-visual { padding: 60px 28px; }
+
+    .phases { padding: 100px 0 120px 0; }
+    .phases-grid { grid-template-columns: 1fr; gap: 48px; }
+    .phase-title { font-size: 26px; }
+
+    .audience-section { padding-bottom: 120px; }
+    .criteria { gap: 24px; margin-bottom: 80px; }
+    .criterion { font-size: 19px; padding-left: 24px; }
+    .scale-block { margin-bottom: 64px; }
+    .scale-num { font-size: 64px; }
+    .scale-text { font-size: 18px; }
+    .referral-block { padding: 32px 28px; }
+    .referral-text { font-size: 19px; }
+    .referral-eyebrow { font-size: 11px; letter-spacing: 0.22em; }
+
+    .team { padding-bottom: 120px; }
+    .team-grid { grid-template-columns: 1fr; gap: 64px; margin-bottom: 80px; }
+    .team-member-name { font-size: 26px; }
+    .team-divider { padding-top: 40px; }
+    .team-divider-title { font-size: 22px; }
+    .advisor strong { font-size: 20px; }
+    .team-closing { font-size: 20px; }
+
+    .borders { padding: 100px 0 120px 0; }
+    .borders-list { gap: 40px; }
+    .border-name { font-size: 22px; }
+
+    .final { padding: 120px 0; }
+    .final-title { font-size: 46px; margin-bottom: 32px; }
+    .final-sub { font-size: 20px; margin-bottom: 60px; }
+    .final-referral { padding: 32px 28px; font-size: 19px; }
+
+    footer { font-size: 11px; letter-spacing: 0.18em; padding: 32px 0; }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- ============================================ -->
+<!-- TOPMENU                                       -->
+<!-- ============================================ -->
+<header class="topmenu">
+  <div class="topmenu-inner">
+    <a href="index.html" class="topmenu-logo">
+      <span class="topmenu-logo-dot"></span>
+      Custodia Silentis
+    </a>
+    <nav class="topmenu-nav">
+      <a href="index.html" class="topmenu-link">Intelligence</a>
+      <a href="dynasty.html" class="topmenu-link active">Преемственность</a>
+    </nav>
+    <button class="topmenu-burger" aria-label="Открыть меню" id="topmenu-burger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="topmenu-overlay" id="topmenu-overlay">
+    <button class="topmenu-overlay-close" aria-label="Закрыть меню" id="topmenu-close">×</button>
+    <nav class="topmenu-overlay-nav">
+      <a href="index.html">Intelligence</a>
+      <a href="dynasty.html" class="active">Преемственность</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ============================================ -->
+<!-- HERO                                          -->
+<!-- ============================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Custodia Silentis · Архитектура Преемственности</div>
+    <h1>Проектируем передачу власти, контроля и&nbsp;знаний.</h1>
+    <div class="hero-gold-line"></div>
+    <p class="hero-tagline">От&nbsp;вас — к&nbsp;следующему поколению.</p>
+    <div class="hero-foot">Практика Dynasty Engineering</div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- I · КОНТЕКСТ                                  -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner" style="max-width: 1100px;">
+      <div class="section-roman">I</div>
+      <div class="section-meta">Контекст</div>
+      <h2 class="section-title" style="max-width: 32ch;">Представьте, что завтра вы&nbsp;уйдёте в&nbsp;бессрочный отпуск. Без предупреждения, без связи. Ваши дети остались одни.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="echo">
+  <div class="container reveal">
+    <p>До&nbsp;вас не&nbsp;дозвониться.</p>
+    <p>Не&nbsp;докричаться.</p>
+    <p>Не&nbsp;достучаться.</p>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- II · 72 ЧАСА                                  -->
+<!-- ============================================ -->
+<section class="section-opener" style="padding-bottom: 60px;">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">II</div>
+      <div class="section-meta">72 часа</div>
+      <h2 class="section-title seventytwo-title" style="margin-bottom: 0;">Смогут ли&nbsp;они за&nbsp;72&nbsp;часа:</h2>
+    </div>
+  </div>
+</section>
+
+<section class="seventytwo-body">
+  <div class="container">
+
+    <div class="seventytwo-list">
+
+      <div class="seventytwo-item left reveal">
+        <div class="seventytwo-num">01</div>
+        <p class="seventytwo-text">Перехватить контроль над&nbsp;компанией и&nbsp;не&nbsp;дать ей&nbsp;развалиться?</p>
+      </div>
+
+      <div class="seventytwo-item right reveal">
+        <div class="seventytwo-num">02</div>
+        <p class="seventytwo-text">Остановить финансового директора, выводящего $20&nbsp;млн на&nbsp;офшор?</p>
+      </div>
+
+      <div class="seventytwo-item left reveal">
+        <div class="seventytwo-num">03</div>
+        <p class="seventytwo-text">Отличить союзников от&nbsp;предателей в&nbsp;совете директоров?</p>
+      </div>
+
+      <div class="seventytwo-item right reveal">
+        <div class="seventytwo-num">04</div>
+        <p class="seventytwo-text">Удержать ключевых людей, которые владеют стратегической информацией?</p>
+      </div>
+
+      <div class="seventytwo-item left reveal">
+        <div class="seventytwo-num">05</div>
+        <p class="seventytwo-text">Найти счета, пароли и&nbsp;нужные документы?</p>
+      </div>
+
+    </div>
+
+    <p class="seventytwo-finale reveal">Или всё, что&nbsp;вы строили, рассыплется — потому что знание ушло вместе с&nbsp;вами?</p>
+
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- III · ЦЕНА ТИШИНЫ                             -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">III</div>
+      <div class="section-meta">Цена тишины</div>
+      <h2 class="section-title">Наследие теряется тише, чем&nbsp;кажется.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 1100px;">
+
+        <div class="stat-cell">
+          <div class="stat-num">75<span class="stat-plus">%</span></div>
+          <div class="stat-label">наследств</div>
+          <div class="stat-note">растворяются в&nbsp;течение двух поколений</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-num">&gt;30<span class="stat-plus">%</span></div>
+          <div class="stat-label">стоимости активов</div>
+          <div class="stat-note">исчезает после передачи</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-num">18<span class="stat-plus">&thinsp;мес.</span></div>
+          <div class="stat-label">в&nbsp;среднем</div>
+          <div class="stat-note">требуется, чтобы просто восстановить карту активов</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- IV · ПОЗИЦИОННЫЙ РАЗРЫВ                       -->
+<!-- ============================================ -->
+<section class="gap-section">
+  <div class="container">
+    <div class="gap-block reveal">
+      <p>Юристы составят завещание.</p>
+      <p>Банкиры структурируют трасты.</p>
+      <p class="gap-question">Но&nbsp;кто передаст вашу логику? Ваш инстинкт? Ваше видение?</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- V · ЧТО НУЖНО, ЧТОБЫ ВСЁ РАБОТАЛО             -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">V</div>
+      <div class="section-meta">Условия</div>
+      <h2 class="section-title">Что нужно,<br>чтобы всё работало.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="pillars-section">
+  <div class="container">
+    <div class="pillars-grid">
+
+      <div class="pillar reveal">
+        <h3 class="pillar-title">Бизнес работает без&nbsp;вас.</h3>
+        <p class="pillar-body">Не&nbsp;зависит от&nbsp;одного человека. Решения принимаются системно. Уезжаете на&nbsp;три месяца — ничего не&nbsp;проседает.</p>
+      </div>
+
+      <div class="pillar reveal">
+        <h3 class="pillar-title">Наследники готовы.</h3>
+        <p class="pillar-body">Не&nbsp;просто «в&nbsp;курсе». Признаны окружением как легитимные лидеры. Понимают логику, а&nbsp;не&nbsp;только цифры.</p>
+      </div>
+
+      <div class="pillar reveal">
+        <h3 class="pillar-title">Структура защищает.</h3>
+        <p class="pillar-body">Юридическая архитектура фиксирует то, что&nbsp;спроектировано на&nbsp;уровне людей. Фонды, трасты, корпоративное управление — как&nbsp;инструмент, а&nbsp;не&nbsp;как самоцель.</p>
+      </div>
+
+      <div class="pillar reveal">
+        <h3 class="pillar-title">Знание сохранено.</h3>
+        <p class="pillar-body">Карта активов, контактов, решений, «как тут всё устроено на&nbsp;самом деле» — оцифрована и&nbsp;доступна. Не&nbsp;в&nbsp;голове основателя, а&nbsp;в&nbsp;системе.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- VI · МАНИФЕСТ (тёмная инверсная)              -->
+<!-- ============================================ -->
+<section class="manifest">
+  <div class="container">
+    <p class="manifest-text reveal" style="max-width: 36ch;">Это то, что&nbsp;мы проектируем и&nbsp;внедряем. <em>Не&nbsp;отчёты. Не&nbsp;рекомендации.</em> Работающую систему передачи — от&nbsp;диагностики до&nbsp;результата.</p>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- VII · МЫ ИНЖЕНЕРЫ, НЕ СОВЕТНИКИ               -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">VII</div>
+      <div class="section-meta">Метод</div>
+      <h2 class="section-title">Мы инженеры,<br>не&nbsp;советники.</h2>
+      <p class="section-subtitle">Работаем со&nbsp;всеми четырьмя слоями:</p>
+    </div>
+  </div>
+</section>
+
+<section class="layers-section">
+  <div class="container">
+    <div class="layers-list">
+
+      <div class="layer reveal">
+        <div class="layer-icon"><img src="icons/group_students.svg" alt=""></div>
+        <div class="layer-content">
+          <h3 class="layer-title">Люди.</h3>
+          <p class="layer-body">Готовность наследников, легитимность, конфликты, ключевые люди.</p>
+        </div>
+      </div>
+
+      <div class="layer reveal">
+        <div class="layer-icon"><img src="icons/sections_plan_program.svg" alt=""></div>
+        <div class="layer-content">
+          <h3 class="layer-title">Процессы.</h3>
+          <p class="layer-body">Деперсонализация решений, передача полномочий, Day&nbsp;X&nbsp;Protocol.</p>
+        </div>
+      </div>
+
+      <div class="layer reveal">
+        <div class="layer-icon"><img src="icons/structure_map.svg" alt=""></div>
+        <div class="layer-content">
+          <h3 class="layer-title">Структуры.</h3>
+          <p class="layer-body">Юридическая архитектура, корпоративное управление, Family&nbsp;Constitution.</p>
+        </div>
+      </div>
+
+      <div class="layer reveal">
+        <div class="layer-icon"><img src="icons/security_safety_lock.svg" alt=""></div>
+        <div class="layer-content">
+          <h3 class="layer-title">Безопасность.</h3>
+          <p class="layer-body">Защита активов, информационный периметр, антирейдер. <em>В&nbsp;активном конфликте этот слой разворачивается через наш аналитический движок — практику Intelligence.</em></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- VIII · ДВА АРТЕФАКТА                          -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">VIII</div>
+      <div class="section-meta">Результат</div>
+      <h2 class="section-title">Результат нашей работы — <em style="font-style: italic; color: var(--gold);">два артефакта вашего наследия.</em></h2>
+    </div>
+  </div>
+</section>
+
+<section class="artifacts-section">
+  <div class="container">
+    <div class="artifacts-list">
+
+      <div class="artifact reveal">
+        <div class="artifact-num">I.</div>
+        <h3 class="artifact-title">Архитектура.</h3>
+        <p class="artifact-body">Стратегическое описание и&nbsp;визуализация вашей системы власти. Полная карта: активы, логика, сценарии, протоколы на&nbsp;случай любого события. <strong style="color: var(--ink); font-weight: 500;">Конституция вашей династии в&nbsp;виде инженерной схемы.</strong></p>
+      </div>
+
+      <div class="artifact reveal">
+        <div class="artifact-num">II.</div>
+        <h3 class="artifact-title">Инструменты.</h3>
+        <p class="artifact-body">От&nbsp;«капсул доверия» до&nbsp;интеллектуальных агентов. Цифровые и&nbsp;аппаратные решения, созданные под вашу логику. <strong style="color: var(--ink); font-weight: 500;">Они не&nbsp;обслуживаются</strong> — они передаются вам, когда способны жить без нас. И&nbsp;без вас.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- IX · ЧЕТЫРЕ ФАЗЫ                              -->
+<!-- ============================================ -->
+<section class="section-opener dark" style="padding-bottom: 60px;">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">IX</div>
+      <div class="section-meta">Как мы работаем</div>
+      <h2 class="section-title">Четыре фазы.<br>Одна логика.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="phases">
+  <div class="container">
+    <div class="phases-grid reveal">
+
+      <div class="phase">
+        <div class="phase-num">I.</div>
+        <h3 class="phase-title">Диагностика.</h3>
+        <p class="phase-body">Dynasty Stress Test. 3–4 часа структурированного интервью и&nbsp;анализа. На&nbsp;выходе — карта рисков, которых вы&nbsp;не&nbsp;видите изнутри. Конкретные точки уязвимости.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">II.</div>
+        <h3 class="phase-title">Проектирование.</h3>
+        <p class="phase-body">Архитектура передачи. Работа с&nbsp;наследниками. Реструктуризация, если нужна. Ведём проект вместе с&nbsp;вами.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">III.</div>
+        <h3 class="phase-title">Передача ключей.</h3>
+        <p class="phase-body">Собираем систему. Когда она готова жить автономно — уходим.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">IV.</div>
+        <h3 class="phase-title">Сопровождение&nbsp;<span class="phase-title-suffix">[по&nbsp;запросу]</span>.</h3>
+        <p class="phase-body">Ежегодный мониторинг, адаптация при изменениях, кризисное реагирование. Династия — не&nbsp;проект с&nbsp;дедлайном.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- X · ДЛЯ КОГО                                  -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">X</div>
+      <div class="section-meta">Для кого</div>
+      <h2 class="section-title">Для кого.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="audience-section">
+  <div class="container">
+
+    <div class="criteria reveal">
+      <p class="criterion">Активы от&nbsp;5&nbsp;млрд рублей, либо выручка от&nbsp;500&nbsp;млн рублей в&nbsp;год.</p>
+      <p class="criterion">Понимают, что&nbsp;«потом разберёмся» — не&nbsp;стратегия.</p>
+      <p class="criterion">Готовы к&nbsp;разговору, который может быть некомфортным.</p>
+      <p class="criterion">Хотят систему, а&nbsp;не&nbsp;документ.</p>
+      <p class="criterion">Не&nbsp;ищут волшебную таблетку — готовы к&nbsp;реальной работе.</p>
+    </div>
+
+    <div class="scale-block reveal">
+      <div class="scale-num">5<em>–</em>7 семей в&nbsp;год.</div>
+      <p class="scale-text">Намеренно ограниченная практика. Каждый проект получает полное внимание команды.</p>
+    </div>
+
+    <div class="referral-block reveal">
+      <div class="referral-eyebrow">Доступ</div>
+      <p class="referral-text">Только по&nbsp;рекомендации. Мы&nbsp;не&nbsp;принимаем заявки и&nbsp;не&nbsp;работаем по&nbsp;холодному обращению.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- XI · КОМАНДА                                  -->
+<!-- ============================================ -->
+<section class="section-opener">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">XI</div>
+      <div class="section-meta">Команда</div>
+      <h2 class="section-title">Синдикат,<br>не&nbsp;фирма.</h2>
+      <p class="section-subtitle">Операционный штаб из&nbsp;старших специалистов. Каждый — сильнейший в&nbsp;своём домене.</p>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="container">
+
+    <div class="team-grid reveal">
+
+      <div class="team-member">
+        <img class="team-member-photo" src="uploads/David_Asatryan.webp" alt="Давид Асатрян" loading="lazy">
+        <div class="team-member-name">Давид Асатрян</div>
+        <div class="team-member-role">Управляющий партнёр, архитектор преемственности</div>
+        <p class="team-member-bio">Предприниматель второго поколения — прошёл преемственность изнутри. Совладелец девелоперской компании. Автор подхода Dynasty Engineering и&nbsp;индексов DRI&nbsp;/&nbsp;DSI. Автор книги «Создавая Титанов: стратегия преемственности в&nbsp;эпоху перемен».</p>
+      </div>
+
+      <div class="team-member">
+        <img class="team-member-photo" src="uploads/Jiri_FinalPhoto.webp" alt="Йиржи Новак" loading="lazy">
+        <div class="team-member-name">Йиржи Новак</div>
+        <div class="team-member-role">CTO, техническая инфраструктура</div>
+        <p class="team-member-bio">Управление критической инфраструктурой: T-Mobile, госпиталь Motol (Прага). Cross-border операции: Чехия, Россия, Армения. Цифровые капсулы знаний, карты активов, системы безопасности.</p>
+      </div>
+
+    </div>
+
+    <div class="team-divider reveal">
+      <div class="team-divider-label">Закрытый круг</div>
+      <h4 class="team-divider-title">Практики, которых привлекаем под&nbsp;конкретные задачи.</h4>
+    </div>
+
+    <div class="advisors-list reveal">
+
+      <div class="advisor">
+        <strong>А██████&nbsp;С████████</strong>
+        <em>Юридическое структурирование.</em> 25+ лет в&nbsp;крупнейших частных состояниях (от&nbsp;$250M). CEO семейных офисов с&nbsp;активами&nbsp;>$20&nbsp;млрд. Опыт в&nbsp;Big&nbsp;4 аудиторских и&nbsp;топ-5 инвестиционных банков СНГ. Автор курса по&nbsp;преемственности в&nbsp;ведущей российской бизнес-школе.
+      </div>
+
+      <div class="advisor">
+        <strong>Б████&nbsp;Л██████</strong>
+        <em>Защита активов.</em> Основатель одной из&nbsp;ведущих российских anti-raider консалтинговых фирм. Противодействие рейдерским атакам, защита корпоративного контроля, кризисное управление в&nbsp;захватах.
+      </div>
+
+      <div class="advisor">
+        <strong>П████&nbsp;Р████</strong>
+        <em>AI-трансформация.</em> Ex-Digital&nbsp;CPO одного из&nbsp;топ-5 российских банков. 10+ корпоративных трансформаций в&nbsp;финтехе и&nbsp;промышленности.
+      </div>
+
+      <div class="advisor">
+        <strong>О████&nbsp;Б█████</strong>
+        <em>Управление капиталом.</em> Опыт в&nbsp;топ-3 глобальной стратегической консалтинговой компании и&nbsp;одном из&nbsp;топ-5 глобальных банков. Управление капиталом на&nbsp;российских и&nbsp;глобальных рынках, структурирование при&nbsp;релокации, возврат и&nbsp;разморозка активов.
+      </div>
+
+    </div>
+
+    <p class="team-closing reveal">Нет раздутого штата. Нет младших аналитиков.<br>Каждый человек — старший специалист с&nbsp;прямым доступом к&nbsp;проекту.</p>
+
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- XII · ГРАНИЦЫ                                 -->
+<!-- ============================================ -->
+<section class="section-opener" style="background: var(--bg-soft);">
+  <div class="container reveal">
+    <div class="section-opener-inner">
+      <div class="section-roman">XII</div>
+      <div class="section-meta">Границы</div>
+      <h2 class="section-title">Когда мы<br>не&nbsp;подходим.</h2>
+      <p class="section-subtitle">Знание своих границ — наш главный инструмент отбора.</p>
+    </div>
+  </div>
+</section>
+
+<section class="borders">
+  <div class="container">
+    <div class="borders-list">
+
+      <div class="border-item reveal">
+        <h3 class="border-name">Вам нужен документ, а&nbsp;не&nbsp;система.</h3>
+        <p class="border-text">Завещание составят юристы, трасты — банкиры. Мы&nbsp;строим то, что&nbsp;стоит за&nbsp;ними. Если этого не&nbsp;нужно — мы&nbsp;лишние.</p>
+      </div>
+
+      <div class="border-item reveal">
+        <h3 class="border-name">Вы не&nbsp;готовы к&nbsp;некомфортному разговору.</h3>
+        <p class="border-text">Диагностика вскрывает то, что&nbsp;вы&nbsp;предпочли бы&nbsp;не&nbsp;видеть. Без этого работа не&nbsp;имеет смысла.</p>
+      </div>
+
+      <div class="border-item reveal">
+        <h3 class="border-name">Вы хотите делегировать и&nbsp;не&nbsp;участвовать.</h3>
+        <p class="border-text">Преемственность нельзя отдать на&nbsp;аутсорс. Без вашего личного участия систему не&nbsp;собрать.</p>
+      </div>
+
+      <div class="border-item reveal">
+        <h3 class="border-name">Вам нужно «вчера», актив уже в&nbsp;огне.</h3>
+        <p class="border-text">Это не&nbsp;к&nbsp;преемственности. Острый конфликт — другая наша практика, Intelligence.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- ФИНАЛ (без CTA)                               -->
+<!-- ============================================ -->
+<section class="final">
+  <div class="container">
+    <h2 class="final-title reveal">Тишина — или&nbsp;<em style="color: var(--gold);">действие?</em></h2>
+    <p class="final-sub reveal">Знание исчезает вместе с&nbsp;вами — если&nbsp;вы не&nbsp;передали&nbsp;его.</p>
+    <p class="final-referral reveal">Доступ только <em>по&nbsp;рекомендации.</em></p>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- FOOTER                                        -->
+<!-- ============================================ -->
+<footer>
+  Custodia Silentis · Архитектура Преемственности · По&nbsp;рекомендации
+</footer>
+
+
+<script>
+  (function() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        el.classList.add('is-visible');
+      });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+
+  // Topmenu — hamburger toggle + close on link click
+  (function() {
+    var burger = document.getElementById('topmenu-burger');
+    var close = document.getElementById('topmenu-close');
+    var overlay = document.getElementById('topmenu-overlay');
+    if (!burger || !overlay) return;
+
+    function open() {
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function shut() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    burger.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    overlay.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', shut);
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') shut();
+    });
+  })();
+</script>
+
+</body>
+</html>

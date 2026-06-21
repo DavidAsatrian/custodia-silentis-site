@@ -43,6 +43,8 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html { scroll-behavior: auto; }
+
   html, body {
     background: var(--bg);
     color: var(--ink);
@@ -52,6 +54,140 @@
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     font-feature-settings: 'kern', 'liga';
+  }
+
+  /* ============================================ */
+  /* TOPMENU — sticky glass bar                    */
+  /* ============================================ */
+  .topmenu {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(17, 17, 17, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .topmenu-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topmenu-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+  .topmenu-logo-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(197,165,90,0.95);
+  }
+  .topmenu-logo:hover { color: #fff; }
+  .topmenu-nav {
+    display: flex;
+    gap: 40px;
+  }
+  .topmenu-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.68);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .topmenu-link:hover { color: #fff; }
+  .topmenu-link.active { color: rgba(197,165,90,0.95); }
+  .topmenu-burger {
+    display: none;
+    width: 26px;
+    height: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .topmenu-burger span {
+    width: 100%;
+    height: 1.5px;
+    background: #fff;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  /* Mobile overlay (kebab open state) */
+  .topmenu-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #0c0c0c;
+    color: #fff;
+    z-index: 200;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .topmenu-overlay.is-open {
+    display: flex;
+    opacity: 1;
+  }
+  .topmenu-overlay-close {
+    position: absolute;
+    top: 18px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    line-height: 0.7;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 8px 12px;
+  }
+  .topmenu-overlay-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    text-align: center;
+  }
+  .topmenu-overlay-nav a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.012em;
+  }
+  .topmenu-overlay-nav a.active {
+    color: rgba(197,165,90,0.95);
+    font-style: italic;
+  }
+
+  /* Anchor offset for fixed menu */
+  #contact { scroll-margin-top: 64px; }
+
+  @media (max-width: 768px) {
+    .topmenu-inner { padding: 14px 28px; }
+    .topmenu-logo { font-size: 18px; }
+    .topmenu-nav { display: none; }
+    .topmenu-burger { display: flex; }
+    .topmenu-overlay-nav a { font-size: 30px; }
   }
 
   h1, h2, h3, h4 {
@@ -1606,6 +1742,34 @@
 <body>
 
 <!-- ============================================ -->
+<!-- TOPMENU                                       -->
+<!-- ============================================ -->
+<header class="topmenu">
+  <div class="topmenu-inner">
+    <a href="/" class="topmenu-logo">
+      <span class="topmenu-logo-dot"></span>
+      Custodia Silentis
+    </a>
+    <nav class="topmenu-nav">
+      <a href="/" class="topmenu-link active">Intelligence</a>
+      <a href="dynasty.html" class="topmenu-link">Преемственность</a>
+      <a href="#contact" class="topmenu-link">Связаться с&nbsp;нами</a>
+    </nav>
+    <button class="topmenu-burger" aria-label="Открыть меню" id="topmenu-burger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="topmenu-overlay" id="topmenu-overlay">
+    <button class="topmenu-overlay-close" aria-label="Закрыть меню" id="topmenu-close">×</button>
+    <nav class="topmenu-overlay-nav">
+      <a href="/" class="active">Intelligence</a>
+      <a href="dynasty.html">Преемственность</a>
+      <a href="#contact">Связаться с&nbsp;нами</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================ -->
 <!-- HERO                                          -->
 <!-- ============================================ -->
 <section class="hero">
@@ -2397,7 +2561,7 @@
 <!-- ============================================ -->
 <!-- CTA                                           -->
 <!-- ============================================ -->
-<section class="cta">
+<section class="cta" id="contact">
   <div class="container reveal">
     <div class="cta-eyebrow">Связаться</div>
     <h2 class="cta-title">Если кейс<br>звучит знакомо</h2>
@@ -2440,6 +2604,93 @@
 
     document.querySelectorAll('.reveal').forEach(function(el) {
       observer.observe(el);
+    });
+  })();
+
+  // Topmenu — hamburger toggle + close on link click
+  (function() {
+    var burger = document.getElementById('topmenu-burger');
+    var close = document.getElementById('topmenu-close');
+    var overlay = document.getElementById('topmenu-overlay');
+    if (!burger || !overlay) return;
+
+    function open() {
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function shut() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    burger.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    overlay.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', shut);
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') shut();
+    });
+  })();
+
+  // Smooth scroll with target recalculation each frame
+  // (фиксит проблему смещения позиции от lazy-load картинок)
+  (function() {
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollTo(target, duration) {
+      duration = duration || 700;
+      var menuOffset = 64;
+      var startScroll = window.pageYOffset;
+      var startTime = performance.now();
+
+      function tick(now) {
+        var elapsed = now - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+        var eased = easeInOutCubic(progress);
+
+        // Пересчитываем позицию таргета на каждом кадре —
+        // если картинки догружаются, layout shift не сломает скролл
+        var targetScroll = target.getBoundingClientRect().top + window.pageYOffset - menuOffset;
+        var currentScroll = startScroll + (targetScroll - startScroll) * eased;
+
+        window.scrollTo(0, currentScroll);
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (!href || href === '#' || href.length <= 1) return;
+        var target = document.querySelector(href);
+        if (!target) return;
+
+        e.preventDefault();
+
+        // Форс-загрузка lazy-картинок выше таргета —
+        // чтобы layout стабилизировался к моменту прибытия
+        var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+        document.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
+          var imgTop = img.getBoundingClientRect().top + window.pageYOffset;
+          if (imgTop < targetTop + 200) {
+            img.loading = 'eager';
+          }
+        });
+
+        smoothScrollTo(target);
+
+        if (history.pushState) {
+          history.pushState(null, '', href);
+        }
+      });
     });
   })();
 </script>
