@@ -921,6 +921,48 @@
     color: var(--ink);
     letter-spacing: -0.005em;
   }
+  .circle-intro {
+    max-width: 720px;
+    margin: 0 auto 64px auto;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+  }
+  .caliber-divider {
+    max-width: 880px;
+    margin: 0 auto 32px auto;
+    text-align: center;
+    padding-top: 8px;
+  }
+  .circle-caliber {
+    max-width: 720px;
+    margin: 0 auto 72px auto;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .circle-caliber li {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    padding-left: 32px;
+    position: relative;
+  }
+  .circle-caliber li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+  .circle-caliber li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
 
   /* ============================================ */
   /* ГРАНИЦЫ                                       */
@@ -1121,7 +1163,10 @@
     .team-member-name { font-size: 26px; }
     .team-divider { padding-top: 40px; }
     .team-divider-title { font-size: 22px; }
+    .circle-intro { font-size: 16px; margin-bottom: 48px; }
     .advisor strong { font-size: 20px; }
+    .advisor { padding: 24px 0; }
+    .circle-caliber li { font-size: 16px; }
     .team-closing { font-size: 20px; }
 
     .borders { padding: 100px 0 120px 0; }
@@ -1572,8 +1617,12 @@
 
     <div class="team-divider reveal">
       <div class="team-divider-label">Закрытый круг</div>
-      <h4 class="team-divider-title">Практики, которых привлекаем под&nbsp;конкретные задачи.</h4>
+      <h4 class="team-divider-title">Доступ — часть того,<br>что мы привносим</h4>
     </div>
+
+    <p class="circle-intro reveal">
+      Не&nbsp;штат и&nbsp;не&nbsp;партнёрство. Люди, которые работают по&nbsp;приглашению, а&nbsp;не&nbsp;по&nbsp;контракту. Их&nbsp;экспертиза не&nbsp;публична&nbsp;— поэтому имён мы&nbsp;не&nbsp;называем.
+    </p>
 
     <div class="advisors-list reveal">
 
@@ -1599,7 +1648,18 @@
 
     </div>
 
-    <p class="team-closing reveal">Нет раздутого штата. Нет младших аналитиков.<br>Каждый человек — старший специалист с&nbsp;прямым доступом к&nbsp;проекту.</p>
+    <div class="caliber-divider reveal">
+      <div class="team-divider-label">Калибр круга</div>
+    </div>
+
+    <ul class="circle-caliber reveal">
+      <li><strong>100+&nbsp;кейсов</strong>&nbsp;·&nbsp;превентивной защиты капитала</li>
+      <li><strong>10+&nbsp;юрисдикций</strong>&nbsp;·&nbsp;cross-border операций</li>
+      <li><strong>40+&nbsp;конфликтов</strong>&nbsp;·&nbsp;высокой интенсивности</li>
+      <li><strong>M&amp;A&nbsp;+ litigation</strong>&nbsp;·&nbsp;противодействие враждебным атакам</li>
+    </ul>
+
+    <p class="team-closing reveal">Нет раздутого штата. Нет младших аналитиков.<br>Каждый&nbsp;— старший специалист с&nbsp;прямым доступом к&nbsp;проекту.</p>
 
   </div>
 </section>

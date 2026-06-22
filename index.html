@@ -1474,97 +1474,115 @@
     color: var(--ink-mute);
   }
 
-  .team-network {
-    max-width: 800px;
-    margin: 0 auto;
-    padding-top: 64px;
-    border-top: 1px solid var(--line);
+  /* === Закрытый круг — канонический блок (унифицирован с dynasty.html) === */
+  .team-divider {
+    max-width: 880px;
+    margin: 0 auto 56px auto;
     text-align: center;
+    padding-top: 56px;
+    border-top: 1px solid var(--line);
   }
-
-  .team-network-label {
+  .team-divider-label {
     font-family: var(--sans);
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 3px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--ink-mute);
-    margin-bottom: 20px;
-  }
-
-  .team-network-title {
-    font-family: var(--serif);
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--ink);
+    color: var(--gold);
     margin-bottom: 18px;
   }
-
-  .team-network-text {
+  .team-divider-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    max-width: 28ch;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+  .circle-intro {
+    max-width: 720px;
+    margin: 0 auto 64px auto;
+    text-align: center;
     font-family: var(--sans);
     font-size: 17px;
-    line-height: 1.65;
+    line-height: 1.7;
     color: var(--ink-mute);
   }
-
-  .caliber-header {
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-    text-align: center;
-    margin-top: 64px;
-    margin-bottom: 36px;
-    padding-bottom: 16px;
+  .advisors-list {
+    max-width: 880px;
+    margin: 0 auto 96px auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .advisor {
+    padding: 32px 0;
     border-bottom: 1px solid var(--line);
-    max-width: 920px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .caliber-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px 56px;
-    max-width: 920px;
-    margin: 0 auto;
-  }
-
-  .caliber-card {
-    padding: 20px 0 22px 0;
-    border-top: 1px solid var(--line);
-    text-align: left;
-  }
-  .caliber-card:nth-child(1),
-  .caliber-card:nth-child(2) {
-    border-top: none;
-    padding-top: 0;
-  }
-
-  .caliber-stat {
-    font-family: var(--serif);
-    font-size: 26px;
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.012em;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-
-  .caliber-stat .accent {
-    color: rgba(168,135,55,1);
-    font-style: italic;
-    font-weight: 500;
-  }
-
-  .caliber-text {
     font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.7;
     color: var(--ink-mute);
+  }
+  .advisor:first-child { border-top: 1px solid var(--line); }
+  .advisor strong {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .advisor em {
+    font-style: normal;
+    font-family: var(--sans);
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .caliber-divider {
+    max-width: 880px;
+    margin: 0 auto 32px auto;
+    text-align: center;
+    padding-top: 8px;
+  }
+  .circle-caliber {
+    max-width: 720px;
+    margin: 0 auto 72px auto;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .circle-caliber li {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    padding-left: 32px;
+    position: relative;
+  }
+  .circle-caliber li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+  .circle-caliber li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .team-closing {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.5;
+    color: var(--ink);
+    letter-spacing: -0.005em;
   }
 
   /* ============================================ */
@@ -1822,11 +1840,13 @@
     .team-attribution { font-size: 21px; margin-bottom: 56px; }
     .team-grid { grid-template-columns: 1fr; gap: 48px; margin-bottom: 56px; }
     .team-member-name { font-size: 26px; }
-    .team-network { padding-top: 40px; }
-    .team-network-title { font-size: 24px; }
-    .caliber-grid { grid-template-columns: 1fr; gap: 0; }
-    .caliber-card:nth-child(2) { border-top: 1px solid var(--line); padding-top: 20px; }
-    .caliber-stat { font-size: 22px; }
+    .team-divider { padding-top: 40px; margin-bottom: 40px; }
+    .team-divider-title { font-size: 22px; }
+    .circle-intro { font-size: 16px; margin-bottom: 48px; }
+    .advisor strong { font-size: 20px; }
+    .advisor { padding: 24px 0; }
+    .circle-caliber li { font-size: 16px; }
+    .team-closing { font-size: 21px; }
 
     .borders { padding: 80px 0; }
     .border-item { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
@@ -2560,55 +2580,46 @@
       </div>
     </div>
 
-    <div class="team-network reveal">
-      <div class="team-network-label">Закрытый круг</div>
-      <h4 class="team-network-title">Доступ — часть того,<br>что мы привносим</h4>
+    <div class="team-divider reveal">
+      <div class="team-divider-label">Закрытый круг</div>
+      <h4 class="team-divider-title">Доступ — часть того,<br>что мы привносим</h4>
+    </div>
 
-      <div style="max-width: 720px; margin: 0 auto 56px auto; text-align: center;">
-        <p style="font-family: var(--sans); font-size: 17px; line-height: 1.7; color: var(--ink-mute); margin-bottom: 18px;">
-          За годы работы выстроен круг практиков, к которым обращаемся под конкретные задачи: <strong style="color: var(--ink); font-weight: 500;">юристы по корпоративным конфликтам, специалисты по антирейдеру, аналитики OSINT, эксперты по структурам владения в мульти-юрисдикции</strong>.
-        </p>
-        <p style="font-family: var(--sans); font-size: 17px; line-height: 1.7; color: var(--ink-mute);">
-          Этот круг — не штат и не партнёрство. Это люди, которые работают <strong style="color: var(--ink); font-weight: 500;">по приглашению, а не по контракту</strong>. Их экспертиза не публична. Доступ к ним — часть того, что мы привносим в проект.
-        </p>
+    <p class="circle-intro reveal">
+      Не&nbsp;штат и&nbsp;не&nbsp;партнёрство. Люди, которые работают по&nbsp;приглашению, а&nbsp;не&nbsp;по&nbsp;контракту. Их&nbsp;экспертиза не&nbsp;публична&nbsp;— поэтому имён мы&nbsp;не&nbsp;называем.
+    </p>
+
+    <div class="advisors-list reveal">
+      <div class="advisor">
+        <strong>А██████&nbsp;С████████</strong>
+        <em>Юридическое структурирование.</em> 25+ лет в&nbsp;крупнейших частных состояниях (от&nbsp;$250M). CEO семейных офисов с&nbsp;активами&nbsp;>$20&nbsp;млрд. Опыт в&nbsp;Big&nbsp;4 аудиторских и&nbsp;топ-5 инвестиционных банков СНГ. Автор курса по&nbsp;преемственности в&nbsp;ведущей российской бизнес-школе.
       </div>
-
-      <div class="caliber-header">Калибр</div>
-      <div class="caliber-grid">
-        <div class="caliber-card">
-          <div class="caliber-stat">$20&nbsp;млрд</div>
-          <div class="caliber-text">капиталы под управлением</div>
-        </div>
-        <div class="caliber-card">
-          <div class="caliber-stat">30+ кейсов</div>
-          <div class="caliber-text">обработано через Hound Engine</div>
-        </div>
-        <div class="caliber-card">
-          <div class="caliber-stat">10+ юрисдикций</div>
-          <div class="caliber-text">cross-border операций</div>
-        </div>
-        <div class="caliber-card">
-          <div class="caliber-stat">25+ лет</div>
-          <div class="caliber-text">private wealth&nbsp;·&nbsp;корпоративное структурирование</div>
-        </div>
-        <div class="caliber-card">
-          <div class="caliber-stat">Участие в&nbsp;40+</div>
-          <div class="caliber-text">корпоративных конфликтах высокой интенсивности</div>
-        </div>
-        <div class="caliber-card">
-          <div class="caliber-stat"><span class="accent">Top-tier</span> институты</div>
-          <div class="caliber-text">McKinsey&nbsp;·&nbsp;Citibank&nbsp;·&nbsp;Renaissance Capital&nbsp;·&nbsp;Альфа-Банк</div>
-        </div>
-        <div class="caliber-card">
-          <div class="caliber-stat">M&amp;A&nbsp;+ litigation</div>
-          <div class="caliber-text">противодействие враждебным атакам</div>
-        </div>
-        <div class="caliber-card">
-          <div class="caliber-stat"><span class="accent">SECO</span>&nbsp;/&nbsp;<span class="accent">OFAC</span></div>
-          <div class="caliber-text">разморозка замороженных активов</div>
-        </div>
+      <div class="advisor">
+        <strong>Б████&nbsp;Л██████</strong>
+        <em>Защита активов.</em> Основатель одной из&nbsp;ведущих российских anti-raider консалтинговых фирм. Противодействие рейдерским атакам, защита корпоративного контроля, кризисное управление в&nbsp;захватах.
+      </div>
+      <div class="advisor">
+        <strong>П████&nbsp;Р████</strong>
+        <em>AI-трансформация.</em> Ex-Digital&nbsp;CPO одного из&nbsp;топ-5 российских банков. 10+ корпоративных трансформаций в&nbsp;финтехе и&nbsp;промышленности.
+      </div>
+      <div class="advisor">
+        <strong>О████&nbsp;Б█████</strong>
+        <em>Управление капиталом.</em> Опыт в&nbsp;топ-3 глобальной стратегической консалтинговой компании и&nbsp;одном из&nbsp;топ-5 глобальных банков. Управление капиталом на&nbsp;российских и&nbsp;глобальных рынках, структурирование при&nbsp;релокации, возврат и&nbsp;разморозка активов.
       </div>
     </div>
+
+    <div class="caliber-divider reveal">
+      <div class="team-divider-label">Калибр круга</div>
+    </div>
+
+    <ul class="circle-caliber reveal">
+      <li><strong>100+&nbsp;кейсов</strong>&nbsp;·&nbsp;превентивной защиты капитала</li>
+      <li><strong>10+&nbsp;юрисдикций</strong>&nbsp;·&nbsp;cross-border операций</li>
+      <li><strong>40+&nbsp;конфликтов</strong>&nbsp;·&nbsp;высокой интенсивности</li>
+      <li><strong>M&amp;A&nbsp;+ litigation</strong>&nbsp;·&nbsp;противодействие враждебным атакам</li>
+    </ul>
+
+    <p class="team-closing reveal">Нет раздутого штата. Нет младших аналитиков.<br>Каждый&nbsp;— старший специалист с&nbsp;прямым доступом к&nbsp;проекту.</p>
 
   </div>
 </section>
