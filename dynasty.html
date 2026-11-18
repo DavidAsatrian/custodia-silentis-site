@@ -156,17 +156,17 @@ h1{font-size:clamp(40px,4.8vw,70px);line-height:1.02;letter-spacing:-.05em;font-
 /* Граф передачи: состояния a (сейчас) → b (основатель недоступен) → c (после передачи) */
 #dgraph .hull{fill:rgba(155,179,200,.025);stroke:#3a4a57;stroke-dasharray:3 5}
 #dgraph .hull-t{font-family:var(--mono);font-size:12px;fill:#7f91a0;letter-spacing:.08em}
-#dgraph .se{stroke:#8ea4b6;stroke-width:1.2;fill:none;opacity:.7;transition:opacity .9s}
+#dgraph .se{stroke:#8ea4b6;stroke-width:1.2;fill:none;opacity:.7;transition:opacity .5s}
 #dgraph .ie{stroke:#5d7385;stroke-width:1;fill:none;opacity:.55}
-#dgraph .ne{stroke:#dbe7f0;stroke-width:1.6;fill:none;opacity:0;stroke-dasharray:5 6;transition:opacity 1s}
+#dgraph .ne{stroke:#dbe7f0;stroke-width:1.6;fill:none;opacity:0;stroke-dasharray:5 6;transition:opacity .55s}
 #dgraph.st-c .ne{opacity:.95;animation:flow 1.4s linear infinite}
 #dgraph.st-b .se{opacity:.2;stroke-dasharray:3 7}
 #dgraph.st-c .se{opacity:.06;stroke-dasharray:3 7}
 @keyframes flow{to{stroke-dashoffset:-22}}
-#dgraph .layer{transition:opacity .8s}
+#dgraph .layer{transition:opacity .45s}
 .js #dgraph .layer{opacity:0}
 #dgraph .layer.on{opacity:1}
-#dgraph .fn,#dgraph .cn,#dgraph .sn{transition:opacity .9s}
+#dgraph .fn,#dgraph .cn,#dgraph .sn{transition:opacity .5s}
 #dgraph.st-b .fn,#dgraph.st-c .fn{opacity:.28}
 #dgraph.st-b .cn{opacity:.42}
 #dgraph .sn{opacity:0}
@@ -946,18 +946,18 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     svg.classList.remove('st-a','st-b','st-c'); svg.classList.add('st-'+s);
     tabs.forEach(t=>t.classList.toggle('on', t.dataset.s===s));
     cap.classList.remove('show');
-    setTimeout(()=>{ cap.textContent = CAP[s]; cap.classList.add('show'); }, REDUCE ? 0 : 250);
+    setTimeout(()=>{ cap.textContent = CAP[s]; cap.classList.add('show'); }, REDUCE ? 0 : 150);
   }
 
   if(REDUCE){ [lHull,lEdge,lNode].forEach(l=>l.classList.add('on')); setState('c'); return; }
   // Появление: контуры → узлы → связи; затем цикл состояний
-  setTimeout(()=>lHull.classList.add('on'), 150);
-  setTimeout(()=>lNode.classList.add('on'), 600);
-  setTimeout(()=>lEdge.classList.add('on'), 1200);
-  const seq = [['a',4200],['b',3400],['c',5600]];
+  setTimeout(()=>lHull.classList.add('on'), 100);
+  setTimeout(()=>lNode.classList.add('on'), 350);
+  setTimeout(()=>lEdge.classList.add('on'), 650);
+  const seq = [['a',2200],['b',1900],['c',3000]];   // круг ≈ 7 с
   let i = 0;
   function step(){ const [s,ms] = seq[i]; setState(s); i = (i+1) % seq.length; setTimeout(step, ms); }
-  setTimeout(step, 1800);
+  setTimeout(step, 900);
 })();
 </script>
 </body>
