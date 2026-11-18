@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0d11">
+<title>Антикризисное управление — Custodia Silentis</title>
+<meta name="description" content="Возвращаем собственнику контроль, когда система теряет управляемость. Сначала картина, потом действия.">
+<link rel="canonical" href="https://custodia-silentis.com/crisis">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Вернуть контроль раньше, чем кризис определит правила">
+<meta property="og:description" content="Антикризисное управление на основе фактов, а не версий.">
+<meta property="og:url" content="https://custodia-silentis.com/crisis">
+<meta property="og:site_name" content="Custodia Silentis">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://custodia-silentis.com/og-crisis-2026-11.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Crisis Management — собственник в центре восстановленного контура управления: видеть, решать, исполнять">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Вернуть контроль раньше, чем кризис определит правила">
+<meta name="twitter:description" content="Антикризисное управление на основе фактов, а не версий.">
+<meta name="twitter:image" content="https://custodia-silentis.com/og-crisis-2026-11.jpg">
+
+<!-- Schema.org — практика как услуга организации -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://custodia-silentis.com/crisis#service",
+      "name": "Антикризисное управление",
+      "alternateName": "Crisis Management",
+      "serviceType": "Стабилизация и восстановление управляемости компании",
+      "description": "Возвращаем собственнику контроль, когда система теряет управляемость. Сначала картина, потом действия.",
+      "url": "https://custodia-silentis.com/crisis",
+      "provider": { "@id": "https://custodia-silentis.com/#organization" },
+      "areaServed": "RU"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://custodia-silentis.com/crisis#webpage",
+      "url": "https://custodia-silentis.com/crisis",
+      "name": "Антикризисное управление — Custodia Silentis",
+      "inLanguage": "ru-RU",
+      "isPartOf": { "@id": "https://custodia-silentis.com/#website" },
+      "about": { "@id": "https://custodia-silentis.com/crisis#service" }
+    }
+  ]
+}
+</script>
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ═════════════════════════════════════════════════════════════════════
+   Те же токены и шкала, что у главной и /dynasty: метки ≥ 11px,
+   текст 16–18px, H2 ≥ 56px на десктопе; секции — чередованием фона.
+   ═════════════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#090c10;--bg2:#0e131a;--bg3:#0b1118;--panel:#0e1319;--line:#26313b;
+  --text:#e8edf2;--soft:#c9d2da;--muted:#9aa7b4;--dim:#6f7c88;--accent:#9bb3c8;
+  --max:1180px;--head:76px;
+  --mono:ui-monospace,"SF Mono",Menlo,"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --fs-label:11px;--fs-cap:13px;--fs-ui:16px;--fs-text:18px;--fs-lead:22px;
+  --pad-section:128px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:var(--fs-ui);line-height:1.6;letter-spacing:-.011em;font-feature-settings:"kern","liga"}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+h1,h2,h3,p{margin-top:0}
+.wrap{width:min(var(--max),calc(100% - 64px));margin:auto}
+section[id]{scroll-margin-top:var(--head)}
+
+/* ───── Шапка ───── */
+.topbar{position:sticky;top:0;z-index:50;height:var(--head);border-bottom:1px solid var(--line);display:flex;align-items:center;background:rgba(9,12,16,.97)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.brand{font-size:15px;font-weight:650;letter-spacing:.13em;white-space:nowrap}
+.brand small{display:block;font:10px var(--mono);letter-spacing:.16em;color:var(--dim);margin-top:3px}
+.navlinks{display:flex;gap:30px;align-items:center;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--muted)}
+.navlinks a{padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.navlinks a:hover{color:#fff}
+.navlinks a.active{color:#fff;border-bottom-color:var(--accent)}
+.navlinks .m-only{display:none}
+.nav-cta{border:1px solid #44515d;padding:11px 16px;font:var(--fs-label) var(--mono);letter-spacing:.1em;white-space:nowrap;transition:background .2s,color .2s}
+.nav-cta:hover{background:#dce5ec;color:#0a0d11}
+.menu{display:none;width:44px;height:44px;background:none;border:0;color:var(--text);font-size:22px;cursor:pointer}
+/* ───── Меню практик: одинаковое на всех пяти страницах ───── */
+.practices{display:flex;border:1px solid #33424f;flex:none}
+.practices a{padding:9px 12px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--muted);white-space:nowrap;transition:color .2s,background .2s}
+.practices a+a{border-left:1px solid #33424f}
+.practices a:hover{color:#fff}
+.practices a.on{background:rgba(155,179,200,.12);color:#fff}
+.practices.drop{display:none}
+.practices.bar{margin-left:auto}
+.navlinks{display:none}
+
+/* ───── Общие элементы ───── */
+.section{padding:var(--pad-section) 0;position:relative}
+.section.alt{background:var(--bg2)}
+.section .wrap{position:relative}
+.section-head{display:grid;grid-template-columns:.62fr 1.38fr;gap:56px;margin-bottom:64px}
+.kicker{font:12px var(--mono);letter-spacing:.14em;color:var(--dim)}
+h2{font-size:clamp(36px,4.8vw,64px);line-height:1.04;letter-spacing:-.05em;font-weight:500;max-width:860px;margin:16px 0 20px}
+.section-intro{color:var(--muted);max-width:680px;font-size:var(--fs-text);line-height:1.6}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px}
+.after{margin:28px 0 0;color:var(--muted);font-size:var(--fs-text);max-width:720px}
+.note{font-size:var(--fs-cap);color:var(--dim);margin:20px 0 0}
+.tag{font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--dim)}
+.primary{display:inline-flex;align-items:center;gap:28px;border:1px solid #8195a6;padding:15px 18px;font:12px var(--mono);letter-spacing:.08em;transition:background .2s,color .2s;white-space:nowrap}
+.primary:hover{background:#dce5ec;color:#0a0d11}
+.textlink{font:12px var(--mono);color:var(--muted);letter-spacing:.06em}
+.textlink:hover{color:#fff}
+.statement{margin:64px 0 0;padding-left:26px;border-left:2px solid var(--accent);font-size:clamp(22px,2.4vw,32px);line-height:1.32;letter-spacing:-.03em;max-width:880px;color:#dbe3ea}
+.ghost{position:absolute;right:0;top:40px;font-size:clamp(160px,22vw,320px);font-weight:600;letter-spacing:-.07em;line-height:1;color:rgba(155,179,200,.035);pointer-events:none;user-select:none}
+.frag{background:#0a0f14;border:1px solid #2a3642}
+.frag-head{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid #2a3642;font:var(--fs-label) var(--mono);letter-spacing:.08em;color:#8293a2}
+.frag-head em{font-style:normal;color:var(--dim)}
+.frag-body{padding:18px 16px 20px}
+
+/* ───── 00 · Первый экран ───── */
+.hero{min-height:calc(100vh - var(--head));display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:64px 0}
+.eyebrow{font:12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px}
+.eyebrow:before{content:"";width:27px;height:1px;background:var(--accent)}
+h1{font-size:clamp(40px,4.8vw,70px);line-height:1.02;letter-spacing:-.05em;font-weight:510;margin:28px 0 28px;max-width:700px}
+.lead{font-size:var(--fs-lead);line-height:1.5;color:#c0cad3;max-width:620px;margin:0 0 36px}
+.actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.hero-meta{display:flex;gap:30px;flex-wrap:wrap;margin-top:56px;font:var(--fs-label) var(--mono);letter-spacing:.12em;color:var(--dim)}
+.visual{height:520px;position:relative;border:1px solid #202b35;background:radial-gradient(ellipse at 50% 50%,#17232d 0,#0d141b 44%,#090d12 78%);overflow:hidden}
+.visual:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(125,150,170,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(125,150,170,.06) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(transparent,#000 18%,#000 82%,transparent)}
+.visual svg{position:absolute;inset:3% 3% 7%;width:94%;height:90%}
+.vlabel{position:absolute;z-index:1;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:#8293a2}
+.vlabel.tl{top:16px;left:18px}
+.vlabel.br{bottom:16px;right:18px;text-align:right;color:var(--dim)}
+.vcap{position:absolute;z-index:1;left:18px;bottom:16px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--accent);opacity:0;transition:opacity .35s;max-width:62%}
+.vcap.show{opacity:1}
+.states{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #202b35;border-top:0}
+.states div{padding:12px 14px;border-right:1px solid #202b35;font:var(--fs-label) var(--mono);letter-spacing:.08em;color:var(--dim);transition:color .3s,background .3s}
+.states div:last-child{border-right:0}
+.states div b{display:block;font-weight:400;color:#5d6b77;margin-bottom:3px;transition:color .3s}
+.states div.on{color:var(--text);background:rgba(155,179,200,.06)}
+.states div.on b{color:var(--accent)}
+/* Ситуационная карта: a — версии (хаос), b — картина, c — контур управления */
+#cgraph .layer{transition:opacity .8s}
+.js #cgraph .layer{opacity:0}
+#cgraph .layer.on{opacity:1}
+#cgraph .pos{transition:transform 1.3s cubic-bezier(.6,0,.2,1)}
+#cgraph.no-tr .pos{transition:none}
+#cgraph.st-a .jit{animation:jit 1.7s ease-in-out infinite alternate}
+@keyframes jit{0%{transform:translate(0,0)}50%{transform:translate(3px,-2px)}100%{transform:translate(-2px,3px)}}
+#cgraph .key circle,#cgraph .key rect{fill:#a9bdcc;stroke:#d7e1e8;stroke-width:1.2;transition:fill .5s}
+#cgraph circle.ring{fill:none;stroke:#9bb3c8;stroke-dasharray:2 4;opacity:.75}
+#cgraph .gl{font-family:var(--mono);font-size:13px;fill:#9fb1c0;letter-spacing:.04em;transition:fill .5s}
+/* тёмная обводка — подписи читаются поверх линий */
+#cgraph .gl,#cgraph .rl{paint-order:stroke;stroke:#111a22;stroke-width:4px;stroke-linejoin:round}
+#cgraph .q{font-family:var(--mono);font-size:12px;fill:#7f91a0;letter-spacing:.04em;font-style:italic;transition:opacity .7s}
+#cgraph .sp{stroke:#8ea4b6;stroke-width:1.1;opacity:0;transition:opacity .9s}
+#cgraph .hot{stroke:#e2ecf3;stroke-width:1.8;stroke-dasharray:5 6;opacity:0;fill:none;transition:opacity .9s;animation:flow 1.2s linear infinite}
+#cgraph .neq{stroke:#9bb3c8;stroke-width:1.2;stroke-dasharray:3 4;opacity:0;transition:opacity .9s}
+#cgraph .flag,#cgraph .guard,#cgraph .loop,#cgraph .rl{opacity:0;transition:opacity .9s}
+#cgraph .flag circle{fill:#0a0f14;stroke:var(--accent)}
+#cgraph .flag text{font-family:var(--mono);font-weight:600;font-size:12px;fill:var(--accent);text-anchor:middle;dominant-baseline:central}
+#cgraph .guard{fill:none;stroke:#9bb3c8;stroke-dasharray:3 3}
+#cgraph .loop{fill:none;stroke:#dbe7f0;stroke-width:1.8;stroke-dasharray:7 7;animation:flow 1.6s linear infinite}
+#cgraph .rl{font-family:var(--mono);font-size:12px;fill:#eef3f7;letter-spacing:.1em;text-anchor:middle}
+@keyframes flow{to{stroke-dashoffset:-28}}
+#cgraph.st-a .q{opacity:1}
+#cgraph:not(.st-a) .q{opacity:0}
+#cgraph.st-b .sp{opacity:.45}
+#cgraph.st-c .sp{opacity:.85}
+#cgraph.st-b .hot,#cgraph.st-b .neq,#cgraph.st-b .flag{opacity:1}
+#cgraph.st-c .hot{opacity:.35}
+#cgraph.st-c .guard,#cgraph.st-c .loop,#cgraph.st-c .rl{opacity:1}
+#cgraph.st-c .lit circle:not(.ring),#cgraph.st-c .lit rect{fill:#f1f6f9;filter:drop-shadow(0 0 6px rgba(200,222,238,.75))}
+#cgraph.st-c .lit .gl{fill:#eef3f7}
+
+/* ───── 01 · Суть: три возвращаемые способности ───── */
+.essence .statement{margin-top:8px;max-width:900px}
+.triad{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin:64px 0 0}
+.triad div{border-top:2px solid var(--accent);padding-top:22px}
+.triad span{font:var(--fs-label) var(--mono);color:var(--dim);letter-spacing:.1em}
+.triad strong{display:block;font-size:clamp(36px,4.4vw,60px);font-weight:500;letter-spacing:-.05em;line-height:1;margin:14px 0 12px}
+.triad p{margin:0;color:var(--muted);font-size:var(--fs-ui)}
+.essence .body{color:var(--muted);font-size:var(--fs-text);max-width:760px;margin:56px 0 0}
+
+/* ───── 02 · Когда подключаемся ───── */
+.when{display:grid;grid-template-columns:1fr 1fr;column-gap:64px}
+.wn{display:grid;grid-template-columns:40px 1fr;gap:16px;padding:24px 0;border-bottom:1px solid var(--line)}
+.wn:nth-last-child(-n+2){border-bottom:0}
+.wn span{font:var(--fs-label) var(--mono);color:var(--accent);padding-top:7px}
+.wn h3{font-size:22px;font-weight:500;letter-spacing:-.03em;margin:0 0 6px}
+.wn p{margin:0;color:var(--muted);font-size:var(--fs-ui)}
+
+/* ───── 03 · Сначала картина ───── */
+.approach{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:start}
+.approach p.body{color:var(--muted);font-size:var(--fs-text);max-width:540px;margin:0 0 18px}
+.qmap .qq{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;padding:12px 0;border-bottom:1px dashed #26313b;font-size:15px;color:var(--soft);line-height:1.45}
+.qmap .qq:last-child{border-bottom:0}
+.st-tag{font:var(--fs-label) var(--mono);letter-spacing:.08em;padding:4px 8px;white-space:nowrap}
+.st-tag.f{background:rgba(155,179,200,.14);color:#eef3f7;border:1px solid var(--accent)}
+.st-tag.h{color:var(--dim);border:1px dashed #4a5d6c}
+.qmap .legend-s{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font:var(--fs-label) var(--mono);letter-spacing:.06em;color:var(--dim)}
+
+/* ───── 04 · Манифест ───── */
+.manifesto{padding:150px 0;background:radial-gradient(ellipse at 15% 50%,#16232e 0,transparent 55%),var(--bg3)}
+.manifesto p{margin:0;font-size:clamp(32px,4.6vw,64px);line-height:1.08;letter-spacing:-.05em;font-weight:500;max-width:1060px}
+.manifesto p+p{color:var(--accent);margin-top:12px}
+
+/* ───── 05 · Первые дни: последовательность + документ для решения ───── */
+.days{display:grid;grid-template-columns:.95fr 1.05fr;gap:72px;align-items:start}
+.seq{position:relative;padding-left:30px}
+.seq:before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:repeating-linear-gradient(180deg,var(--accent) 0 6px,transparent 6px 10px)}
+.sq{position:relative;padding:0 0 34px}
+.sq:last-child{padding-bottom:0}
+.sq:before{content:"";position:absolute;left:-29px;top:7px;width:11px;height:11px;border:1px solid var(--accent);background:var(--bg);transform:rotate(45deg)}
+.sq:first-child:before{background:var(--accent)}
+.sq span{font:var(--fs-label) var(--mono);color:var(--accent);letter-spacing:.1em}
+.sq h3{font-size:24px;font-weight:500;letter-spacing:-.03em;margin:8px 0 8px}
+.sq p{margin:0;color:var(--muted);font-size:var(--fs-ui);max-width:460px}
+.sheet{background:#e4eaef;color:#10161c;padding:28px 30px 30px;box-shadow:0 1px 0 rgba(0,0,0,.25),0 14px 28px -14px rgba(0,0,0,.6),0 46px 90px -40px rgba(0,0,0,.7)}
+.sheet-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 10px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:#4a5763;border-bottom:1px solid #b9c4cd;padding-bottom:12px}
+.sf{padding:14px 0 10px;border-bottom:1px solid #cfd8df}
+.sf:last-child{border-bottom:0}
+.sf b{display:block;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:#5b6874;font-weight:400;margin-bottom:8px}
+.sk{height:5px;background:#b9c4cd;margin:0 0 7px}
+.sf ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.sf li{display:grid;grid-template-columns:10px 1fr;gap:8px;align-items:center}
+.sf li:before{content:"";width:6px;height:6px;background:#41505c}
+.sf li i{display:block;height:5px;background:#b9c4cd}
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.plan div{border:1px solid #b9c4cd;padding:8px;font:var(--fs-label) var(--mono);letter-spacing:.06em;color:#41505c}
+.plan div i{display:block;height:5px;background:#b9c4cd;margin-top:7px}
+.plan div i+i{width:70%}
+.days .out{margin:28px 0 0;font-size:15px;color:var(--soft);max-width:520px;border-left:2px solid var(--accent);padding-left:14px}
+.days .out b{color:var(--text);font-weight:500}
+
+/* ───── 06 · Что делаем ───── */
+.doing{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;row-gap:52px}
+.dg .n{font-size:clamp(44px,4.4vw,60px);font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--accent)}
+.dg h3{font-size:24px;font-weight:500;letter-spacing:-.03em;margin:14px 0 8px}
+.dg p{margin:0;color:var(--muted);font-size:var(--fs-ui);max-width:480px}
+
+/* ───── 07 · Из практики ───── */
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.case{background:var(--panel);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;transition:border-color .2s}
+.case:hover{border-color:#617789}
+.case .metric{font-size:clamp(38px,4vw,52px);line-height:1.02;letter-spacing:-.055em;font-weight:500;margin:22px 0 14px}
+.case h3{font-size:21px;font-weight:500;margin:0 0 10px;letter-spacing:-.02em}
+.case p{font-size:15px;color:var(--muted);margin:0}
+.foot{margin-top:auto;padding-top:22px;font:var(--fs-label) var(--mono);color:#8495a3;letter-spacing:.06em}
+
+/* ───── 08 · Команда ───── */
+.crew{display:grid;grid-template-columns:1fr 1fr;column-gap:64px}
+.cw{padding:24px 0;border-bottom:1px solid var(--line)}
+.cw:nth-last-child(-n+2){border-bottom:0}
+.cw b{display:block;font-size:22px;font-weight:500;letter-spacing:-.03em;margin-bottom:6px}
+.cw span{color:var(--muted);font-size:var(--fs-ui)}
+
+/* ───── 09 · Принципы ───── */
+.principle{display:flex;gap:26px;padding:20px 0;border-bottom:1px solid var(--line)}
+.principle:first-child{padding-top:6px}
+.principle:last-child{border-bottom:0}
+.principle span{font:var(--fs-label) var(--mono);color:var(--dim);padding-top:5px}
+.principle strong{font-weight:500;font-size:18px}
+.principle small{display:block;color:var(--muted);font-size:15px;margin-top:3px}
+
+/* ───── 10 · Граница практики: тёмная полоса ───── */
+.border-band{padding:140px 0;background:radial-gradient(ellipse at 85% 50%,#16232e 0,transparent 55%),var(--bg3)}
+.border-band h2{font-size:clamp(40px,5.4vw,80px);max-width:900px}
+.border-band p.body{font-size:clamp(18px,1.8vw,22px);line-height:1.5;color:var(--soft);max-width:720px;margin:0 0 36px}
+.border-band .small{font-size:15px;color:var(--muted);margin:28px 0 0}
+.border-band .small a{color:var(--accent);border-bottom:1px solid rgba(155,179,200,.4)}
+
+/* ───── 11 · Первый шаг + контакты ───── */
+.start{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.start .lead-p{color:var(--muted);font-size:var(--fs-text);margin:0 0 28px;max-width:520px}
+.need{counter-reset:n;display:grid;gap:0}
+.need div{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.need div:last-child{border-bottom:0}
+.need span{font:var(--fs-label) var(--mono);color:var(--accent);padding-top:5px}
+.need b{font-weight:500;font-size:18px}
+.need small{display:block;color:var(--muted);font-size:15px;margin-top:2px}
+.access{display:inline-block;font:12px var(--mono);letter-spacing:.12em;color:var(--accent);border:1px solid #4a5d6c;padding:10px 14px;margin-bottom:28px}
+.contacts{display:grid;gap:8px;padding-left:24px;border-left:2px solid var(--accent)}
+.c-name{font-size:clamp(24px,2.6vw,32px);font-weight:500;letter-spacing:-.03em;margin-bottom:4px}
+.c-line{font:17px var(--mono);color:var(--soft);letter-spacing:.02em;white-space:nowrap}
+.c-note{font-size:14px;color:var(--dim);margin-top:10px}
+.footer{padding:28px 0 38px;color:var(--dim);font:var(--fs-label) var(--mono);letter-spacing:.08em}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer a:hover{color:#fff}
+
+/* ───── Меньше движения ───── */
+@media (prefers-reduced-motion: reduce){
+ #cgraph .layer,#cgraph .pos,#cgraph .q,#cgraph .sp,#cgraph .hot,#cgraph .neq,#cgraph .flag,#cgraph .guard,#cgraph .loop,#cgraph .rl{transition:none}
+ #cgraph .hot,#cgraph .loop,#cgraph.st-a .jit{animation:none}
+ html{scroll-behavior:auto}
+}
+
+/* ═════ Меню ≤ 1080px: практики и кнопка уходят в «☰» ═════ */
+@media(max-width:1080px){
+ .practices.bar,.nav-cta{display:none}
+ .menu{display:block}
+ .navlinks.mobile-open{display:flex;position:absolute;top:100%;left:0;right:0;padding:6px 20px 16px;background:#0b1016;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}
+ .practices.drop{display:flex;flex-direction:column;border:0}
+ .practices.drop a{padding:15px 0;font-size:13px;border-bottom:1px solid var(--line);background:none}
+ .practices.drop a+a{border-left:0}
+ .practices.drop a.on{color:#fff}
+ .practices.drop a.on:after{content:" · ВЫ ЗДЕСЬ";color:var(--accent)}
+ .navlinks .m-only{display:block;color:var(--accent);padding:15px 0;font-size:13px}
+}
+
+/* ═════ Планшет ≤ 960px ═════ */
+@media(max-width:960px){
+ :root{--pad-section:96px}
+ .wrap{width:min(100% - 40px,var(--max))}
+ .hero{grid-template-columns:1fr;min-height:auto;padding:64px 0 72px;gap:44px}
+ .section-head{grid-template-columns:1fr;gap:12px;margin-bottom:48px}
+ .split,.approach,.days,.start{grid-template-columns:1fr;gap:44px}
+ .manifesto,.border-band{padding:112px 0}
+}
+
+/* ═════ Телефон ≤ 600px ═════ */
+@media(max-width:600px){
+ :root{--head:64px;--fs-ui:15px;--fs-text:16px;--fs-lead:18px;--pad-section:72px}
+ .wrap{width:calc(100% - 32px)}
+ .brand{font-size:13px}
+ h1{font-size:36px;letter-spacing:-.045em}
+ h2{font-size:32px;letter-spacing:-.04em}
+ .eyebrow,.kicker{font-size:11px}
+ .hero{padding:44px 0 56px}
+ .hero-meta{margin-top:36px;gap:14px}
+ .visual{height:360px}
+ .vlabel.br{display:none}
+ .vcap{max-width:calc(100% - 36px)}
+ #cgraph .gl{font-size:19px}
+ #cgraph .q{font-size:17px}
+ #cgraph .rl{font-size:17px}
+ .states div{padding:10px 8px}
+ .statement{font-size:21px;padding-left:18px;margin-top:44px}
+ .triad{grid-template-columns:1fr;gap:28px;margin-top:44px}
+ .triad strong{font-size:40px}
+ .when,.doing,.cases,.crew{grid-template-columns:1fr}
+ .when .wn:nth-last-child(2),.crew .cw:nth-last-child(2){border-bottom:1px solid var(--line)}
+ .wn{grid-template-columns:30px 1fr;gap:10px;padding:18px 0}
+ .wn h3,.sq h3,.dg h3{font-size:20px}
+ .doing{row-gap:36px}
+ .manifesto,.border-band{padding:88px 0}
+ .manifesto p{font-size:30px}
+ .border-band h2{font-size:38px}
+ .plan{grid-template-columns:1fr}
+ .case{padding:22px}
+ .case .metric{font-size:38px}
+ .contacts{padding-left:18px}
+ .c-line{font-size:16px}
+ .footer-inner{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="/">CUSTODIA SILENTIS<small>CRISIS MANAGEMENT</small></a>
+    <div class="practices bar" aria-label="Практики"><a href="/">ОБЗОР</a><a href="/intelligence">INTELLIGENCE</a><a href="/crisis" class="on" aria-current="page">CRISIS</a><a href="/transformation">TRANSFORMATION</a><a href="/dynasty">DYNASTY</a></div>
+    <nav class="navlinks" id="navlinks" aria-label="Практики">
+      <div class="practices drop"><a href="/">ОБЗОР</a><a href="/intelligence">INTELLIGENCE</a><a href="/crisis" class="on" aria-current="page">CRISIS</a><a href="/transformation">TRANSFORMATION</a><a href="/dynasty">DYNASTY</a></div>
+      <a class="m-only" href="#contact">ОБСУДИТЬ СИТУАЦИЮ ↓</a>
+    </nav>
+    <a class="nav-cta" href="#contact">ОБСУДИТЬ СИТУАЦИЮ ↓</a>
+    <button class="menu" id="menu" aria-label="Открыть навигацию" aria-expanded="false" aria-controls="navlinks">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 00 · Первый экран: ситуационная карта — версии → картина → контроль -->
+<section class="wrap hero">
+  <div>
+    <div class="eyebrow">PRACTICE 02 · STABILIZE</div>
+    <h1>Вернуть контроль раньше, чем кризис определит правила</h1>
+    <p class="lead">Когда система теряет управляемость, у всех вокруг есть мнение и ни у кого нет картины. Мы восстанавливаем картину — как правило, за дни, определяем, что закрыть первым, и возвращаем собственнику возможность принимать решения и добиваться их исполнения.</p>
+    <div class="actions">
+      <a class="primary" href="#contact">ОБСУДИТЬ СИТУАЦИЮ <span>↓</span></a>
+      <a class="textlink" href="#approach">КАК МЫ РАБОТАЕМ ↓</a>
+    </div>
+    <div class="hero-meta"><span>СТАБИЛИЗАЦИЯ</span><span>ВОССТАНОВЛЕНИЕ КОНТРОЛЯ</span><span>ЗАЩИТА КРИТИЧЕСКИХ ФУНКЦИЙ</span></div>
+  </div>
+  <div>
+    <div class="visual" aria-label="Схема: разрозненные версии превращаются в картину, затем в контур управления">
+      <div class="vlabel tl">СИТУАЦИОННАЯ КАРТА / 001</div>
+      <svg id="cgraph" class="st-a" viewBox="0 0 600 520" role="img" aria-label="Версии участников, затем картина с критическими зависимостями, затем восстановленный контур управления"></svg>
+      <div class="vcap" id="vcap"></div>
+      <div class="vlabel br">ВИДЕТЬ / РЕШАТЬ / ИСПОЛНЯТЬ</div>
+    </div>
+    <div class="states" id="states">
+      <div data-s="a"><b>01</b>ВЕРСИИ</div>
+      <div data-s="b"><b>02</b>КАРТИНА</div>
+      <div data-s="c"><b>03</b>КОНТРОЛЬ</div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 · Суть практики -->
+<section class="section alt essence" id="essence">
+  <div class="wrap">
+    <div class="kicker">01 / СУТЬ ПРАКТИКИ</div>
+    <h2>Кризис — это момент, когда система показывает, насколько она управляема</h2>
+    <p class="statement">Наша задача — вернуть собственнику три вещи: видеть ситуацию, принимать решения и добиваться их исполнения.</p>
+    <div class="triad">
+      <div><span>01</span><strong>Видеть</strong><p>Ситуацию целиком — не через отчёты и чужие версии.</p></div>
+      <div><span>02</span><strong>Решать</strong><p>На основании фактов, в правильной последовательности.</p></div>
+      <div><span>03</span><strong>Исполнять</strong><p>Добиваться, чтобы решения доходили до результата.</p></div>
+    </div>
+    <p class="body">Мы подключаемся, когда привычные механизмы перестают работать. Конфликт блокирует решения. Обязательства требуют внимания немедленно. Ключевые люди становятся источником неопределённости. А фактическая картина всё дальше расходится с отчётностью.</p>
+  </div>
+</section>
+
+<!-- 02 · Когда подключаемся -->
+<section class="section" id="when">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">02 / КОГДА ПОДКЛЮЧАЕМСЯ</div>
+      <div><h2>Когда промедление увеличивает стоимость ошибки</h2></div>
+    </div>
+    <div class="when">
+      <div class="wn"><span>01</span><div><h3>Потеря управляемости</h3><p>Решения не исполняются, полномочия размыты, процессы зависят от конфликтующих центров влияния.</p></div></div>
+      <div class="wn"><span>02</span><div><h3>Корпоративный конфликт</h3><p>Разногласия собственников, блокировка органов управления, конкурирующие интересы и риск утраты контроля.</p></div></div>
+      <div class="wn"><span>03</span><div><h3>Финансовое давление</h3><p>Ликвидность падает, обязательства становятся критическими, а операционную устойчивость нужно сохранить любой ценой.</p></div></div>
+      <div class="wn"><span>04</span><div><h3>Атака извне</h3><p>Иск, который появился слишком вовремя. Бывший партнёр с доступом к документам. Попытка оспорить решения или сделки.</p></div></div>
+      <div class="wn"><span>05</span><div><h3>Критическое событие</h3><p>Уход ключевого руководителя, проверка регулятора, судебное давление, разрыв цепочки поставок или доверия.</p></div></div>
+      <div class="wn"><span>06</span><div><h3>Отчётность больше не описывает реальность</h3><p>Цифры говорят одно, касса — другое, люди — третье. И непонятно, чему верить.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · Наша особенность: сначала картина -->
+<section class="section alt" id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">03 / НАША ОСОБЕННОСТЬ</div>
+      <div><h2>Сначала картина. Потом действия.</h2></div>
+    </div>
+    <div class="approach">
+      <div>
+        <p class="body">Большинство кризисных вмешательств начинается с версии того, кто позвал на помощь. Версия может быть искренней — и всё равно неверной. В кризисе отчётность отстаёт, люди защищают свои позиции, а самые важные факты лежат там, куда никто не смотрел.</p>
+        <p class="body">Поэтому мы начинаем с реконструкции. Те же собственные аналитические решения, что работают в практике Intelligence, обычно за дни собирают внутренние документы, рабочие системы, открытые источники и разговоры с людьми в одну модель ситуации.</p>
+      </div>
+      <div class="frag qmap">
+        <div class="frag-head"><span>МОДЕЛЬ СИТУАЦИИ · ЧТО ВЫЯСНЯЕМ</span><em>ОБЕЗЛИЧЕНО</em></div>
+        <div class="frag-body">
+          <div class="qq"><span>Кто на самом деле принимает решения — и кто их блокирует</span><i class="st-tag f">ФАКТ</i></div>
+          <div class="qq"><span>Куда реально уходят деньги и какие обязательства станут критическими первыми</span><i class="st-tag f">ФАКТ</i></div>
+          <div class="qq"><span>У кого есть доступ к счетам, документам и печатям — и кто не должен его иметь</span><i class="st-tag f">ФАКТ</i></div>
+          <div class="qq"><span>Откуда исходит угроза и через какие уязвимости она может пройти</span><i class="st-tag h">ГИПОТЕЗА</i></div>
+          <div class="qq"><span>Что из этого можно доказать, а что пока гипотеза</span><i class="st-tag f">РАЗДЕЛЕНО</i></div>
+          <div class="legend-s"><span>■ ФАКТ — подтверждено документом</span><span>▢ ГИПОТЕЗА — требует проверки</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Статусы показаны для примера.</p>
+    <p class="statement">Решения, принятые по неверной картине, в кризисе обходятся дороже, чем промедление.</p>
+  </div>
+</section>
+
+<!-- 04 · Манифест -->
+<section class="manifesto">
+  <div class="wrap">
+    <div class="kicker">04 / МАНИФЕСТ</div>
+    <p style="margin-top:24px">Скорость без картины — это суета.</p>
+    <p>Картина без скорости — это опоздание.</p>
+  </div>
+</section>
+
+<!-- 05 · Первые дни: последовательность и документ для решения -->
+<section class="section" id="days">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">05 / ПЕРВЫЕ ДНИ</div>
+      <div><h2>Самое дорогое время — первые дни</h2><p class="section-intro">В острой фазе решает не идеальный план, а правильная последовательность первых шагов.</p></div>
+    </div>
+    <div class="days">
+      <div>
+        <div class="seq">
+          <div class="sq"><span>ПЕРВЫМ ДЕЛОМ</span><h3>Периметр</h3><p>Фактическое положение, стороны, доступы, критические зависимости. Что может случиться в ближайшие дни, если ничего не делать.</p></div>
+          <div class="sq"><span>ЗАТЕМ</span><h3>Угрозы и уязвимости</h3><p>Кто может действовать против вас, через что и как быстро. Какие сроки уже идут — процессуальные, договорные, регуляторные.</p></div>
+          <div class="sq"><span>ЗАТЕМ</span><h3>Первые действия</h3><p>Что закрыть немедленно, что за неделю, что может подождать. Кто за что отвечает. Как будет устроен кризисный контур управления.</p></div>
+        </div>
+        <p class="out"><b>На выходе — короткий документ для принятия решений.</b> Без воды: столько, сколько собственник успеет прочитать и использовать.</p>
+      </div>
+      <div class="sheet" aria-label="Схематичный документ для принятия решений">
+        <div class="sheet-head"><span>ДОКУМЕНТ ДЛЯ РЕШЕНИЯ</span><span>КОНФИДЕНЦИАЛЬНО</span></div>
+        <div class="sf"><b>СИТУАЦИЯ · ОДИН АБЗАЦ</b><div class="sk" style="width:96%"></div><div class="sk" style="width:88%"></div><div class="sk" style="width:62%"></div></div>
+        <div class="sf"><b>КРИТИЧЕСКИЕ УЯЗВИМОСТИ</b><ul><li><i style="width:78%"></i></li><li><i style="width:64%"></i></li><li><i style="width:70%"></i></li></ul></div>
+        <div class="sf"><b>ПРОФИЛЬ УГРОЗ</b><div class="sk" style="width:84%"></div><div class="sk" style="width:52%"></div></div>
+        <div class="sf"><b>ПЛАН ПЕРВЫХ ДЕЙСТВИЙ</b><div class="plan"><div>СЕЙЧАС<i></i><i></i></div><div>ЗА НЕДЕЛЮ<i></i><i></i></div><div>ПОДОЖДЁТ<i></i><i></i></div></div></div>
+        <div class="sf"><b>ТОЧКИ ЭСКАЛАЦИИ</b><div class="sk" style="width:72%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · Что делаем -->
+<section class="section alt" id="doing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">06 / ЧТО ДЕЛАЕМ</div>
+      <div><h2>От понимания ситуации — к восстановлению контроля</h2><p class="section-intro">Состав вмешательства зависит от мандата, масштаба и срочности. Мы собираем общую картину и координируем работу вокруг управленческой задачи, не подменяя профильных юристов, финансистов и отраслевых специалистов.</p></div>
+    </div>
+    <div class="doing">
+      <div class="dg"><div class="n">01</div><h3>Диагностика и ситуационная карта</h3><p>Фактическое положение, критические зависимости, стороны, риски, ограничения и центры решений. Отдельно — где отчётность расходится с реальностью.</p></div>
+      <div class="dg"><div class="n">02</div><h3>Стабилизация</h3><p>Приоритеты первых действий, кризисный контур управления, распределение ответственности, защита критических функций и активов.</p></div>
+      <div class="dg"><div class="n">03</div><h3>Координация исполнения</h3><p>Синхронизация собственника, менеджмента и внешних специалистов. Контроль решений и сроков. Ежедневное обновление картины, пока ситуация остаётся острой.</p></div>
+      <div class="dg"><div class="n">04</div><h3>Переход к устойчивой модели</h3><p>Закрепление новых механизмов управления после острой фазы — чтобы кризис не повторился по тому же сценарию.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · Из практики -->
+<section class="section" id="cases">
+  <div class="ghost" aria-hidden="true">07</div>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">07 / ИЗ ПРАКТИКИ</div>
+      <div><h2>Ситуации, где картина изменила решение</h2></div>
+    </div>
+    <div class="cases">
+      <article class="case"><span class="tag">CASE NOTE / 01</span><div class="metric">Не входить</div><h3>Спасать было нечего</h3><p>Нас позвали вывести компанию из кризиса. По документам — капитал и растущий бизнес. За витриной — выручка, упавшая вдвое, жизнь на предоплатах новых клиентов и займы наружу, которые не из чего было выдавать. Мы рекомендовали не входить в управление. Иногда главный результат антикризисной работы — не потратить ресурсы на то, что уже не спасти.</p><div class="foot">ОЦЕНКА ПЕРЕД ВХОДОМ</div></article>
+      <article class="case"><span class="tag">CASE NOTE / 02</span><div class="metric">6 из 9</div><h3>Проверка, которая не про проверку</h3><p>Государственное научное учреждение: проверка министерства и дефицит бюджета. Шесть из девяти нарушений оказались сосредоточены в одном филиале. А 92,9 % закупок — обязательными, и сократить их было нельзя. Экономить пришлось совсем в другом месте, чем все предполагали.</p><div class="foot">ДИАГНОСТИКА И СТАБИЛИЗАЦИЯ</div></article>
+      <article class="case"><span class="tag">CASE NOTE / 03</span><div class="metric">270 млн ₽</div><h3>Не кредитный риск</h3><p>Фонд развития: заёмщик обанкротился, под угрозой бюджетные деньги. Реконструкция показала недостачу активов на 270 млн ₽ — признак вывода, а не неудачного бизнеса. Это поменяло стратегию: от списания к иску к поручителю, с доведением до пакета документов в суд.</p><div class="foot">РЕКОНСТРУКЦИЯ И СМЕНА СТРАТЕГИИ</div></article>
+      <article class="case"><span class="tag">CASE NOTE / 04</span><div class="metric">Поток и доля</div><h3>Позиция, которой не было</h3><p>Партнёр профинансировал создание компании и оказался за дверью. Всё имущество было заложено банку — казалось, опереться не на что. Свободными остались денежный поток и доля. На них и построили позицию.</p><div class="foot">ПОЗИЦИЯ В КОНФЛИКТЕ</div></article>
+    </div>
+    <p class="note">Примеры обезличены.</p>
+  </div>
+</section>
+
+<!-- 08 · Команда -->
+<section class="section alt" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">08 / КОМАНДА</div>
+      <div><h2>В кризисе важен не только метод, но и то, кто его применяет</h2></div>
+    </div>
+    <div class="crew">
+      <div class="cw"><b>Экономическая безопасность</b><span>20+ лет оперативной работы по экономическим преступлениям, затем советник руководства федеральных корпораций</span></div>
+      <div class="cw"><b>Корпоративные конфликты</b><span>Одна из ведущих практик защиты от недружественных поглощений и корпоративного давления</span></div>
+      <div class="cw"><b>Антикризисное управление</b><span>Стабилизация компании федерального масштаба и государственного научного учреждения</span></div>
+      <div class="cw"><b>Структурирование капитала</b><span>Руководство семейными офисами, споры в нескольких юрисдикциях одновременно</span></div>
+    </div>
+    <p class="after">Плюс сеть юристов, адвокатов и отраслевых специалистов под конкретную ситуацию.</p>
+  </div>
+</section>
+
+<!-- 09 · Принципы -->
+<section class="section" id="principles">
+  <div class="wrap split">
+    <div><div class="kicker">09 / ПРИНЦИПЫ</div><h2>Правила, которые не меняются под давлением</h2></div>
+    <div>
+      <div class="principle"><span>01</span><div><strong>Одна сторона</strong><small>В одном конфликте работаем только на одну сторону.</small></div></div>
+      <div class="principle"><span>02</span><div><strong>Факты прежде версий</strong><small>Включая версию заказчика. Если картина расходится с ожиданиями — говорим об этом сразу.</small></div></div>
+      <div class="principle"><span>03</span><div><strong>Законность</strong><small>Только законные методы и источники. Закрытые базы и «пробив» не используем.</small></div></div>
+      <div class="principle"><span>04</span><div><strong>Честность про исход</strong><small>Исход не обещаем. Обещаем картину и последовательность действий, на которые можно опереться.</small></div></div>
+      <div class="principle"><span>05</span><div><strong>Готовность сказать «не входить»</strong><small>Если спасать нечего, мы так и скажем.</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · Граница практики: тёмная полоса -->
+<section class="border-band" id="border">
+  <div class="wrap">
+    <div class="kicker">10 / ГРАНИЦА ПРАКТИКИ</div>
+    <h2>Стабилизация — не трансформация</h2>
+    <p class="body">В кризисе цель — остановить ухудшение и вернуть управляемость. После острой фазы часто требуется глубокая перестройка бизнеса и управления. Это задача практики Transformation &amp; Change.</p>
+    <a class="primary" href="/transformation">TRANSFORMATION &amp; CHANGE <span>↗</span></a>
+    <p class="small">А если конфликт уже перешёл в спор и нужна доказательная картина — это практика <a href="/intelligence">Intelligence</a>.</p>
+  </div>
+</section>
+
+<!-- 11 · Первый шаг + контакты -->
+<section class="section alt" id="contact">
+  <div class="wrap start">
+    <div>
+      <div class="kicker">11 / ПЕРВЫЙ ШАГ</div>
+      <h2>Если ситуация развивается быстрее, чем решения</h2>
+      <p class="lead-p">Начнём с фактов, рисков и ближайших точек контроля. Для первого разговора достаточно трёх вещей:</p>
+      <div class="need">
+        <div><span>01</span><div><b>Что происходит</b><small>Ситуация в двух-трёх предложениях.</small></div></div>
+        <div><span>02</span><div><b>Что на кону</b><small>Что можно потерять и в какие сроки.</small></div></div>
+        <div><span>03</span><div><b>Что уже сделано</b><small>Кто ещё вовлечён и какие шаги предприняты.</small></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="access">КОНФИДЕНЦИАЛЬНО</div>
+      <!-- Контакты простым текстом, без кнопок и ссылок — как на остальных страницах -->
+      <div class="contacts">
+        <div class="c-name">Давид Асатрян</div>
+        <div class="c-line">owner@custodia-silentis.com</div>
+        <div class="c-line">+7&nbsp;995&nbsp;110&nbsp;92&nbsp;98</div>
+        <div class="c-note">Достаточно двух-трёх предложений о ситуации — остальное обсудим голосом.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner"><span>CUSTODIA SILENTIS · АРХИТЕКТУРА УПРАВЛЯЕМОСТИ СЛОЖНЫХ СИСТЕМ</span><span>ИП АСАТРЯН ДАВИД ВАЧАГАНОВИЧ · ИНН&nbsp;230403939662</span><span><a href="/">ВСЕ ПРАКТИКИ ↗</a> &nbsp;·&nbsp; <a href="#contact">СВЯЗАТЬСЯ</a></span></div>
+</footer>
+
+<script>
+const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ───── Мобильное меню ───── */
+(function(){
+  const btn = document.getElementById('menu'), nav = document.getElementById('navlinks');
+  function setOpen(open){ nav.classList.toggle('mobile-open', open); btn.setAttribute('aria-expanded', open); btn.textContent = open ? '✕' : '☰'; }
+  btn.addEventListener('click', ()=>setOpen(!nav.classList.contains('mobile-open')));
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setOpen(false)));
+})();
+
+/* ───── Подсветка якоря текущего раздела ───── */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  const links = {}; document.querySelectorAll('.navlinks a[data-key]').forEach(a=>links[a.dataset.key]=a);
+  const io = new IntersectionObserver(es=>es.forEach(en=>{
+    if(!en.isIntersecting) return;
+    const k = en.target.id;
+    Object.entries(links).forEach(([key,a])=>a.classList.toggle('active', key===k));
+  }), {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('main section[id]').forEach(s=>io.observe(s));
+})();
+
+/* ───── Ситуационная карта: версии → картина → контур управления, по кругу ───── */
+(function(){
+  const svg = document.getElementById('cgraph'); if(!svg) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (t,a,p)=>{ const n=document.createElementNS(NS,t); for(const k in a) n.setAttribute(k,a[k]); p.appendChild(n); return n; };
+  const C0 = [300,260]; // собственник в состояниях «картина» и «контроль»
+  // Узлы: a — позиция в хаосе, b — позиция на карте; side — где подпись; lit — защищаемая функция
+  const N = {
+    own:{a:[330,300], b:C0,        t:'СОБСТВЕННИК',  side:'below', type:'o', lit:1},
+    mon:{a:[118,92],  b:[300,85],  t:'ДЕНЬГИ',       side:'above', type:'c', lit:1},
+    obl:{a:[420,440], b:[437,151], t:'ОБЯЗАТЕЛЬСТВА',side:'right', type:'c', lit:1},
+    crt:{a:[480,250], b:[471,299], t:'СУДЫ',         side:'right', type:'c'},
+    cpt:{a:[262,470], b:[376,418], t:'КОНТРАГЕНТЫ',  side:'right', type:'c'},
+    ppl:{a:[96,388],  b:[224,418], t:'ЛЮДИ',         side:'left',  type:'p'},
+    acc:{a:[470,104], b:[129,299], t:'ДОСТУПЫ',      side:'left',  type:'c', lit:1},
+    rep:{a:[206,206], b:[163,151], t:'ОТЧЁТНОСТЬ',   side:'left',  type:'c'}
+  };
+  // Реплики участников — видны только в состоянии «версии»
+  const Q = [[40,166,'«ВСЁ ПОД КОНТРОЛЕМ»'],[352,204,'«ДЕНЬГИ ЕСТЬ»'],[40,474,'«ЭТО ВРЕМЕННО»'],[318,58,'«ВИНОВАТ ПАРТНЁР»']];
+  const B = id=>N[id].b;
+
+  const lBack = el('g',{class:'layer'},svg), lEdge = el('g',{class:'layer'},svg), lMark = el('g',{class:'layer'},svg), lNode = el('g',{class:'layer'},svg);
+
+  // Контур управления вокруг собственника и его три звена
+  el('circle',{cx:C0[0],cy:C0[1],r:96,class:'loop'},lBack);
+  [[352,152,'ВИДЕТЬ'],[394,338,'РЕШАТЬ'],[206,338,'ИСПОЛНЯТЬ']].forEach(([x,y,t])=>el('text',{x,y,class:'rl'},lBack).textContent=t);
+  Q.forEach(([x,y,t])=>el('text',{x,y,class:'q'},lBack).textContent=t);
+
+  // Связи карты (рисуются в позициях карты, появляются после «сборки»)
+  ['mon','obl','crt','cpt','ppl','acc','rep'].forEach(id=>el('line',{x1:C0[0],y1:C0[1],x2:B(id)[0],y2:B(id)[1],class:'sp'},lEdge));
+  el('line',{x1:B('mon')[0],y1:B('mon')[1],x2:B('obl')[0],y2:B('obl')[1],class:'hot'},lEdge);   // деньги → обязательства: критично первым
+  el('line',{x1:B('rep')[0],y1:B('rep')[1],x2:B('mon')[0],y2:B('mon')[1],class:'neq'},lEdge);   // отчётность ≠ касса
+
+  // Флаги «картины» и защитные кольца «контроля»
+  const flag = (x,y,t)=>{ const g=el('g',{class:'flag'},lMark); el('circle',{cx:x,cy:y,r:10},g); el('text',{x,y},g).textContent=t; };
+  flag(231,118,'≠'); flag(368,118,'!'); flag(150,276,'!');
+  ['mon','obl','acc'].forEach(id=>el('circle',{cx:B(id)[0],cy:B(id)[1],r:17,class:'guard'},lMark));
+
+  // Узлы: внешняя группа — позиция (плавный переезд), внутренняя — дрожь в «версиях»
+  const pos = {};
+  Object.entries(N).forEach(([id,n],i)=>{
+    const outer = el('g',{class:'pos'},lNode);
+    const inner = el('g',{class:'jit key'+(n.lit?' lit':''),style:`animation-delay:${-i*0.37}s`},outer);
+    if(n.type==='o'){ el('circle',{cx:0,cy:0,r:20,class:'ring'},inner); el('circle',{cx:0,cy:0,r:11},inner); }
+    else if(n.type==='p') el('circle',{cx:0,cy:0,r:6},inner);
+    else el('rect',{x:-6,y:-6,width:12,height:12},inner);
+    const o = {below:[0,38,'middle'], above:[0,-16,'middle'], right:[12,5,'start'], left:[-12,5,'end']}[n.side];
+    el('text',{x:o[0],y:o[1],class:'gl','text-anchor':o[2]},inner).textContent = n.t;
+    pos[id] = outer;
+  });
+  const place = s=>Object.entries(N).forEach(([id,n])=>{ const p = s==='a' ? n.a : n.b; pos[id].style.transform = `translate(${p[0]}px,${p[1]}px)`; });
+
+  const CAP = {a:'ВЕРСИИ · У КАЖДОГО СВОЯ, КАРТИНЫ НЕТ', b:'КАРТИНА · ЧТО КРИТИЧНО ПЕРВЫМ', c:'КОНТУР УПРАВЛЕНИЯ · ВИДЕТЬ → РЕШАТЬ → ИСПОЛНЯТЬ'};
+  const cap = document.getElementById('vcap'), tabs = document.querySelectorAll('#states div');
+  function setState(s){
+    svg.classList.remove('st-a','st-b','st-c'); svg.classList.add('st-'+s);
+    place(s);
+    tabs.forEach(t=>t.classList.toggle('on', t.dataset.s===s));
+    cap.classList.remove('show');
+    setTimeout(()=>{ cap.textContent = CAP[s]; cap.classList.add('show'); }, REDUCE ? 0 : 250);
+  }
+
+  // Стартовая расстановка без анимации
+  svg.classList.add('no-tr'); place('a'); svg.getBoundingClientRect(); svg.classList.remove('no-tr');
+  if(REDUCE){ [lBack,lEdge,lMark,lNode].forEach(l=>l.classList.add('on')); setState('c'); return; }
+  setTimeout(()=>lNode.classList.add('on'), 200);
+  setTimeout(()=>{ lBack.classList.add('on'); lEdge.classList.add('on'); lMark.classList.add('on'); }, 700);
+  const seq = [['a',3800],['b',4400],['c',5800]];
+  let i = 0;
+  function step(){ const [s,ms] = seq[i]; setState(s); i = (i+1) % seq.length; setTimeout(step, ms); }
+  setTimeout(step, 900);
+})();
+</script>
+</body>
+</html>

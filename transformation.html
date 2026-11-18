@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0d11">
+<title>Трансформация и изменения — Custodia Silentis</title>
+<meta name="description" content="Проектируем и проводим организационные изменения — от реальной картины того, как работает компания, до новой модели, которая не откатывается назад.">
+<link rel="canonical" href="https://custodia-silentis.com/transformation">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Изменить не только структуру. Изменить то, как система работает.">
+<meta property="og:description" content="Трансформация, которая начинается с фактов, а не со схем.">
+<meta property="og:url" content="https://custodia-silentis.com/transformation">
+<meta property="og:site_name" content="Custodia Silentis">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://custodia-silentis.com/og-transformation-2026-11.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Transformation &amp; Change — оргструктура, в которой решения переходят от ручного режима к правилам">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Изменить не только структуру. Изменить то, как система работает.">
+<meta name="twitter:description" content="Трансформация, которая начинается с фактов, а не со схем.">
+<meta name="twitter:image" content="https://custodia-silentis.com/og-transformation-2026-11.jpg">
+
+<!-- Schema.org — практика как услуга организации -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://custodia-silentis.com/transformation#service",
+      "name": "Трансформация и изменения",
+      "alternateName": "Transformation & Change",
+      "serviceType": "Проектирование и проведение организационных изменений",
+      "description": "Проектируем и проводим организационные изменения — от реальной картины того, как работает компания, до новой модели, которая не откатывается назад.",
+      "url": "https://custodia-silentis.com/transformation",
+      "provider": { "@id": "https://custodia-silentis.com/#organization" },
+      "areaServed": "RU"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://custodia-silentis.com/transformation#webpage",
+      "url": "https://custodia-silentis.com/transformation",
+      "name": "Трансформация и изменения — Custodia Silentis",
+      "inLanguage": "ru-RU",
+      "isPartOf": { "@id": "https://custodia-silentis.com/#website" },
+      "about": { "@id": "https://custodia-silentis.com/transformation#service" }
+    }
+  ]
+}
+</script>
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ═════════════════════════════════════════════════════════════════════
+   Те же токены и шкала, что у остальных страниц: метки ≥ 11px,
+   текст 16–18px, H2 ≥ 56px на десктопе; секции — чередованием фона.
+   ═════════════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#090c10;--bg2:#0e131a;--bg3:#0b1118;--panel:#0e1319;--line:#26313b;
+  --text:#e8edf2;--soft:#c9d2da;--muted:#9aa7b4;--dim:#6f7c88;--accent:#9bb3c8;
+  --max:1180px;--head:76px;
+  --mono:ui-monospace,"SF Mono",Menlo,"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --fs-label:11px;--fs-cap:13px;--fs-ui:16px;--fs-text:18px;--fs-lead:22px;
+  --pad-section:128px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:var(--fs-ui);line-height:1.6;letter-spacing:-.011em;font-feature-settings:"kern","liga"}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+h1,h2,h3,p{margin-top:0}
+.wrap{width:min(var(--max),calc(100% - 64px));margin:auto}
+section[id]{scroll-margin-top:var(--head)}
+
+/* ───── Шапка ───── */
+.topbar{position:sticky;top:0;z-index:50;height:var(--head);border-bottom:1px solid var(--line);display:flex;align-items:center;background:rgba(9,12,16,.97)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.brand{font-size:15px;font-weight:650;letter-spacing:.13em;white-space:nowrap}
+.brand small{display:block;font:10px var(--mono);letter-spacing:.16em;color:var(--dim);margin-top:3px}
+.navlinks{font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--muted)}
+.navlinks .m-only{display:none}
+.nav-cta{border:1px solid #44515d;padding:11px 16px;font:var(--fs-label) var(--mono);letter-spacing:.1em;white-space:nowrap;transition:background .2s,color .2s}
+.nav-cta:hover{background:#dce5ec;color:#0a0d11}
+.menu{display:none;width:44px;height:44px;background:none;border:0;color:var(--text);font-size:22px;cursor:pointer}
+/* ───── Меню практик: одинаковое на всех пяти страницах ───── */
+.practices{display:flex;border:1px solid #33424f;flex:none}
+.practices a{padding:9px 12px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--muted);white-space:nowrap;transition:color .2s,background .2s}
+.practices a+a{border-left:1px solid #33424f}
+.practices a:hover{color:#fff}
+.practices a.on{background:rgba(155,179,200,.12);color:#fff}
+.practices.drop{display:none}
+.practices.bar{margin-left:auto}
+.navlinks{display:none}
+
+/* ───── Общие элементы ───── */
+.section{padding:var(--pad-section) 0;position:relative}
+.section.alt{background:var(--bg2)}
+.section .wrap{position:relative}
+.section-head{display:grid;grid-template-columns:.62fr 1.38fr;gap:56px;margin-bottom:64px}
+.kicker{font:12px var(--mono);letter-spacing:.14em;color:var(--dim)}
+h2{font-size:clamp(36px,4.8vw,64px);line-height:1.04;letter-spacing:-.05em;font-weight:500;max-width:880px;margin:16px 0 20px}
+.section-intro{color:var(--muted);max-width:680px;font-size:var(--fs-text);line-height:1.6}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px}
+.after{margin:28px 0 0;color:var(--muted);font-size:var(--fs-text);max-width:720px}
+.note{font-size:var(--fs-cap);color:var(--dim);margin:20px 0 0}
+.tag{font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--dim)}
+.primary{display:inline-flex;align-items:center;gap:28px;border:1px solid #8195a6;padding:15px 18px;font:12px var(--mono);letter-spacing:.08em;transition:background .2s,color .2s;white-space:nowrap}
+.primary:hover{background:#dce5ec;color:#0a0d11}
+.textlink{font:12px var(--mono);color:var(--muted);letter-spacing:.06em}
+.textlink:hover{color:#fff}
+.statement{margin:64px 0 0;padding-left:26px;border-left:2px solid var(--accent);font-size:clamp(22px,2.4vw,32px);line-height:1.32;letter-spacing:-.03em;max-width:880px;color:#dbe3ea}
+.ghost{position:absolute;right:0;top:40px;font-size:clamp(160px,22vw,320px);font-weight:600;letter-spacing:-.07em;line-height:1;color:rgba(155,179,200,.035);pointer-events:none;user-select:none}
+.frag{background:#0a0f14;border:1px solid #2a3642}
+.frag-head{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid #2a3642;font:var(--fs-label) var(--mono);letter-spacing:.08em;color:#8293a2}
+.frag-head em{font-style:normal;color:var(--dim)}
+.frag-body{padding:18px 16px 20px}
+
+/* ───── 00 · Первый экран ───── */
+.hero{min-height:calc(100vh - var(--head));display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:64px 0}
+.eyebrow{font:12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px}
+.eyebrow:before{content:"";width:27px;height:1px;background:var(--accent)}
+h1{font-size:clamp(40px,4.8vw,70px);line-height:1.02;letter-spacing:-.05em;font-weight:510;margin:28px 0 28px;max-width:700px}
+.lead{font-size:var(--fs-lead);line-height:1.5;color:#c0cad3;max-width:620px;margin:0 0 36px}
+.actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.hero-meta{display:flex;gap:30px;flex-wrap:wrap;margin-top:56px;font:var(--fs-label) var(--mono);letter-spacing:.12em;color:var(--dim)}
+.visual{height:520px;position:relative;border:1px solid #202b35;background:radial-gradient(ellipse at 50% 50%,#17232d 0,#0d141b 44%,#090d12 78%);overflow:hidden}
+.visual:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(125,150,170,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(125,150,170,.06) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(transparent,#000 18%,#000 82%,transparent)}
+.visual svg{position:absolute;inset:3% 3% 7%;width:94%;height:90%}
+.vlabel{position:absolute;z-index:1;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:#8293a2}
+.vlabel.tl{top:16px;left:18px}
+.vlabel.br{bottom:16px;right:18px;text-align:right;color:var(--dim)}
+.vcap{position:absolute;z-index:1;left:18px;bottom:16px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--accent);opacity:0;transition:opacity .35s;max-width:62%}
+.vcap.show{opacity:1}
+.states{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #202b35;border-top:0}
+.states div{padding:12px 14px;border-right:1px solid #202b35;font:var(--fs-label) var(--mono);letter-spacing:.08em;color:var(--dim);transition:color .3s,background .3s}
+.states div:last-child{border-right:0}
+.states div b{display:block;font-weight:400;color:#5d6b77;margin-bottom:3px;transition:color .3s}
+.states div.on{color:var(--text);background:rgba(155,179,200,.06)}
+.states div.on b{color:var(--accent)}
+/* Оргмодель: a — на бумаге, b — на самом деле, c — новая модель */
+#tgraph .layer{transition:opacity .8s}
+.js #tgraph .layer{opacity:0}
+#tgraph .layer.on{opacity:1}
+#tgraph line{fill:none;transition:opacity .9s}
+#tgraph .fe-own,#tgraph .fe-top{stroke:#8ea4b6;stroke-width:1.2;opacity:.7}
+#tgraph .fe-team{stroke:#5d7385;stroke-width:1;opacity:.6}
+#tgraph .ie{stroke:#e2ecf3;stroke-width:1.8;stroke-dasharray:5 6;opacity:0;animation:flow 1.2s linear infinite}
+#tgraph .ne{stroke:#dbe7f0;stroke-width:1.6;opacity:0}
+#tgraph .fb{stroke:#9bb3c8;stroke-width:1.2;stroke-dasharray:3 5;opacity:0;animation:flow 1.6s linear infinite reverse}
+@keyframes flow{to{stroke-dashoffset:-22}}
+#tgraph.st-b .fe-own,#tgraph.st-b .fe-top{opacity:.18;stroke-dasharray:3 6}
+#tgraph.st-b .fe-team{opacity:.35}
+#tgraph.st-b .ie{opacity:1}
+#tgraph.st-c .fe-top{opacity:.1;stroke-dasharray:3 6}
+#tgraph.st-c .fe-own{opacity:.9}
+#tgraph.st-c .ne{opacity:.95}
+#tgraph.st-c .fb{opacity:.75}
+#tgraph .hull{fill:rgba(155,179,200,.025);stroke:#3a4a57;stroke-dasharray:3 5}
+#tgraph .hull-t{font-family:var(--mono);font-size:12px;fill:#7f91a0;letter-spacing:.08em}
+#tgraph .key circle,#tgraph .key rect,#tgraph .key polygon{fill:#a9bdcc;stroke:#d7e1e8;stroke-width:1.2;transition:fill .6s}
+#tgraph .minor circle{fill:#344957;stroke:#71899a;stroke-width:1}
+#tgraph .gl{font-family:var(--mono);font-size:13px;fill:#9fb1c0;letter-spacing:.04em;transition:fill .6s}
+#tgraph .sn{opacity:0;transition:opacity .9s}
+#tgraph.st-c .sn{opacity:1}
+#tgraph .flag{opacity:0;transition:opacity .9s}
+#tgraph.st-b .flag{opacity:1}
+#tgraph .flag circle{fill:#0a0f14;stroke:var(--accent)}
+#tgraph .flag text{font-family:var(--mono);font-weight:600;font-size:12px;fill:var(--accent);text-anchor:middle;dominant-baseline:central}
+#tgraph.st-b .hot-b circle,#tgraph.st-b .hot-b rect,#tgraph.st-c .lit circle,#tgraph.st-c .lit rect,#tgraph.st-c .lit polygon{fill:#f1f6f9;filter:drop-shadow(0 0 6px rgba(200,222,238,.75))}
+#tgraph.st-b .hot-b .gl,#tgraph.st-c .lit .gl{fill:#eef3f7}
+
+/* ───── 01 · Суть практики ───── */
+.essence .statement{margin-top:8px;max-width:900px}
+.essence .cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:56px}
+.essence .cols p{margin:0;color:var(--muted);font-size:var(--fs-text)}
+
+/* ───── 02 · Поводы для изменений ───── */
+.when{display:grid;grid-template-columns:1fr 1fr;column-gap:64px}
+.wn{display:grid;grid-template-columns:40px 1fr;gap:16px;padding:24px 0;border-bottom:1px solid var(--line)}
+.wn:nth-last-child(-n+2){border-bottom:0}
+.wn span{font:var(--fs-label) var(--mono);color:var(--accent);padding-top:7px}
+.wn h3{font-size:22px;font-weight:500;letter-spacing:-.03em;margin:0 0 6px}
+.wn p{margin:0;color:var(--muted);font-size:var(--fs-ui)}
+
+/* ───── 03 · Как система работает на самом деле ───── */
+.approach{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:start}
+.approach p.body{color:var(--muted);font-size:var(--fs-text);max-width:540px;margin:0 0 18px}
+.finds{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.finds li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:var(--fs-ui);color:var(--soft);line-height:1.5}
+.finds li:before{content:"→";font:13px var(--mono);color:var(--accent);padding-top:2px}
+.basis .bar{display:flex;height:26px;margin:6px 0 10px;border:1px solid #2f3c48}
+.basis .bar i{display:block}
+.basis .bar .ok{background:var(--accent)}
+.basis .bar .no{flex:1;background:repeating-linear-gradient(135deg,rgba(155,179,200,.28) 0 2px,transparent 2px 7px)}
+.basis .bar-cap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 10px;font:var(--fs-label) var(--mono);letter-spacing:.06em;color:var(--dim)}
+.basis .bar-cap b{font-weight:400;color:#eef3f7}
+.basis .big{font-size:clamp(44px,4.6vw,64px);font-weight:500;letter-spacing:-.05em;line-height:1;margin:6px 0 4px}
+.basis .big small{font-size:.34em;color:var(--accent);margin-left:8px;font-weight:400;letter-spacing:-.01em}
+.basis .sub{font-size:14px;color:var(--muted);margin:0 0 16px}
+.trace{border-top:1px dashed #26313b;margin-top:16px;padding-top:6px}
+.trace div{display:grid;grid-template-columns:1fr auto;gap:12px;padding:9px 0;border-bottom:1px dashed #26313b;font-size:14px;color:var(--soft)}
+.trace div:last-child{border-bottom:0}
+.trace em{font:var(--fs-label) var(--mono);font-style:normal;letter-spacing:.08em;padding:3px 7px;border:1px dashed #4a5d6c;color:var(--dim);white-space:nowrap}
+.trace em.ok{border:1px solid var(--accent);color:#eef3f7;background:rgba(155,179,200,.12)}
+
+/* ───── 04 · Манифест ───── */
+.manifesto{padding:150px 0;background:radial-gradient(ellipse at 15% 50%,#16232e 0,transparent 55%),var(--bg3)}
+.manifesto p{margin:0;font-size:clamp(32px,4.6vw,64px);line-height:1.08;letter-spacing:-.05em;font-weight:500;max-width:1060px}
+.manifesto p+p{color:var(--accent);margin-top:12px}
+
+/* ───── 05 · Почему изменения откатываются ───── */
+.rollback{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line)}
+.rb{padding:26px 22px 0 0}
+.rb+.rb{padding-left:22px;border-left:1px solid var(--line)}
+.rb span{font:var(--fs-label) var(--mono);color:var(--accent);letter-spacing:.1em}
+.rb h3{font-size:21px;font-weight:500;letter-spacing:-.03em;margin:14px 0 10px;line-height:1.15}
+.rb p{margin:0;color:var(--muted);font-size:15px}
+
+/* ───── 06 · Четыре фазы ───── */
+.phase-track{display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:8px}
+.phase-track span{height:4px;background:var(--accent);opacity:.8}
+.phase-track span+span{margin-left:6px}
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.phase .r{font:var(--fs-label) var(--mono);color:var(--accent);letter-spacing:.12em;margin:22px 0 10px}
+.phase h3{font-size:30px;font-weight:500;letter-spacing:-.04em;margin:0 0 10px}
+.phase p{margin:0;color:var(--muted);font-size:15px}
+
+/* ───── 07 · Из практики ───── */
+.featured{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:start;background:var(--panel);border:1px solid #33424f;padding:36px}
+.featured h3{font-size:clamp(30px,3vw,40px);font-weight:500;letter-spacing:-.04em;margin:14px 0 18px;line-height:1.1}
+.story p{margin:0 0 14px;color:var(--muted);font-size:var(--fs-ui)}
+.story p b{color:var(--text);font-weight:500}
+.chain{display:grid;gap:0;margin:0 0 26px}
+.chain div{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:center;padding:10px 0;position:relative;font:12px var(--mono);letter-spacing:.06em;color:var(--soft)}
+.chain div:before{content:"";width:9px;height:9px;border:1px solid var(--accent);transform:rotate(45deg);margin-left:6px;background:var(--panel);position:relative;z-index:1}
+.chain div:not(:last-child):after{content:"";position:absolute;left:10px;top:24px;bottom:-14px;width:1px;background:repeating-linear-gradient(180deg,var(--accent) 0 4px,transparent 4px 8px)}
+.chain div:last-child{color:#eef3f7}
+.chain div:last-child:before{background:var(--accent)}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;border-top:1px solid var(--line);padding-top:22px}
+.nums strong{display:block;font-size:clamp(34px,3.4vw,46px);font-weight:500;letter-spacing:-.05em;line-height:1}
+.nums span{display:block;color:var(--muted);font-size:14px;margin-top:10px;line-height:1.4}
+
+/* ───── 08 · Что остаётся ───── */
+.leaves{display:grid;grid-template-columns:repeat(5,1fr);gap:28px}
+.lv{border-top:2px solid var(--accent);padding-top:20px}
+.lv span{font:var(--fs-label) var(--mono);color:var(--dim);letter-spacing:.1em}
+.lv h3{font-size:20px;font-weight:500;letter-spacing:-.03em;margin:12px 0 8px;line-height:1.2}
+.lv p{margin:0;color:var(--muted);font-size:15px}
+
+/* ───── 09 · Команда ───── */
+.crew{display:grid;grid-template-columns:1fr 1fr;column-gap:64px}
+.cw{padding:24px 0;border-bottom:1px solid var(--line)}
+.cw:nth-last-child(-n+2){border-bottom:0}
+.cw b{display:block;font-size:22px;font-weight:500;letter-spacing:-.03em;margin-bottom:6px}
+.cw span{color:var(--muted);font-size:var(--fs-ui)}
+
+/* ───── 10 · Принципы ───── */
+.principle{display:flex;gap:26px;padding:20px 0;border-bottom:1px solid var(--line)}
+.principle:first-child{padding-top:6px}
+.principle:last-child{border-bottom:0}
+.principle span{font:var(--fs-label) var(--mono);color:var(--dim);padding-top:5px}
+.principle strong{font-weight:500;font-size:18px}
+.principle small{display:block;color:var(--muted);font-size:15px;margin-top:3px}
+
+/* ───── 11 · Связь с другими практиками: тёмная полоса ───── */
+.links-band{padding:140px 0;background:radial-gradient(ellipse at 85% 50%,#16232e 0,transparent 55%),var(--bg3)}
+.links-band h2{max-width:900px}
+.prow{display:grid;grid-template-columns:260px 1fr auto;gap:28px;align-items:baseline;padding:22px 0;border-bottom:1px solid #22303b;transition:background .2s}
+.prow:last-of-type{border-bottom:0}
+.prow b{font-size:clamp(22px,2.2vw,28px);font-weight:500;letter-spacing:-.03em}
+.prow span{color:var(--soft);font-size:var(--fs-text)}
+.prow i{font:var(--fs-label) var(--mono);font-style:normal;letter-spacing:.1em;color:var(--dim)}
+a.prow:hover b{color:#fff}
+a.prow:hover i{color:var(--accent)}
+.prow.here b{color:var(--accent)}
+.links-band .primary{margin-top:40px}
+
+/* ───── 12 · Первый шаг + контакты ───── */
+.start{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.start .lead-p{color:var(--muted);font-size:var(--fs-text);margin:0 0 28px;max-width:520px}
+.need div{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.need div:last-child{border-bottom:0}
+.need span{font:var(--fs-label) var(--mono);color:var(--accent);padding-top:5px}
+.need b{font-weight:500;font-size:18px}
+.need small{display:block;color:var(--muted);font-size:15px;margin-top:2px}
+.access{display:inline-block;font:12px var(--mono);letter-spacing:.12em;color:var(--accent);border:1px solid #4a5d6c;padding:10px 14px;margin-bottom:28px}
+.contacts{display:grid;gap:8px;padding-left:24px;border-left:2px solid var(--accent)}
+.c-name{font-size:clamp(24px,2.6vw,32px);font-weight:500;letter-spacing:-.03em;margin-bottom:4px}
+.c-line{font:17px var(--mono);color:var(--soft);letter-spacing:.02em;white-space:nowrap}
+.c-note{font-size:14px;color:var(--dim);margin-top:10px}
+.footer{padding:28px 0 38px;color:var(--dim);font:var(--fs-label) var(--mono);letter-spacing:.08em}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer a:hover{color:#fff}
+
+/* ───── Меньше движения ───── */
+@media (prefers-reduced-motion: reduce){
+ #tgraph .layer,#tgraph line,#tgraph .sn,#tgraph .flag{transition:none}
+ #tgraph .ie,#tgraph .fb{animation:none}
+ html{scroll-behavior:auto}
+}
+
+/* ═════ Меню ≤ 1080px: практики и кнопка уходят в «☰» ═════ */
+@media(max-width:1080px){
+ .practices.bar,.nav-cta{display:none}
+ .menu{display:block}
+ .navlinks.mobile-open{display:flex;position:absolute;top:100%;left:0;right:0;padding:6px 20px 16px;background:#0b1016;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}
+ .practices.drop{display:flex;flex-direction:column;border:0}
+ .practices.drop a{padding:15px 0;font-size:13px;border-bottom:1px solid var(--line);background:none}
+ .practices.drop a+a{border-left:0}
+ .practices.drop a.on{color:#fff}
+ .practices.drop a.on:after{content:" · ВЫ ЗДЕСЬ";color:var(--accent)}
+ .navlinks .m-only{display:block;color:var(--accent);padding:15px 0;font-size:13px}
+}
+
+/* ═════ Планшет ≤ 960px ═════ */
+@media(max-width:960px){
+ :root{--pad-section:96px}
+ .wrap{width:min(100% - 40px,var(--max))}
+ .hero{grid-template-columns:1fr;min-height:auto;padding:64px 0 72px;gap:44px}
+ .section-head{grid-template-columns:1fr;gap:12px;margin-bottom:48px}
+ .split,.approach,.start,.featured,.essence .cols{grid-template-columns:1fr;gap:40px}
+ .rollback{grid-template-columns:1fr 1fr;row-gap:28px;border-top:0}
+ .rb,.rb+.rb{padding:20px 0 0;border-left:0;border-top:1px solid var(--line)}
+ .rb:nth-child(even){padding-left:24px}
+ .phases{grid-template-columns:1fr 1fr;row-gap:40px}
+ .phase-track{display:none}
+ .phase{border-top:4px solid var(--accent);padding-top:4px}
+ .leaves{grid-template-columns:1fr 1fr;row-gap:36px}
+ .prow{grid-template-columns:1fr auto;gap:6px 20px}
+ .prow span{grid-column:1 / -1;grid-row:2}
+ .manifesto,.links-band{padding:112px 0}
+}
+
+/* ═════ Телефон ≤ 600px ═════ */
+@media(max-width:600px){
+ :root{--head:64px;--fs-ui:15px;--fs-text:16px;--fs-lead:18px;--pad-section:72px}
+ .wrap{width:calc(100% - 32px)}
+ .brand{font-size:13px}
+ h1{font-size:36px;letter-spacing:-.045em}
+ h2{font-size:32px;letter-spacing:-.04em}
+ .eyebrow,.kicker{font-size:11px}
+ .hero{padding:44px 0 56px}
+ .hero-meta{margin-top:36px;gap:14px}
+ .visual{height:360px}
+ .vlabel.br{display:none}
+ .vcap{max-width:calc(100% - 36px)}
+ #tgraph .gl{font-size:19px}
+ #tgraph .hull-t{font-size:17px}
+ .states div{padding:10px 8px}
+ .statement{font-size:21px;padding-left:18px;margin-top:44px}
+ .when,.crew{grid-template-columns:1fr}
+ .when .wn:nth-last-child(2),.crew .cw:nth-last-child(2){border-bottom:1px solid var(--line)}
+ .wn{grid-template-columns:30px 1fr;gap:10px;padding:18px 0}
+ .wn h3{font-size:20px}
+ .rollback{grid-template-columns:1fr}
+ .rb:nth-child(even){padding-left:0}
+ .phases,.leaves{grid-template-columns:1fr}
+ .featured{padding:22px 18px}
+ .nums{grid-template-columns:1fr;gap:20px}
+ .manifesto,.links-band{padding:88px 0}
+ .manifesto p{font-size:30px}
+ .contacts{padding-left:18px}
+ .c-line{font-size:16px}
+ .footer-inner{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="/">CUSTODIA SILENTIS<small>TRANSFORMATION &amp; CHANGE</small></a>
+    <div class="practices bar" aria-label="Практики"><a href="/">ОБЗОР</a><a href="/intelligence">INTELLIGENCE</a><a href="/crisis">CRISIS</a><a href="/transformation" class="on" aria-current="page">TRANSFORMATION</a><a href="/dynasty">DYNASTY</a></div>
+    <nav class="navlinks" id="navlinks" aria-label="Практики">
+      <div class="practices drop"><a href="/">ОБЗОР</a><a href="/intelligence">INTELLIGENCE</a><a href="/crisis">CRISIS</a><a href="/transformation" class="on" aria-current="page">TRANSFORMATION</a><a href="/dynasty">DYNASTY</a></div>
+      <a class="m-only" href="#contact">ОБСУДИТЬ ЗАДАЧУ ↓</a>
+    </nav>
+    <a class="nav-cta" href="#contact">ОБСУДИТЬ ЗАДАЧУ ↓</a>
+    <button class="menu" id="menu" aria-label="Открыть навигацию" aria-expanded="false" aria-controls="navlinks">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 00 · Первый экран: оргмодель — на бумаге → на самом деле → новая модель -->
+<section class="wrap hero">
+  <div>
+    <div class="eyebrow">PRACTICE 03 · TRANSFORM</div>
+    <h1>Изменить не только структуру. Изменить то, как система работает.</h1>
+    <p class="lead">Проектируем и проводим организационные изменения: от точной картины того, как компания работает на самом деле, до новой модели управления, которая держится без нас.</p>
+    <div class="actions">
+      <a class="primary" href="#contact">ОБСУДИТЬ ЗАДАЧУ <span>↓</span></a>
+      <a class="textlink" href="#approach">КАК МЫ РАБОТАЕМ ↓</a>
+    </div>
+    <div class="hero-meta"><span>ОРГАНИЗАЦИОННАЯ ТРАНСФОРМАЦИЯ</span><span>МОДЕЛЬ РЕШЕНИЙ</span><span>ВНЕДРЕНИЕ И ЗАКРЕПЛЕНИЕ</span></div>
+  </div>
+  <div>
+    <div class="visual" aria-label="Схема: оргструктура на бумаге, реальные пути решений и новая модель управления">
+      <div class="vlabel tl">МОДЕЛЬ УПРАВЛЕНИЯ / 001</div>
+      <svg id="tgraph" class="st-a" viewBox="0 0 600 520" role="img" aria-label="Оргструктура, затем решения в обход схемы, затем правила решений и обратная связь"></svg>
+      <div class="vcap" id="vcap"></div>
+      <div class="vlabel br">РОЛИ / РЕШЕНИЯ / РИТМЫ</div>
+    </div>
+    <div class="states" id="states">
+      <div data-s="a"><b>01</b>НА БУМАГЕ</div>
+      <div data-s="b"><b>02</b>НА САМОМ ДЕЛЕ</div>
+      <div data-s="c"><b>03</b>НОВАЯ МОДЕЛЬ</div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 · Суть практики -->
+<section class="section alt essence" id="essence">
+  <div class="wrap">
+    <div class="kicker">01 / СУТЬ ПРАКТИКИ</div>
+    <h2>Изменения нужно проектировать — иначе организация вернётся к прежней модели</h2>
+    <p class="statement">Мы переводим стратегическое намерение в работающую систему: роли, полномочия, процессы, решения и поведение.</p>
+    <div class="cols">
+      <p>Любая система сопротивляется изменениям. Старая модель защищена привычками, интересами и тем, что «так всегда работало». Новая схема на бумаге этого сопротивления не преодолевает. Его преодолевает только спроектированный переход, в котором учтено, кто, почему и как будет удерживать старое.</p>
+      <p>Трансформация нужна не только в кризисе. Она возникает при росте, смене стратегии, выходе на новые рынки, интеграции приобретённых активов и при переходе от предпринимательской структуры к институциональной.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · Поводы для изменений -->
+<section class="section" id="when">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">02 / ПОВОДЫ ДЛЯ ИЗМЕНЕНИЙ</div>
+      <div><h2>Когда прежняя конструкция перестаёт соответствовать будущему</h2></div>
+    </div>
+    <div class="when">
+      <div class="wn"><span>01</span><div><h3>Рост и усложнение</h3><p>Компания выросла, а управление осталось персональным и не выдерживает нового масштаба.</p></div></div>
+      <div class="wn"><span>02</span><div><h3>Смена стратегии</h3><p>Новая стратегия требует других компетенций, процессов, ресурсов и модели принятия решений.</p></div></div>
+      <div class="wn"><span>03</span><div><h3>Интеграция и реорганизация</h3><p>Объединение бизнесов, изменение структуры группы, интеграция команд и устранение дублирования.</p></div></div>
+      <div class="wn"><span>04</span><div><h3>Решения без экономики</h3><p>Инициатив много, денег уходит ещё больше, а сказать, какие из них зарабатывают, не может никто.</p></div></div>
+      <div class="wn"><span>05</span><div><h3>От основателя — к институции</h3><p>Всё держится на одном человеке. Переход к системе ответственности, делегирования и прозрачного контроля.</p></div></div>
+      <div class="wn"><span>06</span><div><h3>Трансформация, которая уже буксует</h3><p>Изменения объявлены, консультанты отработали, а организация медленно возвращается к тому, с чего начинала.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · Наша особенность: реальная модель видна в следах решений -->
+<section class="section alt" id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">03 / НАША ОСОБЕННОСТЬ</div>
+      <div><h2>Начинаем с того, как система работает на самом деле, а не как она описана</h2></div>
+    </div>
+    <div class="approach">
+      <div>
+        <p class="body">Большинство трансформаций начинается с интервью и оргструктуры. Но оргструктура показывает, как должно быть, а люди в интервью рассказывают свою версию. Реальная модель управления видна в другом месте — в следах, которые оставляют решения.</p>
+        <p class="body">Те же собственные аналитические решения, что работают в практике Intelligence, читают операционную историю компании: задачи, исследования, эксперименты, протоколы, переписку, отчёты. И восстанавливают то, чего нет ни в одной презентации:</p>
+        <ul class="finds">
+          <li>кто на самом деле принимает решения и где они застревают</li>
+          <li>какие инициативы зарабатывают, а какие только тратят</li>
+          <li>на чём основаны решения — на расчёте, на тесте или на мнении</li>
+          <li>где декларируемые процессы расходятся с реальными</li>
+          <li>что из этого можно изменить, а что держится на интересах конкретных людей</li>
+        </ul>
+      </div>
+      <div class="frag basis">
+        <div class="frag-head"><span>ОСНОВАНИЕ РЕШЕНИЙ · ВНЕДРЁННЫЕ ИНИЦИАТИВЫ</span><em>ИЗ ПРАКТИКИ</em></div>
+        <div class="frag-body">
+          <div class="big">117<small>из 129</small></div>
+          <p class="sub">внедрённых решений — без расчёта экономики и без результатов теста</p>
+          <div class="bar" aria-hidden="true"><i class="ok" style="width:9.3%"></i><i class="no"></i></div>
+          <div class="bar-cap"><span><b>12</b> С РАСЧЁТОМ ИЛИ ТЕСТОМ</span><span><b>117</b> БЕЗ СЛЕДА ОСНОВАНИЯ</span></div>
+          <div class="trace">
+            <div><span>Инициатива 01 · новая скидочная механика</span><em>МНЕНИЕ</em></div>
+            <div><span>Инициатива 02 · изменение воронки</span><em class="ok">ТЕСТ</em></div>
+            <div><span>Инициатива 03 · партнёрская программа</span><em>НЕТ СЛЕДА</em></div>
+            <div><span>Инициатива 04 · новый тариф</span><em class="ok">РАСЧЁТ</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Число — из реального проекта; строки инициатив условные.</p>
+    <p class="statement">Нельзя спроектировать новую систему, не понимая, как на самом деле работает старая.</p>
+  </div>
+</section>
+
+<!-- 04 · Манифест -->
+<section class="manifesto">
+  <div class="wrap">
+    <div class="kicker">04 / МАНИФЕСТ</div>
+    <p style="margin-top:24px">Схему можно нарисовать за неделю.</p>
+    <p>Поведение меняется месяцами.</p>
+  </div>
+</section>
+
+<!-- 05 · Почему изменения откатываются -->
+<section class="section" id="rollback">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">05 / ПОЧЕМУ ИЗМЕНЕНИЯ ОТКАТЫВАЮТСЯ</div>
+      <div><h2>Почти любая трансформация проваливается по одной из пяти причин</h2></div>
+    </div>
+    <div class="rollback">
+      <div class="rb"><span>× 01</span><h3>Неверная исходная картина</h3><p>Меняли то, что казалось проблемой, а не то, что ей было.</p></div>
+      <div class="rb"><span>× 02</span><h3>Старые стимулы</h3><p>Новая структура, а люди вознаграждаются за прежнее поведение.</p></div>
+      <div class="rb"><span>× 03</span><h3>Неформальные центры влияния</h3><p>Формально решения перешли к новым ролям. Фактически их по-прежнему принимают те же люди — только теперь неявно.</p></div>
+      <div class="rb"><span>× 04</span><h3>Нет измеримого результата</h3><p>Никто не может сказать, работает новая модель или нет. Поэтому побеждает та, к которой все привыкли.</p></div>
+      <div class="rb"><span>× 05</span><h3>Нет механизма закрепления</h3><p>Консультанты ушли — и вместе с ними ушла энергия изменений.</p></div>
+    </div>
+    <p class="statement">Мы проектируем изменение так, чтобы каждая из этих причин была закрыта заранее.</p>
+  </div>
+</section>
+
+<!-- 06 · Как строим изменение: четыре фазы -->
+<section class="section alt" id="phases">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">06 / КАК СТРОИМ ИЗМЕНЕНИЕ</div>
+      <div><h2>Не ограничиваемся рекомендацией. Доводим архитектуру до внедрения.</h2><p class="section-intro">Глубина участия определяется задачей: от проектирования целевой модели до сопровождения внедрения и проверки того, что новые механизмы действительно работают.</p></div>
+    </div>
+    <div class="phase-track" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="phases">
+      <div class="phase"><div class="r">ФАЗА 01</div><h3>Понять</h3><p>Реконструкция текущей модели: как принимаются решения, куда уходят деньги, где разрыв между стратегией и исполнением.</p></div>
+      <div class="phase"><div class="r">ФАЗА 02</div><h3>Спроектировать</h3><p>Целевая модель: роли, полномочия, процессы, правила принятия решений и критерии результата.</p></div>
+      <div class="phase"><div class="r">ФАЗА 03</div><h3>Внедрить</h3><p>План перехода, управление зависимостями, работа с сопротивлением, коммуникация и поддержка руководителей.</p></div>
+      <div class="phase"><div class="r">ФАЗА 04</div><h3>Закрепить</h3><p>Управленческие ритмы, метрики и обратная связь. Проверка того, что новые механизмы работают без внешнего присутствия.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · Из практики: один развёрнутый кейс -->
+<section class="section" id="case">
+  <div class="ghost" aria-hidden="true">07</div>
+  <div class="wrap">
+    <div class="kicker">07 / ИЗ ПРАКТИКИ</div>
+    <div class="featured" style="margin-top:28px">
+      <div class="story">
+        <span class="tag">CASE NOTE · АНАЛИЗ РЕШЕНИЙ</span>
+        <h3>Компания, где «всё нормально»</h3>
+        <p><b>Ситуация.</b> Кассовый разрыв, долг растёт. Десятки продуктовых инициатив, а руководство уверено, что дефицита нет — и никто не может сказать, какие инициативы зарабатывают.</p>
+        <p><b>Что сделали.</b> Прочитали операционную историю компании целиком и пересчитали экономику каждой инициативы на данных самой компании.</p>
+        <p><b>Результат.</b> Пересобрали правило, по которому компания запускает новые инициативы. Не разовая чистка, а изменение самого механизма решений.</p>
+      </div>
+      <div>
+        <div class="chain" aria-label="Цепочка анализа">
+          <div>4 300+ ЗАДАЧ ЗА ГОД</div>
+          <div>571 ИССЛЕДОВАНИЕ ПОЛНЫМ ТЕКСТОМ</div>
+          <div>50 ЭКСПЕРИМЕНТОВ</div>
+          <div>ЭКОНОМИКА КАЖДОЙ ИНИЦИАТИВЫ</div>
+          <div>РЕЕСТР «ОСТАНОВИТЬ / ПЕРЕДЕЛАТЬ / ОСТАВИТЬ»</div>
+        </div>
+        <div class="nums">
+          <div><strong>117 из 129</strong><span>внедрённых решений без расчёта экономики и без результатов теста</span></div>
+          <div><strong>44 %</strong><span>внутренних исследований, выводам которых нельзя доверять</span></div>
+          <div><strong>&lt; 1 %</strong><span>расхождение нашей модели с фактическим результатом</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Пример обезличен.</p>
+  </div>
+</section>
+
+<!-- 08 · Что остаётся после проекта -->
+<section class="section alt" id="leaves">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">08 / ЧТО ОСТАЁТСЯ ПОСЛЕ ПРОЕКТА</div>
+      <div><h2>Новая модель должна работать без постоянного внешнего присутствия</h2></div>
+    </div>
+    <div class="leaves">
+      <div class="lv"><span>01</span><h3>Целевая модель управления</h3><p>Кто и какие решения принимает, где проходят границы ответственности и эскалации.</p></div>
+      <div class="lv"><span>02</span><h3>Правила принятия решений</h3><p>На каком основании запускается, продолжается и останавливается любая инициатива.</p></div>
+      <div class="lv"><span>03</span><h3>Архитектура процессов</h3><p>Критические процессы, интерфейсы между функциями и механизмы контроля.</p></div>
+      <div class="lv"><span>04</span><h3>План перехода</h3><p>Этапы, владельцы изменений, зависимости, риски и критерии результата.</p></div>
+      <div class="lv"><span>05</span><h3>Механизмы закрепления</h3><p>Управленческие ритмы, метрики и обратная связь, которые удерживают новую модель.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · Команда -->
+<section class="section" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">09 / КОМАНДА</div>
+      <div><h2>Люди, которые проводили изменения изнутри</h2></div>
+    </div>
+    <div class="crew">
+      <div class="cw"><b>Организационные изменения</b><span>5+ лет программ трансформации, 8+ лет цифровых продуктов, 5 корпоративных и семейных инкубаторов</span></div>
+      <div class="cw"><b>Антикризисное управление</b><span>Работа в компаниях федерального масштаба и в государственном секторе</span></div>
+      <div class="cw"><b>Переход от основателя к системе</b><span>Передача семейного бизнеса, пройденная изнутри</span></div>
+      <div class="cw"><b>Семейные системы</b><span>Психология собственников и команд, без которой любое изменение остаётся на бумаге</span></div>
+    </div>
+    <p class="after">Плюс отраслевые специалисты под конкретную задачу.</p>
+  </div>
+</section>
+
+<!-- 10 · Принципы -->
+<section class="section alt" id="principles">
+  <div class="wrap split">
+    <div><div class="kicker">10 / ПРИНЦИПЫ</div><h2>Как мы ведём изменения</h2></div>
+    <div>
+      <div class="principle"><span>01</span><div><strong>Факты до схем</strong><small>Сначала понимаем, как система работает, потом проектируем, как она должна работать.</small></div></div>
+      <div class="principle"><span>02</span><div><strong>Только то, что можно внедрить</strong><small>Не рисуем модель, которую организация не сможет исполнить.</small></div></div>
+      <div class="principle"><span>03</span><div><strong>Измеримый результат</strong><small>Для каждого изменения заранее определяем, по чему поймём, что оно работает.</small></div></div>
+      <div class="principle"><span>04</span><div><strong>Честность про узкое место</strong><small>Если главное препятствие изменений — в самом верху, мы скажем и это.</small></div></div>
+      <div class="principle"><span>05</span><div><strong>Уход как цель</strong><small>Проект завершён, когда система держится без нас.</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · Связь с другими практиками: тёмная полоса -->
+<section class="links-band" id="practices">
+  <div class="wrap">
+    <div class="kicker">11 / СВЯЗЬ С ДРУГИМИ ПРАКТИКАМИ</div>
+    <h2>Изменение начинается с точного понимания исходной системы</h2>
+    <div style="margin-top:44px">
+      <a class="prow" href="/intelligence"><b>Intelligence</b><span>восстанавливает фактическую картину.</span><i>ПОНЯТЬ ↗</i></a>
+      <a class="prow" href="/crisis"><b>Crisis Management</b><span>возвращает управляемость, если ситуация вышла из-под контроля.</span><i>СТАБИЛИЗИРОВАТЬ ↗</i></a>
+      <div class="prow here"><b>Transformation &amp; Change</b><span>проводит системное изменение.</span><i>ВЫ ЗДЕСЬ</i></div>
+      <a class="prow" href="/dynasty"><b>Dynasty Engineering</b><span>обеспечивает устойчивость при смене владельцев и поколений.</span><i>ПРОДОЛЖИТЬ ↗</i></a>
+    </div>
+    <a class="primary" href="/">ВСЕ ПРАКТИКИ CUSTODIA SILENTIS <span>↗</span></a>
+  </div>
+</section>
+
+<!-- 12 · Первый шаг + контакты -->
+<section class="section" id="contact">
+  <div class="wrap start">
+    <div>
+      <div class="kicker">12 / ПЕРВЫЙ ШАГ</div>
+      <h2>Когда понятно, что менять, но не ясно, как провести организацию через переход</h2>
+      <p class="lead-p">Разберём исходную модель, желаемое состояние и масштаб необходимого вмешательства. Для первого разговора достаточно трёх вещей:</p>
+      <div class="need">
+        <div><span>01</span><div><b>Что не работает</b><small>В двух-трёх предложениях.</small></div></div>
+        <div><span>02</span><div><b>Каким должно стать</b><small>Что изменится, если всё получится.</small></div></div>
+        <div><span>03</span><div><b>Что уже пробовали</b><small>И почему не сработало.</small></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="access">ОБСУДИТЬ ЗАДАЧУ</div>
+      <!-- Контакты простым текстом, без кнопок и ссылок — как на остальных страницах -->
+      <div class="contacts">
+        <div class="c-name">Давид Асатрян</div>
+        <div class="c-line">owner@custodia-silentis.com</div>
+        <div class="c-line">+7&nbsp;995&nbsp;110&nbsp;92&nbsp;98</div>
+        <div class="c-note">Достаточно трёх ответов выше — остальное обсудим голосом.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner"><span>CUSTODIA SILENTIS · АРХИТЕКТУРА УПРАВЛЯЕМОСТИ СЛОЖНЫХ СИСТЕМ</span><span>ИП АСАТРЯН ДАВИД ВАЧАГАНОВИЧ · ИНН&nbsp;230403939662</span><span><a href="/">ВСЕ ПРАКТИКИ ↗</a> &nbsp;·&nbsp; <a href="#contact">СВЯЗАТЬСЯ</a></span></div>
+</footer>
+
+<script>
+const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ───── Мобильное меню ───── */
+(function(){
+  const btn = document.getElementById('menu'), nav = document.getElementById('navlinks');
+  function setOpen(open){ nav.classList.toggle('mobile-open', open); btn.setAttribute('aria-expanded', open); btn.textContent = open ? '✕' : '☰'; }
+  btn.addEventListener('click', ()=>setOpen(!nav.classList.contains('mobile-open')));
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setOpen(false)));
+})();
+
+/* ───── Оргмодель: на бумаге → на самом деле → новая модель, по кругу ───── */
+(function(){
+  const svg = document.getElementById('tgraph'); if(!svg) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (t,a,p)=>{ const n=document.createElementNS(NS,t); for(const k in a) n.setAttribute(k,a[k]); p.appendChild(n); return n; };
+  // Узлы: [x, y, тип, подпись, сторона подписи, роль]. Роли: sn — появляется в новой модели, hb — неформальный центр, lit — подсвечен в новой модели
+  const N = {
+    own:[300,64,'p','СОБСТВЕННИК','right','hb lit'],
+    ceo:[300,150,'p','CEO','right','lit'],
+    rul:[300,220,'f','ПРАВИЛА РЕШЕНИЙ','right','sn lit'],
+    f:[110,300,'c','ФИНАНСЫ','below',''], p:[240,300,'c','ПРОДУКТ','below',''], s:[370,300,'c','ПРОДАЖИ','below',''], o:[500,300,'c','ОПЕРАЦИИ','below',''],
+    t1:[84,420,'m'], t2:[136,420,'m'], t3:[214,420,'m'], t4:[266,420,'m'], t5:[344,420,'m'], t6:[396,420,'m'], t7:[474,420,'m'], t8:[526,420,'m']
+  };
+  const E = {
+    'fe-own':[['own','ceo']],
+    'fe-top':[['ceo','f'],['ceo','p'],['ceo','s'],['ceo','o']],
+    'fe-team':[['f','t1'],['f','t2'],['p','t3'],['p','t4'],['s','t5'],['s','t6'],['o','t7'],['o','t8']],
+    'ie':[['own','p'],['own','t3'],['own','o'],['f','t5'],['p','t7']],            // решения в обход схемы
+    'ne':[['ceo','rul'],['rul','f'],['rul','p'],['rul','s'],['rul','o']],          // права решений по правилам
+    'fb':[['t2','rul'],['t4','rul'],['t6','rul'],['t8','rul']]                      // метрики и обратная связь
+  };
+  const lHull = el('g',{class:'layer'},svg), lEdge = el('g',{class:'layer'},svg), lNode = el('g',{class:'layer'},svg);
+  el('rect',{x:58,y:398,width:492,height:44,rx:12,class:'hull'},lHull);
+  el('text',{x:68,y:466,class:'hull-t'},lHull).textContent = 'КОМАНДЫ';
+  Object.entries(E).forEach(([cls,list])=>list.forEach(([a,b])=>el('line',{x1:N[a][0],y1:N[a][1],x2:N[b][0],y2:N[b][1],class:cls},lEdge)));
+  // Флаг: CEO обойдён
+  const fl = el('g',{class:'flag'},lEdge); el('circle',{cx:374,cy:140,r:10},fl); el('text',{x:374,y:140},fl).textContent = '!';
+
+  Object.entries(N).forEach(([id,[x,y,t,label,side,role]])=>{
+    const g = el('g',{class:(t==='m'?'minor':'key')+' '+(role||'').split(' ').map(r=>r==='hb'?'hot-b':r).join(' ')},lNode);
+    if(t==='p') el('circle',{cx:x,cy:y,r:7},g);
+    else if(t==='c') el('rect',{x:x-7,y:y-7,width:14,height:14},g);
+    else if(t==='f') el('polygon',{points:`${x},${y-9} ${x+9},${y} ${x},${y+9} ${x-9},${y}`},g);
+    else el('circle',{cx:x,cy:y,r:4},g);
+    if(label){
+      const o = side==='below' ? [x,y+28,'middle'] : [x+14,y+5,'start'];
+      el('text',{x:o[0],y:o[1],class:'gl','text-anchor':o[2]},g).textContent = label;
+    }
+  });
+
+  const CAP = {a:'НА БУМАГЕ · ОРГСТРУКТУРА, КАК ОНА ОПИСАНА', b:'НА САМОМ ДЕЛЕ · РЕШЕНИЯ ИДУТ В ОБХОД СХЕМЫ', c:'НОВАЯ МОДЕЛЬ · ПРАВИЛА ВМЕСТО РУЧНОГО РЕЖИМА'};
+  const cap = document.getElementById('vcap'), tabs = document.querySelectorAll('#states div');
+  function setState(s){
+    svg.classList.remove('st-a','st-b','st-c'); svg.classList.add('st-'+s);
+    tabs.forEach(t=>t.classList.toggle('on', t.dataset.s===s));
+    cap.classList.remove('show');
+    setTimeout(()=>{ cap.textContent = CAP[s]; cap.classList.add('show'); }, REDUCE ? 0 : 250);
+  }
+  if(REDUCE){ [lHull,lEdge,lNode].forEach(l=>l.classList.add('on')); setState('c'); return; }
+  setTimeout(()=>lHull.classList.add('on'), 150);
+  setTimeout(()=>lNode.classList.add('on'), 500);
+  setTimeout(()=>lEdge.classList.add('on'), 1000);
+  const seq = [['a',3800],['b',4400],['c',5800]];
+  let i = 0;
+  function step(){ const [s,ms] = seq[i]; setState(s); i = (i+1) % seq.length; setTimeout(step, ms); }
+  setTimeout(step, 1600);
+})();
+</script>
+</body>
+</html>

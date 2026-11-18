@@ -1,1849 +1,965 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custodia Silentis — Архитектура Преемственности</title>
-<meta name="description" content="Практика Dynasty Engineering Давида Асатряна. Проектируем передачу власти, контроля и знаний — от вас к следующему поколению. Только по рекомендации.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0d11">
+<title>Dynasty Engineering — Custodia Silentis</title>
+<meta name="description" content="Проектируем передачу власти, контроля и знаний следующему поколению. Закрытая практика, доступ по рекомендации.">
+<link rel="canonical" href="https://custodia-silentis.com/dynasty">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Custodia Silentis — Архитектура Преемственности">
-<meta property="og:description" content="Практика Dynasty Engineering. Передача власти, контроля и знаний следующему поколению. Доступ только по рекомендации.">
-<meta property="og:image" content="https://custodia-silentis.com/og-preview.jpg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Вы построили систему. Сможет ли она жить без вас?">
+<meta property="og:description" content="Архитектура преемственности капитала, управления и знаний. Практика Dynasty Engineering.">
+<meta property="og:url" content="https://custodia-silentis.com/dynasty">
+<meta property="og:site_name" content="Custodia Silentis">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://custodia-silentis.com/og-dynasty-2026-11.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:url" content="https://custodia-silentis.com/dynasty">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Custodia Silentis">
-<meta property="og:locale" content="ru_RU">
+<meta property="og:image:alt" content="Dynasty Engineering — система, которая держится не на одном человеке: семейный совет, преемник и связи между капиталом, управлением и знанием">
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Custodia Silentis — Архитектура Преемственности">
-<meta name="twitter:description" content="Практика Dynasty Engineering. Доступ только по рекомендации.">
-<meta name="twitter:image" content="https://custodia-silentis.com/og-preview.jpg">
+<meta name="twitter:title" content="Вы построили систему. Сможет ли она жить без вас?">
+<meta name="twitter:description" content="Архитектура преемственности капитала, управления и знаний. Практика Dynasty Engineering.">
+<meta name="twitter:image" content="https://custodia-silentis.com/og-dynasty-2026-11.jpg">
 
-<link rel="canonical" href="https://custodia-silentis.com/dynasty">
-
-<!-- Schema.org — для брендовой выдачи Custodia Silentis / Давид Асатрян -->
+<!-- Schema.org — практика как услуга организации -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://custodia-silentis.com/#organization",
-      "name": "Custodia Silentis",
-      "alternateName": ["Custodia Silentis Intelligence", "Custodia"],
-      "url": "https://custodia-silentis.com/",
-      "logo": "https://custodia-silentis.com/og-preview.jpg",
-      "image": "https://custodia-silentis.com/og-preview.jpg",
-      "description": "Аналитическая практика. Информационное доминирование в кейсах с высокими ставками и архитектура династической преемственности.",
-      "founder": {
-        "@id": "https://custodia-silentis.com/#david-asatryan"
-      },
-      "knowsAbout": [
-        "Dynasty Engineering",
-        "Преемственность капитала",
-        "Архитектура династии",
-        "Передача контроля",
-        "Семейный капитал",
-        "Custodia Silentis"
-      ]
+      "@type": "Service",
+      "@id": "https://custodia-silentis.com/dynasty#service",
+      "name": "Dynasty Engineering",
+      "serviceType": "Архитектура преемственности капитала, управления и знаний",
+      "description": "Проектируем передачу власти, контроля и знаний следующему поколению. Закрытая практика, доступ по рекомендации.",
+      "url": "https://custodia-silentis.com/dynasty",
+      "provider": { "@id": "https://custodia-silentis.com/#organization" },
+      "areaServed": "RU"
     },
     {
-      "@type": "Person",
-      "@id": "https://custodia-silentis.com/#david-asatryan",
-      "name": "Давид Асатрян",
-      "alternateName": ["David Asatryan", "Давид Вачаганович Асатрян"],
-      "jobTitle": "Founder · Managing Partner",
-      "worksFor": {
-        "@id": "https://custodia-silentis.com/#organization"
-      },
-      "url": "https://custodia-silentis.com/dynasty"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://custodia-silentis.com/#website",
-      "name": "Custodia Silentis",
-      "url": "https://custodia-silentis.com/",
+      "@type": "WebPage",
+      "@id": "https://custodia-silentis.com/dynasty#webpage",
+      "url": "https://custodia-silentis.com/dynasty",
+      "name": "Dynasty Engineering — Custodia Silentis",
       "inLanguage": "ru-RU",
-      "publisher": { "@id": "https://custodia-silentis.com/#organization" }
+      "isPartOf": { "@id": "https://custodia-silentis.com/#website" },
+      "about": { "@id": "https://custodia-silentis.com/dynasty#service" }
     }
   ]
 }
 </script>
-
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<script>document.documentElement.classList.add('js');</script>
 <style>
-  :root {
-    --bg: #ffffff;
-    --bg-soft: #f8f7f5;
-    --bg-dark: #111111;
-    --ink: #2b2b2b;
-    --ink-2: #333333;
-    --ink-mute: #555555;
-    --ink-dim: #888888;
-    --line: #e6e6e6;
-    --line-dark: rgba(255,255,255,0.12);
-    --gold: rgba(197,165,90,0.95);
-    --gold-soft: rgba(197,165,90,0.85);
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'Montserrat', Arial, sans-serif;
-  }
+/* ═════════════════════════════════════════════════════════════════════
+   Те же токены и шкала, что у главной (index.html): метки ≥ 11px,
+   текст 16–18px, H2 ≥ 56px на десктопе; секции — чередованием фона.
+   ═════════════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#090c10;--bg2:#0e131a;--bg3:#0b1118;--panel:#0e1319;--line:#26313b;
+  --text:#e8edf2;--soft:#c9d2da;--muted:#9aa7b4;--dim:#6f7c88;--accent:#9bb3c8;
+  --max:1180px;--head:76px;
+  --mono:ui-monospace,"SF Mono",Menlo,"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --fs-label:11px;--fs-cap:13px;--fs-ui:16px;--fs-text:18px;--fs-lead:22px;
+  --pad-section:128px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:var(--fs-ui);line-height:1.6;letter-spacing:-.011em;font-feature-settings:"kern","liga"}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+h1,h2,h3,p{margin-top:0}
+em{font-style:italic}
+.wrap{width:min(var(--max),calc(100% - 64px));margin:auto}
+section[id]{scroll-margin-top:var(--head)}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ───── Шапка ───── */
+.topbar{position:sticky;top:0;z-index:50;height:var(--head);border-bottom:1px solid var(--line);display:flex;align-items:center;background:rgba(9,12,16,.97)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.brand{font-size:15px;font-weight:650;letter-spacing:.13em;white-space:nowrap}
+.brand small{display:block;font:10px var(--mono);letter-spacing:.16em;color:var(--dim);margin-top:3px}
+.navlinks{display:flex;gap:30px;align-items:center;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--muted)}
+.navlinks a{padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.navlinks a:hover{color:#fff}
+.navlinks a.active{color:#fff;border-bottom-color:var(--accent)}
+.navlinks .m-only{display:none}
+.nav-cta{border:1px solid #44515d;padding:11px 16px;font:var(--fs-label) var(--mono);letter-spacing:.1em;white-space:nowrap;transition:background .2s,color .2s}
+.nav-cta:hover{background:#dce5ec;color:#0a0d11}
+.menu{display:none;width:44px;height:44px;background:none;border:0;color:var(--text);font-size:22px;cursor:pointer}
 
-  html { scroll-behavior: smooth; }
+/* ───── Меню практик: одинаковое на всех пяти страницах ───── */
+.practices{display:flex;border:1px solid #33424f;flex:none}
+.practices a{padding:9px 12px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--muted);white-space:nowrap;transition:color .2s,background .2s}
+.practices a+a{border-left:1px solid #33424f}
+.practices a:hover{color:#fff}
+.practices a.on{background:rgba(155,179,200,.12);color:#fff}
+.practices.drop{display:none}
+.practices.bar{margin-left:auto}
+.navlinks{display:none}
 
-  html, body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-    font-feature-settings: 'kern', 'liga';
-  }
+/* ───── Общие элементы ───── */
+.section{padding:var(--pad-section) 0;position:relative}
+.section.alt{background:var(--bg2)}
+.section .wrap{position:relative}
+.section-head{display:grid;grid-template-columns:.62fr 1.38fr;gap:56px;margin-bottom:64px}
+.kicker{font:12px var(--mono);letter-spacing:.14em;color:var(--dim)}
+h2{font-size:clamp(36px,4.8vw,64px);line-height:1.04;letter-spacing:-.05em;font-weight:500;max-width:860px;margin:16px 0 20px}
+.section-intro{color:var(--muted);max-width:680px;font-size:var(--fs-text);line-height:1.6}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px}
+.after{margin:28px 0 0;color:var(--muted);font-size:var(--fs-text);max-width:720px}
+.note{font-size:var(--fs-cap);color:var(--dim);margin:20px 0 0}
+.tag{font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--dim)}
+.primary{display:inline-flex;align-items:center;gap:28px;border:1px solid #8195a6;padding:15px 18px;font:12px var(--mono);letter-spacing:.08em;transition:background .2s,color .2s;white-space:nowrap}
+.primary:hover{background:#dce5ec;color:#0a0d11}
+.textlink{font:12px var(--mono);color:var(--muted);letter-spacing:.06em}
+.textlink:hover{color:#fff}
+.statement{margin:64px 0 0;padding-left:26px;border-left:2px solid var(--accent);font-size:clamp(22px,2.4vw,32px);line-height:1.32;letter-spacing:-.03em;max-width:880px;color:#dbe3ea}
+.statement em{color:var(--accent);font-style:italic}
+.ghost{position:absolute;right:0;top:40px;font-size:clamp(160px,22vw,320px);font-weight:600;letter-spacing:-.07em;line-height:1;color:rgba(155,179,200,.035);pointer-events:none;user-select:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font:var(--fs-label) var(--mono);border:1px solid #3a4a57;padding:5px 8px;color:#a9b9c6;letter-spacing:.06em}
+/* Фрагмент рабочей среды — как на главной */
+.frag{background:#0a0f14;border:1px solid #2a3642}
+.frag-head{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid #2a3642;font:var(--fs-label) var(--mono);letter-spacing:.08em;color:#8293a2}
+.frag-head em{font-style:normal;color:var(--dim)}
+.frag-body{padding:18px 16px 20px}
 
-  /* ============================================ */
-  /* TOPMENU — sticky glass bar                    */
-  /* ============================================ */
-  .topmenu {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(17, 17, 17, 0.78);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .topmenu-inner {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 18px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .topmenu-logo {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 21px;
-    color: #fff;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    letter-spacing: -0.01em;
-    transition: color 0.2s;
-  }
-  .topmenu-logo-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(197,165,90,0.95);
-  }
-  .topmenu-logo:hover { color: #fff; }
-  .topmenu-nav {
-    display: flex;
-    gap: 40px;
-  }
-  .topmenu-link {
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    color: rgba(255,255,255,0.68);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .topmenu-link:hover { color: #fff; }
-  .topmenu-link.active { color: rgba(197,165,90,0.95); }
-  .topmenu-burger {
-    display: none;
-    width: 26px;
-    height: 22px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .topmenu-burger span {
-    width: 100%;
-    height: 1.5px;
-    background: #fff;
-    transition: transform 0.3s, opacity 0.3s;
-  }
+/* ───── 00 · Первый экран ───── */
+.hero{min-height:calc(100vh - var(--head));display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:64px 0}
+.eyebrow{font:12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px}
+.eyebrow:before{content:"";width:27px;height:1px;background:var(--accent)}
+h1{font-size:clamp(40px,4.8vw,70px);line-height:1.02;letter-spacing:-.05em;font-weight:510;margin:28px 0 28px;max-width:680px}
+.lead{font-size:var(--fs-lead);line-height:1.5;color:#c0cad3;max-width:620px;margin:0 0 36px}
+.actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.hero-meta{display:flex;gap:30px;flex-wrap:wrap;margin-top:56px;font:var(--fs-label) var(--mono);letter-spacing:.12em;color:var(--dim)}
+.visual{height:520px;position:relative;border:1px solid #202b35;background:radial-gradient(ellipse at 50% 48%,#17232d 0,#0d141b 44%,#090d12 78%);overflow:hidden}
+.visual:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(125,150,170,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(125,150,170,.06) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(transparent,#000 18%,#000 82%,transparent)}
+.visual svg{position:absolute;inset:3% 3% 7%;width:94%;height:90%}
+.vlabel{position:absolute;z-index:1;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:#8293a2}
+.vlabel.tl{top:16px;left:18px}
+.vlabel.br{bottom:16px;right:18px;text-align:right;color:var(--dim)}
+.vcap{position:absolute;z-index:1;left:18px;bottom:16px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--accent);opacity:0;transition:opacity .35s;max-width:62%}
+.vcap.show{opacity:1}
+.states{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #202b35;border-top:0}
+.states div{padding:12px 14px;border-right:1px solid #202b35;font:var(--fs-label) var(--mono);letter-spacing:.08em;color:var(--dim);transition:color .3s,background .3s}
+.states div:last-child{border-right:0}
+.states div b{display:block;font-weight:400;color:#5d6b77;margin-bottom:3px;transition:color .3s}
+.states div.on{color:var(--text);background:rgba(155,179,200,.06)}
+.states div.on b{color:var(--accent)}
+/* Граф передачи: состояния a (сейчас) → b (основатель недоступен) → c (после передачи) */
+#dgraph .hull{fill:rgba(155,179,200,.025);stroke:#3a4a57;stroke-dasharray:3 5}
+#dgraph .hull-t{font-family:var(--mono);font-size:12px;fill:#7f91a0;letter-spacing:.08em}
+#dgraph .se{stroke:#8ea4b6;stroke-width:1.2;fill:none;opacity:.7;transition:opacity .9s}
+#dgraph .ie{stroke:#5d7385;stroke-width:1;fill:none;opacity:.55}
+#dgraph .ne{stroke:#dbe7f0;stroke-width:1.6;fill:none;opacity:0;stroke-dasharray:5 6;transition:opacity 1s}
+#dgraph.st-c .ne{opacity:.95;animation:flow 1.4s linear infinite}
+#dgraph.st-b .se{opacity:.2;stroke-dasharray:3 7}
+#dgraph.st-c .se{opacity:.06;stroke-dasharray:3 7}
+@keyframes flow{to{stroke-dashoffset:-22}}
+#dgraph .layer{transition:opacity .8s}
+.js #dgraph .layer{opacity:0}
+#dgraph .layer.on{opacity:1}
+#dgraph .fn,#dgraph .cn,#dgraph .sn{transition:opacity .9s}
+#dgraph.st-b .fn,#dgraph.st-c .fn{opacity:.28}
+#dgraph.st-b .cn{opacity:.42}
+#dgraph .sn{opacity:0}
+#dgraph.st-c .sn{opacity:1}
+#dgraph .key circle,#dgraph .key rect,#dgraph .key polygon{fill:#a9bdcc;stroke:#d7e1e8;stroke-width:1.2}
+#dgraph .minor circle{fill:#344957;stroke:#71899a;stroke-width:1}
+#dgraph circle.ring{fill:none;stroke:#9bb3c8;stroke-dasharray:2 4;opacity:.75}
+#dgraph .lit circle:not(.ring),#dgraph .lit rect,#dgraph .lit polygon{fill:#f1f6f9;filter:drop-shadow(0 0 6px rgba(200,222,238,.75))}
+#dgraph .gl{font-family:var(--mono);font-size:13px;fill:#9fb1c0;letter-spacing:.04em}
+#dgraph .lit .gl{fill:#eef3f7}
 
-  /* Mobile overlay (kebab open state) */
-  .topmenu-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: #0c0c0c;
-    color: #fff;
-    z-index: 9999;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 96px 28px 56px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .topmenu-overlay.is-open { display: flex; }
-  .topmenu-overlay-close {
-    position: absolute;
-    top: 18px;
-    right: 28px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-family: var(--serif);
-    font-size: 44px;
-    line-height: 0.7;
-    font-weight: 300;
-    cursor: pointer;
-    padding: 8px 12px;
-  }
-  .topmenu-overlay-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-    text-align: center;
-  }
-  .topmenu-overlay-nav a {
-    font-family: var(--serif);
-    font-size: 38px;
-    font-weight: 500;
-    color: #fff;
-    text-decoration: none;
-    letter-spacing: -0.012em;
-  }
-  .topmenu-overlay-nav a.active {
-    color: rgba(197,165,90,0.95);
-    font-style: italic;
-  }
+/* ───── I · Контекст: эхо-строки ───── */
+.context h2{max-width:980px}
+.echo{margin:56px 0 0;display:grid;gap:4px}
+.echo p{margin:0;font-size:clamp(30px,4.2vw,58px);line-height:1.08;letter-spacing:-.045em;font-weight:500}
+.echo p:nth-child(2){opacity:.55;padding-left:1.2em}
+.echo p:nth-child(3){opacity:.25;padding-left:2.4em}
 
-  h1, h2, h3, h4 {
-    font-family: var(--serif);
-    font-weight: 600;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-    margin: 0;
-  }
+/* ───── II · 72 часа ───── */
+.h72{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}
+.clock{font:500 clamp(64px,8.6vw,124px)/1 var(--mono);letter-spacing:-.04em;color:var(--text);margin:28px 0 10px;font-variant-numeric:tabular-nums}
+.clock-cap{font:var(--fs-label) var(--mono);letter-spacing:.12em;color:var(--dim)}
+.qrow{display:grid;grid-template-columns:40px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.qrow:first-child{padding-top:6px}
+.qrow:last-child{border-bottom:0}
+.qrow span{font:var(--fs-label) var(--mono);color:var(--accent);padding-top:7px}
+.qrow p{margin:0;font-size:var(--fs-text);line-height:1.5;color:#d3dbe2}
 
-  p { margin: 0; }
+/* ───── III · Цена тишины: эрозия ───── */
+.erosion{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;row-gap:56px}
+.ero .bar{height:3px;margin-bottom:22px;background:linear-gradient(90deg,var(--accent) 0,var(--accent) 35%,rgba(155,179,200,0) 100%);-webkit-mask:repeating-linear-gradient(90deg,#000 0 14px,transparent 14px 17px,#000 17px 22px,transparent 22px 28px);mask:repeating-linear-gradient(90deg,#000 0 14px,transparent 14px 17px,#000 17px 22px,transparent 22px 28px)}
+.ero h3{font-size:24px;font-weight:500;letter-spacing:-.03em;margin:0 0 10px}
+.ero p{margin:0;color:var(--muted);font-size:var(--fs-ui);max-width:460px}
 
-  .container {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 60px;
-  }
+/* ───── IV · Разрыв: цитатная полоса ───── */
+.quote-band{padding:150px 0;background:radial-gradient(ellipse at 15% 50%,#16232e 0,transparent 55%),var(--bg3)}
+.quote-band .roles{display:grid;gap:8px;margin:24px 0 40px}
+.quote-band .roles p{margin:0;font-size:clamp(24px,2.8vw,38px);letter-spacing:-.035em;color:var(--muted);line-height:1.2}
+.quote-band .ask{margin:0;font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.045em;font-weight:500;max-width:1000px}
+.quote-band .ask em{color:var(--accent)}
 
-  /* ============================================ */
-  /* REVEAL ANIMATION                              */
-  /* ============================================ */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
-  }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-  }
+/* ───── V · Документ против факта ───── */
+.layers{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;row-gap:48px}
+.lay .num{font:var(--fs-label) var(--mono);color:var(--dim);letter-spacing:.1em}
+.lay h3{font-size:26px;font-weight:500;letter-spacing:-.03em;margin:10px 0 8px}
+.lay p{margin:0 0 20px;color:var(--muted);font-size:var(--fs-ui);max-width:480px}
+.df{display:grid;grid-template-columns:128px 1fr;gap:14px;align-items:center;margin-top:10px;font:var(--fs-label) var(--mono);letter-spacing:.08em;color:var(--dim)}
+.df .track{position:relative;height:8px}
+.df .doc{position:absolute;inset:0;background:var(--accent);opacity:.8}
+.df .fact{position:absolute;left:0;top:0;bottom:0;background:repeating-linear-gradient(90deg,var(--accent) 0 8px,transparent 8px 12px);opacity:.75}
+.df .track b{position:absolute;top:50%;transform:translate(10px,-50%);font:600 13px var(--mono);color:var(--accent)}
+.principle-band{margin-top:88px}
 
-  /* ============================================ */
-  /* HERO (dark)                                   */
-  /* ============================================ */
-  .hero {
-    background: var(--bg-dark);
-    color: #fff;
-    padding: 200px 0 180px 0;
-    text-align: center;
-  }
-  .hero-eyebrow {
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(197,165,90,0.85);
-    margin-bottom: 48px;
-  }
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: 92px;
-    line-height: 1.05;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    margin: 0 auto 48px auto;
-    max-width: 18ch;
-    color: #fff;
-  }
-  .hero-gold-line {
-    width: 80px;
-    height: 1px;
-    background: rgba(197,165,90,0.9);
-    margin: 0 auto 48px auto;
-  }
-  .hero-tagline {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 28px;
-    font-weight: 400;
-    line-height: 1.45;
-    color: rgba(255,255,255,0.78);
-    max-width: 600px;
-    margin: 0 auto 28px auto;
-  }
-  .hero-foot {
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-  }
+/* ───── VI · Глазами разрушителя ───── */
+.adv{display:grid;grid-template-columns:.92fr 1.08fr;gap:64px;align-items:start}
+.adv p.body{color:var(--muted);font-size:var(--fs-text);max-width:520px;margin:0 0 18px}
+.adv .strong{color:var(--text);font-size:clamp(22px,2.2vw,28px);letter-spacing:-.03em;line-height:1.3;margin:28px 0 18px;font-weight:500}
+.adv .chips{margin:22px 0 28px}
+.gap-table{width:100%;border-collapse:collapse;font:12px/1.4 var(--mono);color:#b9c5cf}
+.gap-table th{text-align:left;font-weight:400;color:var(--dim);font-size:var(--fs-label);letter-spacing:.06em;padding:0 10px 9px 0;border-bottom:1px solid #2a3642}
+.gap-table td{padding:10px 10px 10px 0;border-bottom:1px solid #1d262e;vertical-align:top}
+.gap-table td:nth-child(3){color:#eef3f7}
+.gap-table td:nth-child(3):before{content:"≠ ";color:var(--accent)}
+.gap-table td:last-child{color:var(--accent);font-size:var(--fs-label)}
+.gap-table tr:last-child td{border-bottom:0}
 
-  /* ============================================ */
-  /* SECTION OPENER                                */
-  /* ============================================ */
-  .section-opener {
-    padding: 160px 0 100px 0;
-    text-align: center;
-  }
-  .section-opener.dark {
-    background: var(--bg-dark);
-    color: #fff;
-  }
-  .section-opener-inner {
-    max-width: 880px;
-    margin: 0 auto;
-  }
-  .section-roman {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--gold);
-    margin-bottom: 28px;
-    letter-spacing: -0.005em;
-  }
-  .section-meta {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    margin-bottom: 40px;
-  }
-  .section-opener.dark .section-meta { color: rgba(255,255,255,0.55); }
-  .section-title {
-    font-family: var(--serif);
-    font-size: 64px;
-    font-weight: 600;
-    line-height: 1.12;
-    letter-spacing: -0.018em;
-    color: var(--ink);
-    margin: 0 auto;
-    max-width: 18ch;
-  }
-  .section-opener.dark .section-title { color: #fff; }
-  .section-subtitle {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 24px;
-    line-height: 1.45;
-    color: var(--ink-mute);
-    margin: 36px auto 0 auto;
-    max-width: 620px;
-    font-weight: 400;
-  }
-  .section-opener.dark .section-subtitle { color: rgba(255,255,255,0.7); }
+/* ───── VII · Манифест ───── */
+.manifesto{padding:160px 0;background:radial-gradient(ellipse at 85% 50%,#16232e 0,transparent 55%),var(--bg3)}
+.manifesto h2{font-size:clamp(44px,6vw,92px);max-width:1000px;margin:20px 0 28px}
+.manifesto p{font-size:clamp(20px,2vw,26px);line-height:1.45;color:var(--soft);max-width:760px;margin:0}
 
-  /* ============================================ */
-  /* ECHO (I. Контекст — приглушённые эхо-строки)  */
-  /* ============================================ */
-  .echo {
-    padding: 0 0 180px 0;
-    text-align: center;
-  }
-  .echo p {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 32px;
-    line-height: 2.0;
-    color: var(--ink-dim);
-    letter-spacing: -0.005em;
-  }
-  .echo p + p { margin-top: 6px; }
+/* ───── VIII · Метод: четыре слоя + Day X ───── */
+.method{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:start}
+.lrow{display:grid;grid-template-columns:72px 1fr;gap:26px;padding:26px 0;border-bottom:1px solid var(--line)}
+.lrow:first-child{padding-top:4px}
+.lrow:last-child{border-bottom:0}
+.lrow svg{width:72px;height:56px;display:block}
+.lrow svg line{stroke:#3a4a57;stroke-width:3}
+.lrow svg line.on{stroke:var(--accent)}
+.lrow h3{font-size:24px;font-weight:500;letter-spacing:-.03em;margin:0 0 8px}
+.lrow p{margin:0;color:var(--muted);font-size:var(--fs-ui)}
+.dayx .t{display:grid;grid-template-columns:62px 1fr;gap:14px;padding:12px 0;border-bottom:1px dashed #26313b}
+.dayx .t:last-child{border-bottom:0}
+.dayx .t b{font:var(--fs-label) var(--mono);color:var(--accent);font-weight:400;padding-top:3px}
+.dayx .t span{font-size:14px;color:var(--soft);line-height:1.45}
+.dayx .lead-t{font-size:14px;color:var(--muted);margin:0 0 6px}
 
-  /* ============================================ */
-  /* 72 ЧАСА — сигнатура страницы                  */
-  /* ============================================ */
-  .seventytwo-body {
-    padding: 0 0 200px 0;
-  }
-  .seventytwo-title {
-    text-align: center;
-    font-family: var(--serif);
-    font-size: 64px;
-    font-weight: 600;
-    line-height: 1.12;
-    letter-spacing: -0.018em;
-    color: var(--ink);
-    margin-bottom: 140px;
-  }
-  .seventytwo-list {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-  }
-  .seventytwo-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 40px;
-    position: relative;
-  }
-  .seventytwo-num {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 220px;
-    line-height: 0.85;
-    color: #e6e6e6;
-    letter-spacing: -0.04em;
-    user-select: none;
-  }
-  .seventytwo-text {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 1.35;
-    color: var(--ink);
-    letter-spacing: -0.005em;
-  }
-  /* LEFT variant: цифра слева, текст справа */
-  .seventytwo-item.left .seventytwo-num {
-    order: 1;
-    text-align: left;
-    padding-left: 0;
-  }
-  .seventytwo-item.left .seventytwo-text {
-    order: 2;
-    text-align: left;
-  }
-  /* RIGHT variant: текст слева, цифра справа */
-  .seventytwo-item.right .seventytwo-text {
-    order: 1;
-    text-align: right;
-  }
-  .seventytwo-item.right .seventytwo-num {
-    order: 2;
-    text-align: right;
-    padding-right: 0;
-  }
-  .seventytwo-finale {
-    margin-top: 160px;
-    text-align: center;
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 1.25;
-    color: var(--ink);
-    letter-spacing: -0.015em;
-    max-width: 22ch;
-    margin-left: auto;
-    margin-right: auto;
-  }
+/* ───── IX · Что должно стать правдой ───── */
+.truths{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;row-gap:56px}
+.truth:before{content:"";display:block;width:36px;height:2px;background:var(--accent);margin-bottom:22px}
+.truth h3{font-size:clamp(26px,2.6vw,34px);font-weight:500;letter-spacing:-.04em;margin:0 0 10px;line-height:1.1}
+.truth p{margin:0;color:var(--muted);font-size:var(--fs-ui);max-width:460px}
 
-  /* ============================================ */
-  /* ЦЕНА ТИШИНЫ — статистика                      */
-  /* ============================================ */
-  .stats-section {
-    padding: 0 0 200px 0;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px 100px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .stats-grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1100px;
-  }
-  .stat-cell { text-align: left; }
-  .stat-num {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 84px;
-    line-height: 1;
-    letter-spacing: -0.025em;
-    color: var(--ink);
-    margin-bottom: 22px;
-  }
-  .stat-num .stat-plus {
-    color: var(--gold);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 0.5em;
-    margin-left: 2px;
-    vertical-align: 0.45em;
-  }
-  .stat-label {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin-bottom: 18px;
-  }
-  .stat-note {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--ink-mute);
-    font-weight: 400;
-    max-width: 36ch;
-  }
-  .stat-source {
-    margin-top: 14px;
-    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-    font-size: 12px;
-    color: var(--ink-dim);
-    letter-spacing: 0.02em;
-  }
+/* ───── X · Артефакты ───── */
+/* Артефакты один за другим: слева текст, справа визуал */
+.artifacts{display:grid;gap:112px}
+.art{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.art .roman{font-size:clamp(56px,6vw,84px);font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--accent)}
+.art h3{font-size:30px;font-weight:500;letter-spacing:-.04em;margin:14px 0 10px}
+.art-text > p{color:var(--muted);font-size:var(--fs-ui);margin:0 0 20px;max-width:520px}
+.art ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.art-vis{padding-top:8px}
+.art li{display:grid;grid-template-columns:14px 1fr;gap:10px;font-size:15px;color:var(--muted);line-height:1.5}
+.art li:before{content:"—";color:#71899a}
+.art li b{color:var(--text);font-weight:500}
+/* Чертёж: светлый лист с четырьмя картами */
+.blueprint{background:#e4eaef;color:#10161c;padding:22px 22px 24px;box-shadow:0 1px 0 rgba(0,0,0,.25),0 14px 28px -14px rgba(0,0,0,.6),0 46px 90px -40px rgba(0,0,0,.7)}
+.bp-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 10px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:#4a5763;border-bottom:1px solid #b9c4cd;padding-bottom:10px;margin-bottom:14px}
+.bp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bp-tile{border:1px solid #b9c4cd;padding:10px 10px 8px;background:#edf1f4}
+.bp-tile svg{display:block;width:100%;height:auto}
+.bp-tile svg .s{stroke:#41505c;stroke-width:1.2;fill:none}
+.bp-tile svg .f{fill:#41505c}
+.bp-tile svg .a{stroke:#41505c;stroke-width:1.2;fill:none;stroke-dasharray:3 3}
+.bp-tile span{display:block;font:var(--fs-label) var(--mono);letter-spacing:.06em;color:#4a5763;margin-top:6px}
+/* Капсула доверия */
+.capsule .cap-row{display:flex;align-items:center;gap:18px;margin-bottom:16px}
+.capsule .lock{width:64px;height:64px;flex:none}
+.capsule .lock circle{fill:none;stroke:var(--accent)}
+.capsule .lock .r2{stroke-dasharray:3 4;opacity:.6}
+.capsule .lock rect{fill:var(--accent)}
+.capsule .cap-t{font:var(--fs-label) var(--mono);letter-spacing:.08em;color:var(--dim)}
+.capsule .cap-t b{display:block;font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--text);font-family:var(--sans);margin-top:4px}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:6px 0 16px}
+.keys div{border:1px solid #3a4a57;padding:9px 10px;font:var(--fs-label) var(--mono);letter-spacing:.06em;color:var(--dim)}
+.keys div.ok{border-color:var(--accent);color:#eef3f7;background:rgba(155,179,200,.08)}
+.keys div i{display:block;font-style:normal;color:var(--accent);margin-top:4px}
+.keys div.wait i{color:var(--dim)}
+.agent{border-top:1px dashed #26313b;padding-top:14px;font-size:14px;color:var(--soft);line-height:1.5}
+.agent b{display:block;font:var(--fs-label) var(--mono);letter-spacing:.08em;color:var(--dim);font-weight:400;margin-bottom:6px}
+.agent .ans{margin-top:8px;padding:8px 10px;background:rgba(155,179,200,.1);border-left:2px solid var(--accent);color:#dbe3ea}
 
-  /* ============================================ */
-  /* ПОЗИЦИОННЫЙ РАЗРЫВ — pull-quote               */
-  /* ============================================ */
-  .gap-section {
-    background: var(--bg-soft);
-    padding: 200px 0;
-    text-align: center;
-  }
-  .gap-block {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 4px 0 4px 36px;
-    border-left: 3px solid rgba(197,165,90,0.85);
-    text-align: left;
-  }
-  .gap-block p {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 42px;
-    line-height: 1.3;
-    color: var(--ink);
-    letter-spacing: -0.012em;
-    margin-bottom: 4px;
-  }
-  .gap-block p.gap-question {
-    font-style: italic;
-    font-weight: 500;
-    margin-top: 28px;
-    color: var(--ink);
-  }
+/* ───── XI · Четыре фазы ───── */
+.phase-track{display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:8px}
+.phase-track span{height:4px;background:var(--accent);opacity:.8;position:relative}
+.phase-track span+span{margin-left:6px}
+.phase-track span.opt{background:repeating-linear-gradient(90deg,var(--accent) 0 8px,transparent 8px 13px)}
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.phase .r{font-size:44px;font-weight:500;letter-spacing:-.05em;color:var(--accent);line-height:1;margin:22px 0 14px}
+.phase h3{font-size:23px;font-weight:500;letter-spacing:-.03em;margin:0 0 10px}
+.phase h3 small{display:block;font:var(--fs-label) var(--mono);color:var(--dim);letter-spacing:.08em;margin-top:6px;font-weight:400}
+.phase p{margin:0;color:var(--muted);font-size:15px}
 
-  /* ============================================ */
-  /* 4 СТОЛПА — Что нужно, чтобы всё работало      */
-  /* ============================================ */
-  .pillars-section {
-    padding: 0 0 200px 0;
-  }
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px 100px;
-    max-width: 1040px;
-    margin: 0 auto;
-  }
-  .pillar {
-    border-top: 1px solid var(--line);
-    padding-top: 36px;
-  }
-  .pillar-title {
-    font-family: var(--serif);
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--ink);
-    letter-spacing: -0.012em;
-    margin-bottom: 20px;
-  }
-  .pillar-body {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--ink-mute);
-    font-weight: 400;
-  }
+/* ───── XII · Для кого ───── */
+.who{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start}
+.wrow{display:grid;grid-template-columns:32px 1fr;gap:14px;padding:17px 0;border-bottom:1px solid var(--line)}
+.wrow:first-child{padding-top:4px}
+.wrow:last-child{border-bottom:0}
+.wrow span{font:var(--fs-label) var(--mono);color:var(--dim);padding-top:6px}
+.wrow p{margin:0;font-size:var(--fs-text);color:#d3dbe2;line-height:1.5}
+.criteria .crit{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:10px 0;border-bottom:1px dashed #26313b;font-size:15px;color:var(--soft);line-height:1.45}
+.criteria .crit:last-child{border-bottom:0}
+.criteria .crit:before{content:"✓";font:13px var(--mono);color:var(--accent);padding-top:1px}
+.scale{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:88px;align-items:end}
+/* Доступ — не цифра, а условие: заголовок с акцентной линией вместо крупного числа */
+.sc-access{border-left:2px solid var(--accent);padding-left:28px}
+.sc-access h3{font-size:clamp(28px,3vw,42px);font-weight:500;letter-spacing:-.04em;line-height:1.08;margin:12px 0 0}
+.scale strong{display:block;font-size:clamp(52px,6vw,88px);font-weight:500;letter-spacing:-.06em;line-height:.95}
+.scale strong small{font-size:.34em;color:var(--accent);letter-spacing:-.01em;margin-left:10px;font-weight:400}
+.scale p{margin:16px 0 0;color:var(--muted);font-size:var(--fs-ui);max-width:420px}
 
-  /* ============================================ */
-  /* МАНИФЕСТ — тёмная инверсная секция            */
-  /* ============================================ */
-  .manifest {
-    background: var(--bg-dark);
-    color: #fff;
-    padding: 200px 0;
-    text-align: center;
-  }
-  .manifest-text {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-style: italic;
-    font-size: 48px;
-    line-height: 1.3;
-    color: #fff;
-    letter-spacing: -0.015em;
-    max-width: 26ch;
-    margin: 0 auto;
-  }
-  .manifest-text em {
-    font-style: italic;
-    color: rgba(197,165,90,0.95);
-    font-weight: 500;
-  }
+/* ───── XIII · Команда ───── */
+.team{display:grid;grid-template-columns:.95fr 1.05fr;gap:72px;align-items:start}
+.founder{margin-top:36px;padding-left:24px;border-left:2px solid var(--accent)}
+.founder .nm{font-size:clamp(26px,2.6vw,34px);font-weight:500;letter-spacing:-.035em}
+.founder .rl{font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--accent);margin:6px 0 14px}
+.founder p{margin:0;color:var(--muted);font-size:var(--fs-ui);max-width:480px}
+.circle-intro{color:var(--muted);font-size:var(--fs-ui);margin:10px 0 18px;max-width:520px}
+.crow{display:grid;grid-template-columns:1fr;padding:16px 0;border-bottom:1px solid var(--line)}
+.crow:last-of-type{border-bottom:0}
+.crow b{font-size:18px;font-weight:500;letter-spacing:-.02em}
+.crow span{color:var(--muted);font-size:15px;margin-top:3px}
+.team .textlink{display:inline-block;margin-top:22px}
 
-  /* ============================================ */
-  /* 4 СЛОЯ — Мы инженеры, не советники            */
-  /* ============================================ */
-  .layers-section {
-    padding: 0 0 200px 0;
-  }
-  .layers-list {
-    max-width: 940px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
-  }
-  .layer {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 36px;
-    padding-top: 36px;
-    border-top: 1px solid var(--line);
-    align-items: start;
-  }
-  .layer-icon {
-    width: 72px;
-    height: 72px;
-    opacity: 0.95;
-  }
-  .layer-icon img {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  .layer-content {
-    padding-top: 4px;
-  }
-  .layer-title {
-    font-family: var(--serif);
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--ink);
-    margin-bottom: 16px;
-    letter-spacing: -0.012em;
-  }
-  .layer-body {
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--ink-mute);
-  }
-  .layer-body em {
-    font-style: italic;
-    color: var(--ink);
-    font-weight: 500;
-  }
+/* ───── XIV · Границы ───── */
+.bounds{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;row-gap:48px}
+.bound .x{font:var(--fs-label) var(--mono);color:var(--dim);letter-spacing:.1em}
+.bound h3{font-size:24px;font-weight:500;letter-spacing:-.03em;margin:10px 0 8px}
+.bound p{margin:0;color:var(--muted);font-size:var(--fs-ui);max-width:480px}
+.bound a{color:var(--accent);border-bottom:1px solid rgba(155,179,200,.4)}
 
-  /* ============================================ */
-  /* 2 АРТЕФАКТА                                   */
-  /* ============================================ */
-  .artifacts-section {
-    background: var(--bg-soft);
-    padding: 160px 0 200px 0;
-  }
-  .artifacts-list {
-    max-width: 880px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
-  }
-  .artifact {
-    padding-top: 36px;
-    border-top: 1px solid var(--line);
-  }
-  .artifact-num {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--gold);
-    letter-spacing: -0.01em;
-    margin-bottom: 16px;
-  }
-  .artifact-title {
-    font-family: var(--serif);
-    font-size: 38px;
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--ink);
-    margin-bottom: 24px;
-    letter-spacing: -0.012em;
-  }
-  .artifact-body {
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--ink-mute);
-    max-width: 60ch;
-  }
-  /* Placeholder для возможного экрана */
-  .artifact-visual {
-    margin-top: 56px;
-    border: 1px dashed var(--line);
-    border-radius: 4px;
-    background: rgba(0,0,0,0.015);
-    padding: 80px 40px;
-    text-align: center;
-    font-family: var(--sans);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-  }
+/* ───── XV · Финал и подвал ───── */
+.contact{padding:128px 0;background:radial-gradient(ellipse at 85% 50%,#16232e 0,transparent 48%),var(--bg2)}
+.contact-inner{max-width:820px}
+.contact h2{font-size:clamp(44px,5.6vw,80px);max-width:800px}
+.contact p{font-size:var(--fs-text);color:var(--muted);max-width:620px;margin:24px 0 40px}
+.access{display:inline-block;font:12px var(--mono);letter-spacing:.12em;color:var(--accent);border:1px solid #4a5d6c;padding:10px 14px;margin-bottom:32px}
+.contacts{display:grid;gap:8px;padding-left:24px;border-left:2px solid var(--accent)}
+.c-name{font-size:clamp(24px,2.6vw,32px);font-weight:500;letter-spacing:-.03em;margin-bottom:4px}
+.c-line{font:17px var(--mono);color:var(--soft);letter-spacing:.02em;white-space:nowrap}
+.c-note{font-size:14px;color:var(--dim);margin-top:10px}
+.footer{padding:28px 0 38px;color:var(--dim);font:var(--fs-label) var(--mono);letter-spacing:.08em}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer a:hover{color:#fff}
 
-  /* ============================================ */
-  /* 4 ФАЗЫ                                        */
-  /* ============================================ */
-  .phases {
-    background: var(--bg-dark);
-    color: #fff;
-    padding: 160px 0 200px 0;
-  }
-  .phases-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px 80px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .phase {
-    border-top: 1px solid var(--line-dark);
-    padding-top: 32px;
-  }
-  .phase-num {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 22px;
-    font-weight: 500;
-    color: rgba(197,165,90,0.95);
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-  .phase-title {
-    font-family: var(--serif);
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 1.2;
-    color: #fff;
-    margin-bottom: 16px;
-    letter-spacing: -0.012em;
-  }
-  .phase-title-suffix {
-    font-style: italic;
-    font-weight: 400;
-    color: rgba(255,255,255,0.5);
-    font-size: 0.7em;
-  }
-  .phase-body {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.7);
-    font-weight: 400;
-  }
+/* ───── Меньше движения ───── */
+@media (prefers-reduced-motion: reduce){
+ #dgraph .se,#dgraph .ne,#dgraph .layer,#dgraph .fn,#dgraph .cn,#dgraph .sn{transition:none}
+ #dgraph.st-c .ne{animation:none}
+ html{scroll-behavior:auto}
+}
 
-  /* ============================================ */
-  /* ДЛЯ КОГО                                      */
-  /* ============================================ */
-  .audience-section {
-    padding: 0 0 200px 0;
-  }
-  .criteria {
-    max-width: 720px;
-    margin: 0 auto 120px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-  .criterion {
-    font-family: var(--serif);
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 1.4;
-    color: var(--ink);
-    padding-left: 32px;
-    position: relative;
-    letter-spacing: -0.005em;
-  }
-  .criterion::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-  }
-  .scale-block {
-    text-align: center;
-    margin-bottom: 96px;
-  }
-  .scale-num {
-    font-family: var(--serif);
-    font-size: 96px;
-    font-weight: 600;
-    line-height: 1;
-    color: var(--ink);
-    letter-spacing: -0.025em;
-    margin-bottom: 28px;
-  }
-  .scale-num em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .scale-text {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 22px;
-    color: var(--ink-mute);
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.5;
-  }
-  .referral-block {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 48px 56px;
-    border: 1px solid var(--ink);
-    text-align: center;
-  }
-  .referral-eyebrow {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 22px;
-  }
-  .referral-text {
-    font-family: var(--serif);
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1.45;
-    color: var(--ink);
-    letter-spacing: -0.005em;
-  }
+/* ═════ Меню ≤ 1080px: практики и кнопка уходят в «☰» ═════ */
+@media(max-width:1080px){
+ .practices.bar,.nav-cta{display:none}
+ .menu{display:block}
+ .navlinks.mobile-open{display:flex;position:absolute;top:100%;left:0;right:0;padding:6px 20px 16px;background:#0b1016;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}
+ .practices.drop{display:flex;flex-direction:column;border:0}
+ .practices.drop a{padding:15px 0;font-size:13px;border-bottom:1px solid var(--line);background:none}
+ .practices.drop a+a{border-left:0}
+ .practices.drop a.on{color:#fff}
+ .practices.drop a.on:after{content:" · ВЫ ЗДЕСЬ";color:var(--accent)}
+ .navlinks .m-only{display:block;color:var(--accent);padding:15px 0;font-size:13px}
+}
 
-  /* ============================================ */
-  /* КОМАНДА                                       */
-  /* ============================================ */
-  .team {
-    padding: 0 0 200px 0;
-  }
-  .team-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px 100px;
-    max-width: 1000px;
-    margin: 0 auto 140px auto;
-  }
-  .team-member {
-    border-top: 1px solid var(--line);
-    padding-top: 32px;
-  }
-  .team-member-photo {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: center top;
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    margin-bottom: 28px;
-    display: block;
-  }
-  .team-member-name {
-    font-family: var(--serif);
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1.15;
-    color: var(--ink);
-    margin-bottom: 8px;
-    letter-spacing: -0.012em;
-  }
-  .team-member-role {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--ink-mute);
-    margin-bottom: 20px;
-  }
-  .team-member-bio {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.65;
-    color: var(--ink-mute);
-  }
-  .team-divider {
-    max-width: 880px;
-    margin: 0 auto 64px auto;
-    text-align: center;
-    padding-top: 56px;
-    border-top: 1px solid var(--line);
-  }
-  .team-divider-label {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 18px;
-  }
-  .team-divider-title {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 28px;
-    font-weight: 500;
-    color: var(--ink);
-    max-width: 28ch;
-    margin: 0 auto;
-    line-height: 1.4;
-  }
-  .advisors-list {
-    max-width: 880px;
-    margin: 0 auto 100px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-  }
-  .advisor {
-    padding: 32px 0;
-    border-bottom: 1px solid var(--line);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--ink-mute);
-  }
-  .advisor:last-child { border-bottom: 1px solid var(--line); }
-  .advisor strong {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 24px;
-    color: var(--ink);
-    letter-spacing: -0.005em;
-    display: block;
-    margin-bottom: 4px;
-  }
-  .advisor em {
-    font-style: normal;
-    font-family: var(--sans);
-    color: var(--ink);
-    font-weight: 600;
-  }
-  .team-closing {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 26px;
-    line-height: 1.5;
-    color: var(--ink);
-    letter-spacing: -0.005em;
-  }
-  .circle-intro {
-    max-width: 720px;
-    margin: 0 auto 64px auto;
-    text-align: center;
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--ink-mute);
-  }
-  .caliber-divider {
-    max-width: 880px;
-    margin: 0 auto 32px auto;
-    text-align: center;
-    padding-top: 8px;
-  }
-  .circle-caliber {
-    max-width: 720px;
-    margin: 0 auto 72px auto;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .circle-caliber li {
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--ink-mute);
-    padding-left: 32px;
-    position: relative;
-  }
-  .circle-caliber li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-  }
-  .circle-caliber li strong {
-    color: var(--ink);
-    font-weight: 600;
-  }
+/* ═════ Планшет ≤ 960px ═════ */
+@media(max-width:960px){
+ :root{--pad-section:96px}
+ .wrap{width:min(100% - 40px,var(--max))}
+ .hero{grid-template-columns:1fr;min-height:auto;padding:64px 0 72px;gap:44px}
+ .section-head{grid-template-columns:1fr;gap:12px;margin-bottom:48px}
+ .split,.h72,.adv,.method,.who,.team{grid-template-columns:1fr;gap:44px}
+ .artifacts{gap:80px}
+ .art{grid-template-columns:1fr;gap:32px}
+ .phases{grid-template-columns:1fr 1fr;row-gap:40px}
+ .phase-track{display:none}
+ .phase{border-top:4px solid var(--accent);padding-top:4px}
+ .phase.opt{border-top:4px dashed var(--accent)}
+ .phase .r{margin-top:16px}
+ .quote-band,.manifesto{padding:112px 0}
+ .contact{padding:96px 0}
+}
 
-  /* ============================================ */
-  /* ГРАНИЦЫ                                       */
-  /* ============================================ */
-  .borders {
-    background: var(--bg-soft);
-    padding: 160px 0 200px 0;
-  }
-  .borders-list {
-    max-width: 880px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 56px;
-  }
-  .border-item {
-    padding-top: 32px;
-    border-top: 1px solid var(--line);
-  }
-  .border-name {
-    font-family: var(--serif);
-    font-size: 28px;
-    font-weight: 600;
-    line-height: 1.25;
-    color: var(--ink);
-    margin-bottom: 16px;
-    letter-spacing: -0.012em;
-  }
-  .border-text {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--ink-mute);
-  }
-
-  /* ============================================ */
-  /* ФИНАЛ (без CTA)                               */
-  /* ============================================ */
-  .final {
-    background: var(--bg-dark);
-    color: #fff;
-    padding: 200px 0;
-    text-align: center;
-  }
-  .final-title {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 96px;
-    line-height: 1.05;
-    color: #fff;
-    letter-spacing: -0.022em;
-    max-width: 16ch;
-    margin: 0 auto 48px auto;
-  }
-  .final-sub {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 26px;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.7);
-    max-width: 600px;
-    margin: 0 auto 96px auto;
-  }
-  .final-referral {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 48px 56px;
-    border: 1px solid rgba(255,255,255,0.18);
-    font-family: var(--serif);
-    font-size: 24px;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.92);
-    font-weight: 500;
-    letter-spacing: -0.005em;
-  }
-  .final-referral em {
-    font-style: italic;
-    color: rgba(197,165,90,0.95);
-    font-weight: 500;
-  }
-
-  /* ============================================ */
-  /* FOOTER                                        */
-  /* ============================================ */
-  footer {
-    background: var(--bg-dark);
-    color: rgba(255,255,255,0.4);
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 40px 0;
-    text-align: center;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  /* ============================================ */
-  /* RESPONSIVE                                    */
-  /* ============================================ */
-  @media (max-width: 1024px) {
-    .container { padding: 0 40px; }
-    .hero h1 { font-size: 72px; }
-    .section-title { font-size: 52px; }
-    .seventytwo-title { font-size: 52px; }
-    .seventytwo-num { font-size: 180px; }
-    .manifest-text { font-size: 38px; }
-    .final-title { font-size: 72px; }
-  }
-
-  @media (max-width: 768px) {
-    .container { padding: 0 28px; }
-
-    .topmenu-inner { padding: 14px 28px; }
-    .topmenu-logo { font-size: 18px; }
-    .topmenu-nav { display: none; }
-    .topmenu-burger { display: flex; }
-    .topmenu-overlay-nav a { font-size: 30px; }
-
-    .hero { padding: 120px 0 90px 0; }
-    .hero-eyebrow { font-size: 11px; letter-spacing: 2px; margin-bottom: 32px; }
-    .hero h1 { font-size: 42px; margin-bottom: 32px; }
-    .hero-tagline { font-size: 20px; }
-    .hero-foot { font-size: 12px; }
-
-    .section-opener { padding: 100px 0 70px 0; }
-    .section-roman { font-size: 18px; margin-bottom: 16px; }
-    .section-meta { font-size: 11px; letter-spacing: 3px; margin-bottom: 28px; }
-    .section-title { font-size: 38px; }
-    .section-subtitle { font-size: 18px; }
-
-    .echo { padding-bottom: 100px; }
-    .echo p { font-size: 22px; line-height: 1.8; }
-
-    .seventytwo-body { padding-bottom: 120px; }
-    .seventytwo-title { font-size: 38px; margin-bottom: 80px; }
-    .seventytwo-list { gap: 60px; }
-    .seventytwo-item { grid-template-columns: 1fr; gap: 12px; }
-    .seventytwo-item.left .seventytwo-num,
-    .seventytwo-item.right .seventytwo-num {
-      order: 1;
-      font-size: 140px;
-      text-align: left;
-    }
-    .seventytwo-item.left .seventytwo-text,
-    .seventytwo-item.right .seventytwo-text {
-      order: 2;
-      text-align: left;
-      font-size: 22px;
-    }
-    .seventytwo-finale { font-size: 28px; margin-top: 100px; }
-
-    .stats-section { padding-bottom: 120px; }
-    .stats-grid,
-    .stats-grid-3 { grid-template-columns: 1fr; gap: 56px; max-width: 480px; }
-    .stat-num { font-size: 64px; }
-
-    .gap-section { padding: 100px 0; }
-    .gap-block { padding-left: 24px; }
-    .gap-block p { font-size: 26px; }
-
-    .pillars-section { padding-bottom: 120px; }
-    .pillars-grid { grid-template-columns: 1fr; gap: 48px; }
-    .pillar-title { font-size: 26px; }
-
-    .manifest { padding: 100px 0; }
-    .manifest-text { font-size: 28px; }
-
-    .layers-section { padding-bottom: 120px; }
-    .layers-list { gap: 48px; }
-    .layer { grid-template-columns: 1fr; gap: 18px; }
-    .layer-icon { width: 56px; height: 56px; }
-    .layer-title { font-size: 26px; }
-    .layer-body { font-size: 16px; }
-
-    .artifacts-section { padding: 100px 0 120px 0; }
-    .artifacts-list { gap: 60px; }
-    .artifact-title { font-size: 30px; }
-    .artifact-visual { padding: 60px 28px; }
-
-    .phases { padding: 100px 0 120px 0; }
-    .phases-grid { grid-template-columns: 1fr; gap: 48px; }
-    .phase-title { font-size: 26px; }
-
-    .audience-section { padding-bottom: 120px; }
-    .criteria { gap: 24px; margin-bottom: 80px; }
-    .criterion { font-size: 19px; padding-left: 24px; }
-    .scale-block { margin-bottom: 64px; }
-    .scale-num { font-size: 64px; }
-    .scale-text { font-size: 18px; }
-    .referral-block { padding: 32px 28px; }
-    .referral-text { font-size: 19px; }
-    .referral-eyebrow { font-size: 11px; letter-spacing: 0.22em; }
-
-    .team { padding-bottom: 120px; }
-    .team-grid { grid-template-columns: 1fr; gap: 64px; margin-bottom: 80px; }
-    .team-member-name { font-size: 26px; }
-    .team-divider { padding-top: 40px; }
-    .team-divider-title { font-size: 22px; }
-    .circle-intro { font-size: 16px; margin-bottom: 48px; }
-    .advisor strong { font-size: 20px; }
-    .advisor { padding: 24px 0; }
-    .circle-caliber li { font-size: 16px; }
-    .team-closing { font-size: 20px; }
-
-    .borders { padding: 100px 0 120px 0; }
-    .borders-list { gap: 40px; }
-    .border-name { font-size: 22px; }
-
-    .final { padding: 120px 0; }
-    .final-title { font-size: 46px; margin-bottom: 32px; }
-    .final-sub { font-size: 20px; margin-bottom: 60px; }
-    .final-referral { padding: 32px 28px; font-size: 19px; }
-
-    footer { font-size: 11px; letter-spacing: 0.18em; padding: 32px 0; }
-  }
+/* ═════ Телефон ≤ 600px ═════ */
+@media(max-width:600px){
+ :root{--head:64px;--fs-ui:15px;--fs-text:16px;--fs-lead:18px;--pad-section:72px}
+ .wrap{width:calc(100% - 32px)}
+ .brand{font-size:13px}
+ h1{font-size:36px;letter-spacing:-.045em}
+ h2{font-size:32px;letter-spacing:-.04em}
+ .eyebrow,.kicker{font-size:11px}
+ .hero{padding:44px 0 56px}
+ .hero-meta{margin-top:36px;gap:14px}
+ .visual{height:360px}
+ .vlabel.br{display:none}
+ .vcap{max-width:calc(100% - 36px)}
+ #dgraph .gl{font-size:19px}
+ #dgraph .hull-t{font-size:17px}
+ .states div{padding:10px 8px}
+ .statement{font-size:21px;padding-left:18px;margin-top:44px}
+ .echo{margin-top:40px}
+ .echo p{font-size:30px}
+ .clock{font-size:60px;margin-top:18px}
+ .qrow{grid-template-columns:30px 1fr;gap:10px;padding:16px 0}
+ .erosion,.layers,.truths,.bounds{grid-template-columns:1fr;row-gap:40px}
+ .quote-band,.manifesto{padding:88px 0}
+ .quote-band .roles p{font-size:22px}
+ .quote-band .ask{font-size:30px}
+ .df{grid-template-columns:104px 1fr}
+ /* Таблица «документ ≠ факт» — карточками */
+ .gap-table thead{display:none}
+ .gap-table,.gap-table tbody,.gap-table tr,.gap-table td{display:block;width:100%}
+ .gap-table tr{padding:12px 0;border-bottom:1px solid #1d262e}
+ .gap-table tr:last-child{border-bottom:0}
+ .gap-table td{border:0;padding:0}
+ .gap-table td:nth-child(1){font-size:var(--fs-label);color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+ .gap-table td:nth-child(2){margin-top:4px}
+ .gap-table td:nth-child(3){margin-top:2px}
+ .gap-table td:nth-child(4){margin-top:6px}
+ .manifesto h2{font-size:44px}
+ .manifesto p{font-size:18px}
+ .lrow{grid-template-columns:52px 1fr;gap:16px;padding:20px 0}
+ .lrow svg{width:52px;height:42px}
+ .lrow h3,.ero h3,.lay h3,.bound h3{font-size:21px}
+ .truth h3{font-size:24px}
+ .art h3{font-size:24px}
+ .keys{grid-template-columns:1fr}
+ .phases{grid-template-columns:1fr}
+ .scale{grid-template-columns:1fr;gap:36px;margin-top:64px}
+ .scale strong{font-size:52px}
+ .contact{padding:80px 0}
+ .contact h2{font-size:36px}
+ .c-line{font-size:16px}
+ .footer-inner{flex-direction:column}
+}
 </style>
 </head>
 <body>
-
-
-<!-- ============================================ -->
-<!-- TOPMENU                                       -->
-<!-- ============================================ -->
-<header class="topmenu">
-  <div class="topmenu-inner">
-    <a href="/" class="topmenu-logo">
-      <span class="topmenu-logo-dot"></span>
-      Custodia Silentis
-    </a>
-    <nav class="topmenu-nav">
-      <a href="/" class="topmenu-link">Intelligence</a>
-      <a href="/dynasty" class="topmenu-link active">Преемственность</a>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="/">CUSTODIA SILENTIS<small>DYNASTY ENGINEERING</small></a>
+    <div class="practices bar" aria-label="Практики"><a href="/">ОБЗОР</a><a href="/intelligence">INTELLIGENCE</a><a href="/crisis">CRISIS</a><a href="/transformation">TRANSFORMATION</a><a href="/dynasty" class="on" aria-current="page">DYNASTY</a></div>
+    <nav class="navlinks" id="navlinks" aria-label="Практики">
+      <div class="practices drop"><a href="/">ОБЗОР</a><a href="/intelligence">INTELLIGENCE</a><a href="/crisis">CRISIS</a><a href="/transformation">TRANSFORMATION</a><a href="/dynasty" class="on" aria-current="page">DYNASTY</a></div>
+      <a class="m-only" href="#contact">ОБСУДИТЬ ПО РЕКОМЕНДАЦИИ ↓</a>
     </nav>
-    <button class="topmenu-burger" aria-label="Открыть меню" id="topmenu-burger">
-      <span></span><span></span><span></span>
-    </button>
+    <a class="nav-cta" href="#contact">ОБСУДИТЬ ПО РЕКОМЕНДАЦИИ ↓</a>
+    <button class="menu" id="menu" aria-label="Открыть навигацию" aria-expanded="false" aria-controls="navlinks">☰</button>
   </div>
 </header>
-<div class="topmenu-overlay" id="topmenu-overlay">
-  <button class="topmenu-overlay-close" aria-label="Закрыть меню" id="topmenu-close">×</button>
-  <nav class="topmenu-overlay-nav">
-    <a href="/">Intelligence</a>
-    <a href="/dynasty" class="active">Преемственность</a>
-  </nav>
-</div>
 
+<main id="top">
 
-<!-- ============================================ -->
-<!-- HERO                                          -->
-<!-- ============================================ -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-eyebrow">Custodia Silentis · Архитектура Преемственности</div>
-    <h1>Проектируем передачу власти, контроля и&nbsp;знаний.</h1>
-    <div class="hero-gold-line"></div>
-    <p class="hero-tagline">От&nbsp;вас — к&nbsp;следующему поколению.</p>
-    <div class="hero-foot">Практика Dynasty Engineering</div>
+<!-- 00 · Первый экран: граф передачи системы -->
+<section class="wrap hero">
+  <div>
+    <div class="eyebrow">АРХИТЕКТУРА ПРЕЕМСТВЕННОСТИ</div>
+    <h1>Вы построили систему. Сможет ли она жить без вас?</h1>
+    <p class="lead">Проектируем передачу власти, контроля и знаний — от вас к следующему поколению. Чтобы наследники получили не только активы, но и способность ими управлять.</p>
+    <div class="actions">
+      <a class="primary" href="#contact">ОБСУДИТЬ ПО РЕКОМЕНДАЦИИ <span>↓</span></a>
+      <a class="textlink" href="#method">КАК МЫ РАБОТАЕМ ↓</a>
+    </div>
+    <div class="hero-meta"><span>КАПИТАЛ</span><span>УПРАВЛЕНИЕ</span><span>ЗНАНИЕ</span><span>ЛЕГИТИМНОСТЬ</span></div>
   </div>
-</section>
-
-
-<!-- ============================================ -->
-<!-- I · КОНТЕКСТ                                  -->
-<!-- ============================================ -->
-<section class="section-opener">
-  <div class="container reveal">
-    <div class="section-opener-inner" style="max-width: 1100px;">
-      <div class="section-roman">I</div>
-      <div class="section-meta">Контекст</div>
-      <h2 class="section-title" style="max-width: 32ch;">Представьте, что завтра вы&nbsp;уйдёте в&nbsp;бессрочный отпуск. Без предупреждения, без связи. Ваши дети остались одни.</h2>
+  <div>
+    <div class="visual" aria-label="Схема: система, замкнутая на основателе, и та же система после передачи">
+      <div class="vlabel tl">АРХИТЕКТУРА ПЕРЕДАЧИ / 001</div>
+      <svg id="dgraph" class="st-a" viewBox="0 0 600 520" role="img" aria-label="Система, замкнутая на основателе, затем основатель недоступен, затем система держится на совете и преемнике"></svg>
+      <div class="vcap" id="vcap"></div>
+      <div class="vlabel br">CAPITAL / GOVERNANCE / KNOWLEDGE</div>
+    </div>
+    <div class="states" id="states">
+      <div data-s="a"><b>01</b>СЕЙЧАС</div>
+      <div data-s="b"><b>02</b>БЕЗ ОСНОВАТЕЛЯ</div>
+      <div data-s="c"><b>03</b>ПОСЛЕ ПЕРЕДАЧИ</div>
     </div>
   </div>
 </section>
 
-<section class="echo">
-  <div class="container reveal">
-    <p>До&nbsp;вас не&nbsp;дозвониться.</p>
-    <p>Не&nbsp;докричаться.</p>
-    <p>Не&nbsp;достучаться.</p>
+<!-- I · Контекст -->
+<section class="section alt context" id="context">
+  <div class="wrap">
+    <div class="kicker">I / КОНТЕКСТ</div>
+    <h2>Представьте, что завтра вы уйдёте в бессрочный отпуск. Без предупреждения, без связи.</h2>
+    <div class="echo" aria-label="До вас не дозвониться. Не докричаться. Не достучаться.">
+      <p>До вас не дозвониться.</p>
+      <p>Не докричаться.</p>
+      <p>Не достучаться.</p>
+    </div>
+    <p class="statement">Решения остаются тем, кто их никогда не принимал.</p>
   </div>
 </section>
 
+<!-- II · 72 часа: обратный отсчёт -->
+<section class="section" id="h72">
+  <div class="wrap h72">
+    <div>
+      <div class="kicker">II / 72 ЧАСА</div>
+      <div class="clock" id="clock" aria-label="72 часа">72:00:00</div>
+      <div class="clock-cap">С МОМЕНТА, КОГДА ВЫ НЕДОСТУПНЫ</div>
+      <h2>Смогут ли они за 72 часа:</h2>
+    </div>
+    <div>
+      <div class="qrow"><span>01</span><p>Перехватить управление компанией и не дать ей развалиться?</p></div>
+      <div class="qrow"><span>02</span><p>Заметить и остановить финансового директора, который выводит деньги из структуры?</p></div>
+      <div class="qrow"><span>03</span><p>Отличить союзников от тех, кто уже договаривается за их спиной?</p></div>
+      <div class="qrow"><span>04</span><p>Удержать ключевых людей, которые знают, как всё устроено на самом деле?</p></div>
+      <div class="qrow"><span>05</span><p>Найти счета, доступы, документы и людей, которые знают, где лежит остальное?</p></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="statement">Или всё, что вы строили, начнёт рассыпаться — <em>потому что знание ушло вместе с вами?</em></p>
+  </div>
+</section>
 
-<!-- ============================================ -->
-<!-- II · 72 ЧАСА                                  -->
-<!-- ============================================ -->
-<section class="section-opener" style="padding-bottom: 60px;">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">II</div>
-      <div class="section-meta">72 часа</div>
-      <h2 class="section-title seventytwo-title" style="margin-bottom: 0;">Смогут ли&nbsp;они за&nbsp;72&nbsp;часа:</h2>
+<!-- III · Цена тишины: эрозия -->
+<section class="section alt" id="erosion">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">III / ЦЕНА ТИШИНЫ</div>
+      <div><h2>Наследие теряется тише, чем кажется</h2><p class="section-intro">Почти никогда не бывает одного громкого события. Бывает медленная эрозия, которую никто не замечает, пока не становится поздно.</p></div>
+    </div>
+    <div class="erosion">
+      <div class="ero"><div class="bar"></div><h3>Решения, которые некому принять</h3><p>Всё держалось на интуиции основателя, а она не передаётся по завещанию.</p></div>
+      <div class="ero"><div class="bar"></div><h3>Люди, которые уходят с контекстом</h3><p>Финансовый директор, юрист, первый партнёр. Вместе с ними уходит «как тут всё устроено на самом деле».</p></div>
+      <div class="ero"><div class="bar"></div><h3>Документы, которых нет</h3><p>Договорённости на словах, платежи без оснований, структура, которую понимал только один человек.</p></div>
+      <div class="ero"><div class="bar"></div><h3>Наследник, которого не признали</h3><p>Формально у него контроль. Фактически — каждое решение сначала согласовывает с кем-то другим.</p></div>
     </div>
   </div>
 </section>
 
-<section class="seventytwo-body">
-  <div class="container">
-
-    <div class="seventytwo-list">
-
-      <div class="seventytwo-item left reveal">
-        <div class="seventytwo-num">01</div>
-        <p class="seventytwo-text">Перехватить контроль над&nbsp;компанией и&nbsp;не&nbsp;дать ей&nbsp;развалиться?</p>
-      </div>
-
-      <div class="seventytwo-item right reveal">
-        <div class="seventytwo-num">02</div>
-        <p class="seventytwo-text">Остановить финансового директора, выводящего $20&nbsp;млн на&nbsp;офшор?</p>
-      </div>
-
-      <div class="seventytwo-item left reveal">
-        <div class="seventytwo-num">03</div>
-        <p class="seventytwo-text">Отличить союзников от&nbsp;предателей в&nbsp;совете директоров?</p>
-      </div>
-
-      <div class="seventytwo-item right reveal">
-        <div class="seventytwo-num">04</div>
-        <p class="seventytwo-text">Удержать ключевых людей, которые владеют стратегической информацией?</p>
-      </div>
-
-      <div class="seventytwo-item left reveal">
-        <div class="seventytwo-num">05</div>
-        <p class="seventytwo-text">Найти счета, пароли и&nbsp;нужные документы?</p>
-      </div>
-
-    </div>
-
-    <p class="seventytwo-finale reveal">Или всё, что&nbsp;вы строили, рассыплется — потому что знание ушло вместе с&nbsp;вами?</p>
-
-  </div>
-</section>
-
-
-<!-- ============================================ -->
-<!-- III · ЦЕНА ТИШИНЫ                             -->
-<!-- ============================================ -->
-<section class="section-opener">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">III</div>
-      <div class="section-meta">Цена тишины</div>
-      <h2 class="section-title">Наследие теряется тише, чем&nbsp;кажется.</h2>
-    </div>
-  </div>
-</section>
-
-<section class="stats-section">
-  <div class="container">
-    <div class="reveal">
-      <div class="stats-grid stats-grid-3">
-
-        <div class="stat-cell">
-          <div class="stat-num">75<span class="stat-plus">%</span></div>
-          <div class="stat-label">наследств</div>
-          <div class="stat-note">растворяются в&nbsp;течение двух поколений</div>
-        </div>
-
-        <div class="stat-cell">
-          <div class="stat-num">&gt;30<span class="stat-plus">%</span></div>
-          <div class="stat-label">стоимости активов</div>
-          <div class="stat-note">исчезает после передачи</div>
-        </div>
-
-        <div class="stat-cell">
-          <div class="stat-num">18<span class="stat-plus">&thinsp;мес.</span></div>
-          <div class="stat-label">в&nbsp;среднем</div>
-          <div class="stat-note">требуется, чтобы просто восстановить карту активов</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================ -->
-<!-- IV · ПОЗИЦИОННЫЙ РАЗРЫВ                       -->
-<!-- ============================================ -->
-<section class="gap-section">
-  <div class="container">
-    <div class="gap-block reveal">
+<!-- IV · Разрыв: цитатная полоса -->
+<section class="quote-band" id="gap">
+  <div class="wrap">
+    <div class="kicker">IV / РАЗРЫВ</div>
+    <div class="roles">
       <p>Юристы составят завещание.</p>
       <p>Банкиры структурируют трасты.</p>
-      <p class="gap-question">Но&nbsp;кто передаст вашу логику? Ваш инстинкт? Ваше видение?</p>
+      <p>Нотариус заверит подписи.</p>
     </div>
+    <p class="ask"><em>Но кто передаст вашу логику? Ваш инстинкт? Ваше видение?</em></p>
   </div>
 </section>
 
-
-<!-- ============================================ -->
-<!-- V · ЧТО НУЖНО, ЧТОБЫ ВСЁ РАБОТАЛО             -->
-<!-- ============================================ -->
-<section class="section-opener">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">V</div>
-      <div class="section-meta">Условия</div>
-      <h2 class="section-title">Что нужно,<br>чтобы всё работало.</h2>
+<!-- V · Что на самом деле передаётся: документ против факта -->
+<section class="section" id="transfer">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">V / ЧТО НА САМОМ ДЕЛЕ ПЕРЕДАЁТСЯ</div>
+      <div><h2>Передать активы — не значит передать систему</h2><p class="section-intro">Юридическая передача может быть оформлена безупречно. Но способность принимать решения, удерживать контроль и продолжать развитие не переходит автоматически.</p></div>
     </div>
-  </div>
-</section>
-
-<section class="pillars-section">
-  <div class="container">
-    <div class="pillars-grid">
-
-      <div class="pillar reveal">
-        <h3 class="pillar-title">Бизнес работает без&nbsp;вас.</h3>
-        <p class="pillar-body">Не&nbsp;зависит от&nbsp;одного человека. Решения принимаются системно. Уезжаете на&nbsp;три месяца — ничего не&nbsp;проседает.</p>
-      </div>
-
-      <div class="pillar reveal">
-        <h3 class="pillar-title">Наследники готовы.</h3>
-        <p class="pillar-body">Не&nbsp;просто «в&nbsp;курсе». Признаны окружением как легитимные лидеры. Понимают логику, а&nbsp;не&nbsp;только цифры.</p>
-      </div>
-
-      <div class="pillar reveal">
-        <h3 class="pillar-title">Структура защищает.</h3>
-        <p class="pillar-body">Юридическая архитектура фиксирует то, что&nbsp;спроектировано на&nbsp;уровне людей. Фонды, трасты, корпоративное управление — как&nbsp;инструмент, а&nbsp;не&nbsp;как самоцель.</p>
-      </div>
-
-      <div class="pillar reveal">
-        <h3 class="pillar-title">Знание сохранено.</h3>
-        <p class="pillar-body">Карта активов, контактов, решений, «как тут всё устроено на&nbsp;самом деле» — оцифрована и&nbsp;доступна. Не&nbsp;в&nbsp;голове основателя, а&nbsp;в&nbsp;системе.</p>
-      </div>
-
+    <div class="layers">
+      <div class="lay"><span class="num">01</span><h3>Собственность</h3><p>Кому принадлежат активы — и кто на самом деле определяет, как ими распоряжаться?</p>
+        <div class="df"><span>ПО ДОКУМЕНТАМ</span><div class="track"><i class="doc"></i></div></div>
+        <div class="df"><span>ПО ФАКТУ</span><div class="track"><i class="fact" style="width:62%"></i><b style="left:62%">?</b></div></div></div>
+      <div class="lay"><span class="num">02</span><h3>Управление</h3><p>Кто принимает решения, где проходят границы полномочий и что происходит, когда меняется руководство?</p>
+        <div class="df"><span>ПО ДОКУМЕНТАМ</span><div class="track"><i class="doc"></i></div></div>
+        <div class="df"><span>ПО ФАКТУ</span><div class="track"><i class="fact" style="width:44%"></i><b style="left:44%">?</b></div></div></div>
+      <div class="lay"><span class="num">03</span><h3>Знание</h3><p>Какие решения держатся на личном опыте основателя, неформальных связях и контексте, которого нет в документах?</p>
+        <div class="df"><span>ПО ДОКУМЕНТАМ</span><div class="track"><i class="doc"></i></div></div>
+        <div class="df"><span>ПО ФАКТУ</span><div class="track"><i class="fact" style="width:22%"></i><b style="left:22%">?</b></div></div></div>
+      <div class="lay"><span class="num">04</span><h3>Легитимность</h3><p>Признают ли преемника ключевые люди — и сможет ли система действовать без постоянного подтверждения прежнего владельца?</p>
+        <div class="df"><span>ПО ДОКУМЕНТАМ</span><div class="track"><i class="doc"></i></div></div>
+        <div class="df"><span>ПО ФАКТУ</span><div class="track"><i class="fact" style="width:34%"></i><b style="left:34%">?</b></div></div></div>
     </div>
+    <p class="statement principle-band">Преемственность — не момент, когда меняется имя владельца. Это процесс, в котором <em>личная система становится устойчивой институцией.</em></p>
   </div>
 </section>
 
-
-<!-- ============================================ -->
-<!-- VI · МАНИФЕСТ (тёмная инверсная)              -->
-<!-- ============================================ -->
-<section class="manifest">
-  <div class="container">
-    <p class="manifest-text reveal" style="max-width: 36ch;">Это то, что&nbsp;мы проектируем и&nbsp;внедряем. <em>Не&nbsp;отчёты. Не&nbsp;рекомендации.</em> Работающую систему передачи — от&nbsp;диагностики до&nbsp;результата.</p>
-  </div>
-</section>
-
-
-<!-- ============================================ -->
-<!-- VII · МЫ ИНЖЕНЕРЫ, НЕ СОВЕТНИКИ               -->
-<!-- ============================================ -->
-<section class="section-opener">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">VII</div>
-      <div class="section-meta">Метод</div>
-      <h2 class="section-title">Мы инженеры,<br>не&nbsp;советники.</h2>
-      <p class="section-subtitle">Работаем со&nbsp;всеми четырьмя слоями:</p>
+<!-- VI · Глазами того, кто захочет разрушить -->
+<section class="section alt" id="adversary">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">VI / НАША ОСОБЕННОСТЬ</div>
+      <div><h2>Мы смотрим на вашу систему глазами того, кто захочет её разрушить</h2></div>
     </div>
-  </div>
-</section>
-
-<section class="layers-section">
-  <div class="container">
-    <div class="layers-list">
-
-      <div class="layer reveal">
-        <div class="layer-icon"><img src="icons/group_students.svg" alt=""></div>
-        <div class="layer-content">
-          <h3 class="layer-title">Люди.</h3>
-          <p class="layer-body">Готовность наследников, легитимность, конфликты, ключевые люди.</p>
+    <div class="adv">
+      <div>
+        <p class="body">Конфликтующий наследник. Бывший партнёр. Финансовый директор с доступом к счетам. Рейдер, который нашёл неоплаченный транш пятилетней давности.</p>
+        <p class="body">Все они будут искать одно и то же: разрыв между тем, что записано в документах, и тем, как всё устроено на самом деле.</p>
+        <p class="strong">Мы находим этот разрыв первыми.</p>
+        <p class="body">Диагностику ведут те же собственные аналитические решения, что работают в нашей практике Intelligence: внутренние документы, открытые источники и интервью собираются в одну модель. Мы видим фактическое владение, а не формальное. Реальные центры решений, а не оргструктуру. Уязвимости — до того, как их увидит кто-то другой.</p>
+      </div>
+      <div class="frag">
+        <div class="frag-head"><span>РАЗРЫВ · ДОКУМЕНТ ⟷ ФАКТ</span><em>ОБЕЗЛИЧЕНО</em></div>
+        <div class="frag-body">
+          <table class="gap-table">
+            <thead><tr><th>ГДЕ</th><th>ПО ДОКУМЕНТАМ</th><th>НА САМОМ ДЕЛЕ</th><th>КТО НАЙДЁТ</th></tr></thead>
+            <tbody>
+              <tr><td>Решения</td><td>совет директоров</td><td>решает основатель лично</td><td>наследник в конфликте</td></tr>
+              <tr><td>Доли</td><td>100 % у холдинга</td><td>устная договорённость о доле партнёра</td><td>бывший партнёр</td></tr>
+              <tr><td>Деньги</td><td>двойная подпись</td><td>банк-клиент только у финансового директора</td><td>финансовый директор</td></tr>
+              <tr><td>Транш 2021</td><td>оплачен</td><td>платёжного документа нет</td><td>рейдер</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
+    </div>
+    <p class="note">Фрагмент условный: формулировки изменены.</p>
+    <p class="statement">Большинство консультантов по преемственности начинают с того, как должно быть. <em>Мы начинаем с того, как есть.</em></p>
+  </div>
+</section>
 
-      <div class="layer reveal">
-        <div class="layer-icon"><img src="icons/sections_plan_program.svg" alt=""></div>
-        <div class="layer-content">
-          <h3 class="layer-title">Процессы.</h3>
-          <p class="layer-body">Деперсонализация решений, передача полномочий, Day&nbsp;X&nbsp;Protocol.</p>
+<!-- VII · Манифест: тёмная полоса -->
+<section class="manifesto">
+  <div class="wrap">
+    <div class="kicker">VII / МАНИФЕСТ</div>
+    <h2>Мы инженеры, не советники</h2>
+    <p>Не отчёты. Не рекомендации, которые лягут в стол. Работающая система передачи — от диагностики до момента, когда она живёт без нас. И без вас.</p>
+  </div>
+</section>
+
+<!-- VIII · Метод: четыре слоя + Day X Protocol -->
+<section class="section" id="method">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">VIII / МЕТОД</div>
+      <div><h2>Работаем со всеми четырьмя слоями одновременно</h2></div>
+    </div>
+    <div class="method">
+      <div>
+        <div class="lrow">
+          <svg viewBox="0 0 72 56" aria-hidden="true"><line class="on" x1="6" y1="10" x2="66" y2="10"/><line x1="6" y1="22" x2="66" y2="22"/><line x1="6" y1="34" x2="66" y2="34"/><line x1="6" y1="46" x2="66" y2="46"/></svg>
+          <div><h3>Люди</h3><p>Готовность наследников, их легитимность в глазах окружения, конфликты, ключевая команда. Отношения поколений — без них любая структура остаётся на бумаге.</p></div>
+        </div>
+        <div class="lrow">
+          <svg viewBox="0 0 72 56" aria-hidden="true"><line x1="6" y1="10" x2="66" y2="10"/><line class="on" x1="6" y1="22" x2="66" y2="22"/><line x1="6" y1="34" x2="66" y2="34"/><line x1="6" y1="46" x2="66" y2="46"/></svg>
+          <div><h3>Процессы</h3><p>Деперсонализация решений, передача полномочий, сценарии отсутствия ключевого лица. Day X Protocol — что происходит в первые часы и дни, если основатель недоступен.</p></div>
+        </div>
+        <div class="lrow">
+          <svg viewBox="0 0 72 56" aria-hidden="true"><line x1="6" y1="10" x2="66" y2="10"/><line x1="6" y1="22" x2="66" y2="22"/><line class="on" x1="6" y1="34" x2="66" y2="34"/><line x1="6" y1="46" x2="66" y2="46"/></svg>
+          <div><h3>Структуры</h3><p>Юридическая архитектура, корпоративное управление, семейная конституция. Фонды, трасты, соглашения — как инструмент, а не как самоцель.</p></div>
+        </div>
+        <div class="lrow">
+          <svg viewBox="0 0 72 56" aria-hidden="true"><line x1="6" y1="10" x2="66" y2="10"/><line x1="6" y1="22" x2="66" y2="22"/><line x1="6" y1="34" x2="66" y2="34"/><line class="on" x1="6" y1="46" x2="66" y2="46"/></svg>
+          <div><h3>Безопасность</h3><p>Защита активов, информационный периметр, антирейдерская устойчивость. В активном конфликте этот слой разворачивается через практику Intelligence.</p></div>
         </div>
       </div>
-
-      <div class="layer reveal">
-        <div class="layer-icon"><img src="icons/structure_map.svg" alt=""></div>
-        <div class="layer-content">
-          <h3 class="layer-title">Структуры.</h3>
-          <p class="layer-body">Юридическая архитектура, корпоративное управление, Family&nbsp;Constitution.</p>
+      <div class="frag dayx">
+        <div class="frag-head"><span>DAY X PROTOCOL · ФРАГМЕНТ</span><em>ОБЕЗЛИЧЕНО</em></div>
+        <div class="frag-body">
+          <p class="lead-t">Что происходит, если основатель недоступен:</p>
+          <div class="t"><b>Ч+0</b><span>Кто узнаёт первым и кому звонит. Кто говорит от имени семьи.</span></div>
+          <div class="t"><b>Ч+2</b><span>Кто подписывает платежи. Что замораживается до решения совета.</span></div>
+          <div class="t"><b>Ч+24</b><span>Что и как говорится команде, банкам и партнёрам.</span></div>
+          <div class="t"><b>Ч+72</b><span>Кто управляет до решения семьи и где лежат доступы.</span></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="layer reveal">
-        <div class="layer-icon"><img src="icons/security_safety_lock.svg" alt=""></div>
-        <div class="layer-content">
-          <h3 class="layer-title">Безопасность.</h3>
-          <p class="layer-body">Защита активов, информационный периметр, антирейдер. <em>В&nbsp;активном конфликте этот слой разворачивается через наш аналитический движок — практику Intelligence.</em></p>
+<!-- IX · Что должно стать правдой -->
+<section class="section alt" id="result">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">IX / КАК ВЫГЛЯДИТ РЕЗУЛЬТАТ</div>
+      <div><h2>Что должно стать правдой</h2></div>
+    </div>
+    <div class="truths">
+      <div class="truth"><h3>Бизнес работает без вас</h3><p>Решения принимаются системно, а не через одного человека. Вы уезжаете на три месяца — ничего не проседает.</p></div>
+      <div class="truth"><h3>Наследники готовы</h3><p>Не просто «в курсе». Признаны окружением как лидеры. Понимают логику, а не только цифры.</p></div>
+      <div class="truth"><h3>Структура защищает</h3><p>Юридическая архитектура закрепляет то, что спроектировано на уровне людей. Разрывов между формой и фактом нет.</p></div>
+      <div class="truth"><h3>Знание сохранено</h3><p>Карта активов, контактов, решений и «как всё устроено на самом деле» живёт в системе, а не в голове основателя.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- X · Артефакты: чертёж и инструменты -->
+<section class="section" id="artifacts">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">X / АРТЕФАКТЫ</div>
+      <div><h2>Результат — не презентация, а два артефакта вашего наследия</h2></div>
+    </div>
+    <div class="artifacts">
+      <div class="art">
+        <div class="art-text">
+        <div class="roman">I</div>
+        <h3>Архитектура</h3>
+        <p>Стратегическое описание и визуализация вашей системы власти. Конституция династии в виде инженерной схемы. Внутри:</p>
+        <ul>
+          <li><span><b>Карта владения и контроля</b> — активы, структуры, участники и центры фактического влияния</span></li>
+          <li><span><b>Карта управления</b> — кто за что отвечает, какие решения требуют владельца и где система уязвима к отсутствию конкретного человека</span></li>
+          <li><span><b>Карта критического знания</b> — процессы, контекст решений, отношения и носители знаний</span></li>
+          <li><span><b>Архитектура перехода</b> — целевая модель, последовательность изменений и контрольные точки</span></li>
+        </ul>
+        </div>
+        <div class="art-vis">
+        <div class="blueprint" aria-label="Схематичный лист с четырьмя картами">
+          <div class="bp-head"><span>АРХИТЕКТУРА · ЛИСТ 1 / 4</span><span>DYNASTY ENGINEERING</span></div>
+          <div class="bp-grid">
+            <div class="bp-tile"><svg viewBox="0 0 120 64" aria-hidden="true"><rect class="s" x="48" y="4" width="24" height="12"/><path class="s" d="M60 16v8M24 24h72M24 24v8M60 24v8M96 24v8"/><rect class="s" x="12" y="32" width="24" height="12"/><rect class="f" x="48" y="32" width="24" height="12"/><rect class="s" x="84" y="32" width="24" height="12"/><path class="a" d="M60 44v14"/><circle class="s" cx="60" cy="60" r="3"/></svg><span>ВЛАДЕНИЕ И КОНТРОЛЬ</span></div>
+            <div class="bp-tile"><svg viewBox="0 0 120 64" aria-hidden="true"><circle class="f" cx="60" cy="14" r="6"/><path class="s" d="M60 20L24 46M60 20L60 46M60 20L96 46M24 46L60 46L96 46"/><circle class="s" cx="24" cy="48" r="5"/><circle class="s" cx="60" cy="48" r="5"/><circle class="s" cx="96" cy="48" r="5"/></svg><span>УПРАВЛЕНИЕ</span></div>
+            <div class="bp-tile"><svg viewBox="0 0 120 64" aria-hidden="true"><path class="s" d="M10 50h100"/><path class="s" d="M22 50v-14M46 50v-26M70 50v-8M94 50v-34"/><circle class="f" cx="22" cy="34" r="3"/><circle class="f" cx="46" cy="22" r="3"/><circle class="f" cx="70" cy="40" r="3"/><circle class="f" cx="94" cy="14" r="3"/><path class="a" d="M22 34L46 22L70 40L94 14"/></svg><span>КРИТИЧЕСКОЕ ЗНАНИЕ</span></div>
+            <div class="bp-tile"><svg viewBox="0 0 120 64" aria-hidden="true"><rect class="s" x="8" y="22" width="30" height="20"/><rect class="s" x="82" y="22" width="30" height="20"/><path class="s" d="M38 32H82"/><path class="s" d="M76 28l6 4-6 4"/><circle class="f" cx="52" cy="32" r="3"/><circle class="f" cx="66" cy="32" r="3"/><path class="a" d="M52 32V12M66 32V52"/></svg><span>АРХИТЕКТУРА ПЕРЕХОДА</span></div>
+          </div>
+        </div>
         </div>
       </div>
+      <div class="art">
+        <div class="art-text">
+        <div class="roman">II</div>
+        <h3>Инструменты</h3>
+        <p>От капсул доверия до интеллектуальных агентов — цифровые и аппаратные решения, построенные под логику вашей семьи. Они не требуют нашего обслуживания: мы передаём их вам, когда они способны жить без нас.</p>
+        </div>
+        <div class="art-vis">
+        <div class="frag capsule">
+          <div class="frag-head"><span>КАПСУЛА ДОВЕРИЯ · ФРАГМЕНТ</span><em>ОБЕЗЛИЧЕНО</em></div>
+          <div class="frag-body">
+            <div class="cap-row">
+              <svg class="lock" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28"/><circle class="r2" cx="32" cy="32" r="20"/><rect x="26" y="28" width="12" height="12"/><path d="M28 28v-5a4 4 0 0 1 8 0v5" fill="none" stroke="#9bb3c8" stroke-width="1.5"/></svg>
+              <div class="cap-t">ОТКРЫВАЕТСЯ ПРИ УСЛОВИИ<b>2 из 3 доверенных лиц подтверждают доступ</b></div>
+            </div>
+            <div class="keys">
+              <div class="ok">КЛЮЧ 01<i>ПРЕЕМНИК · ✓</i></div>
+              <div class="ok">КЛЮЧ 02<i>СЕМЕЙНЫЙ СОВЕТ · ✓</i></div>
+              <div class="wait">КЛЮЧ 03<i>ДОВЕРЕННОЕ ЛИЦО · —</i></div>
+            </div>
+            <div class="agent">
+              <b>АГЕНТ ЗНАНИЙ · ВОПРОС</b>
+              «Кто согласовывал условия по второму заводу и где оригинал соглашения?»
+              <div class="ans">Согласовывал основатель лично, при участии юриста. Оригинал — в капсуле, раздел «Производство», с аудиозаписью разъяснений основателя.</div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Фрагменты условные: содержание изменено.</p>
+  </div>
+</section>
 
+<!-- XI · Как мы работаем: четыре фазы -->
+<section class="section alt" id="phases">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">XI / КАК МЫ РАБОТАЕМ</div>
+      <div><h2>Четыре фазы. Одна логика.</h2></div>
+    </div>
+    <div class="phase-track" aria-hidden="true"><span></span><span></span><span></span><span class="opt"></span></div>
+    <div class="phases">
+      <div class="phase"><div class="r">I</div><h3>Диагностика</h3><p>Dynasty Stress Test: структурированное интервью и анализ документов и открытых источников. На выходе — карта рисков, которых не видно изнутри, и Dynasty Readiness Index: насколько система готова к передаче сегодня.</p></div>
+      <div class="phase"><div class="r">II</div><h3>Проектирование</h3><p>Целевая модель преемственности: распределение контроля, полномочий и знаний. Работа с наследниками. Реструктуризация, если она нужна.</p></div>
+      <div class="phase"><div class="r">III</div><h3>Передача ключей</h3><p>Синхронизируем владельца, преемников, команду и профильных специалистов. Переводим модель в работающие процедуры. Когда система готова жить автономно — уходим.</p></div>
+      <div class="phase opt"><div class="r">IV</div><h3>Сопровождение<small>ПО ЗАПРОСУ</small></h3><p>Ежегодная проверка устойчивости, адаптация к изменениям, реагирование в кризис. Династия — не проект с дедлайном.</p></div>
     </div>
   </div>
 </section>
 
-
-<!-- ============================================ -->
-<!-- VIII · ДВА АРТЕФАКТА                          -->
-<!-- ============================================ -->
-<section class="section-opener">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">VIII</div>
-      <div class="section-meta">Результат</div>
-      <h2 class="section-title">Результат нашей работы — <em style="font-style: italic; color: var(--gold);">два артефакта вашего наследия.</em></h2>
+<!-- XII · Для кого -->
+<section class="section" id="for">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">XII / ДЛЯ КОГО</div>
+      <div><h2>Для тех, кто думает дальше следующего решения</h2></div>
+    </div>
+    <div class="who">
+      <div>
+        <div class="wrow"><span>01</span><p>Основатель, который планирует постепенно выйти из операционного управления</p></div>
+        <div class="wrow"><span>02</span><p>Владелец, который готовит детей или других преемников к ответственности</p></div>
+        <div class="wrow"><span>03</span><p>Семья, которой нужно договориться о ролях, контроле и будущем общего капитала</p></div>
+        <div class="wrow"><span>04</span><p>Преемник, которому предстоит принять сложную структуру и не потерять управляемость</p></div>
+        <div class="wrow"><span>05</span><p>Собственник, для которого устойчивость созданного важнее личного присутствия</p></div>
+      </div>
+      <div class="frag criteria">
+        <div class="frag-head"><span>КРИТЕРИИ ОТБОРА</span></div>
+        <div class="frag-body">
+          <div class="crit">Активы от 5 млрд ₽ или выручка от 500 млн ₽ в год</div>
+          <div class="crit">Понимание, что «потом разберёмся» — не стратегия</div>
+          <div class="crit">Готовность к разговору, который может быть некомфортным</div>
+          <div class="crit">Нужна система, а не документ</div>
+        </div>
+      </div>
+    </div>
+    <div class="scale">
+      <div><strong>5–7<small>семей в год</small></strong><p>Намеренно ограниченная практика: каждый проект получает полное внимание команды.</p></div>
+      <div class="sc-access"><span class="kicker">ДОСТУП</span><h3>Только по рекомендации</h3><p>Мы не принимаем заявки по холодному обращению.</p></div>
     </div>
   </div>
 </section>
 
-<section class="artifacts-section">
-  <div class="container">
-    <div class="artifacts-list">
-
-      <div class="artifact reveal">
-        <div class="artifact-num">I.</div>
-        <h3 class="artifact-title">Архитектура.</h3>
-        <p class="artifact-body">Стратегическое описание и&nbsp;визуализация вашей системы власти. Полная карта: активы, логика, сценарии, протоколы на&nbsp;случай любого события. <strong style="color: var(--ink); font-weight: 500;">Конституция вашей династии в&nbsp;виде инженерной схемы.</strong></p>
+<!-- XIII · Команда -->
+<section class="section alt" id="team">
+  <div class="ghost" aria-hidden="true">XIII</div>
+  <div class="wrap team">
+    <div>
+      <div class="kicker">XIII / КОМАНДА</div>
+      <h2>Синдикат, не фирма</h2>
+      <p class="section-intro">Операционный штаб из старших специалистов. Без раздутого штата и младших аналитиков: каждый работает над проектом напрямую.</p>
+      <div class="founder">
+        <div class="nm">Давид Асатрян</div>
+        <div class="rl">УПРАВЛЯЮЩИЙ ПАРТНЁР · АРХИТЕКТОР ПРЕЕМСТВЕННОСТИ</div>
+        <p>Предприниматель второго поколения: прошёл передачу семейного бизнеса изнутри. Совладелец девелоперской компании. Автор подхода Dynasty Engineering, индексов DRI и DSI и книги «Создавая Титанов: стратегия преемственности в эпоху перемен».</p>
       </div>
-
-      <div class="artifact reveal">
-        <div class="artifact-num">II.</div>
-        <h3 class="artifact-title">Инструменты.</h3>
-        <p class="artifact-body">От&nbsp;«капсул доверия» до&nbsp;интеллектуальных агентов. Цифровые и&nbsp;аппаратные решения, созданные под вашу логику. <strong style="color: var(--ink); font-weight: 500;">Они не&nbsp;обслуживаются</strong> — они передаются вам, когда способны жить без нас. И&nbsp;без вас.</p>
-      </div>
-
+    </div>
+    <div>
+      <div class="kicker">ЗАКРЫТЫЙ КРУГ</div>
+      <p class="circle-intro">Люди, которые работают по приглашению, а не по контракту. Их экспертиза не публична, поэтому имена раскрываются адресно, в рамках работы с семьёй.</p>
+      <div class="crow"><b>Структурирование капитала</b><span>Руководство семейными офисами с активами свыше $20 млрд; опыт Big 4 и ведущих инвестбанков</span></div>
+      <div class="crow"><b>Защита активов</b><span>Одна из ведущих практик противодействия недружественным поглощениям</span></div>
+      <div class="crow"><b>Экономическая безопасность</b><span>20+ лет оперативной работы, затем советник руководства федеральных корпораций</span></div>
+      <div class="crow"><b>Семейные системы</b><span>Психология семьи-владельца и наследников</span></div>
+      <div class="crow"><b>Технологии и безопасность</b><span>Инфраструктура в чувствительной среде, трансграничные операции</span></div>
+      <a class="textlink" href="/intelligence#team">ПОЛНЫЙ КАЛИБР КОМАНДЫ — НА СТРАНИЦЕ INTELLIGENCE ↗</a>
     </div>
   </div>
 </section>
 
-
-<!-- ============================================ -->
-<!-- IX · ЧЕТЫРЕ ФАЗЫ                              -->
-<!-- ============================================ -->
-<section class="section-opener dark" style="padding-bottom: 60px;">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">IX</div>
-      <div class="section-meta">Как мы работаем</div>
-      <h2 class="section-title">Четыре фазы.<br>Одна логика.</h2>
+<!-- XIV · Границы -->
+<section class="section" id="bounds">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">XIV / ГРАНИЦЫ</div>
+      <div><h2>Когда мы не подходим</h2><p class="section-intro">Знание своих границ — наш главный инструмент отбора.</p></div>
+    </div>
+    <div class="bounds">
+      <div class="bound"><span class="x">× 01</span><h3>Вам нужен документ, а не система</h3><p>Завещание составят юристы, трасты — банкиры. Мы строим то, что стоит за ними. Если это не нужно — мы лишние.</p></div>
+      <div class="bound"><span class="x">× 02</span><h3>Вы не готовы к некомфортному разговору</h3><p>Диагностика вскрывает то, что предпочли бы не видеть. Без этого работа не имеет смысла.</p></div>
+      <div class="bound"><span class="x">× 03</span><h3>Вы хотите делегировать и не участвовать</h3><p>Преемственность нельзя отдать на аутсорс. Без вашего личного участия систему не собрать.</p></div>
+      <div class="bound"><span class="x">× 04</span><h3>Актив уже в огне</h3><p>Острый конфликт — это не преемственность. Для него у нас есть другая практика — <a href="/intelligence">Intelligence</a>.</p></div>
     </div>
   </div>
 </section>
 
-<section class="phases">
-  <div class="container">
-    <div class="phases-grid reveal">
-
-      <div class="phase">
-        <div class="phase-num">I.</div>
-        <h3 class="phase-title">Диагностика.</h3>
-        <p class="phase-body">Dynasty Stress Test. 3–4 часа структурированного интервью и&nbsp;анализа. На&nbsp;выходе — карта рисков, которых вы&nbsp;не&nbsp;видите изнутри. Конкретные точки уязвимости.</p>
-      </div>
-
-      <div class="phase">
-        <div class="phase-num">II.</div>
-        <h3 class="phase-title">Проектирование.</h3>
-        <p class="phase-body">Архитектура передачи. Работа с&nbsp;наследниками. Реструктуризация, если нужна. Ведём проект вместе с&nbsp;вами.</p>
-      </div>
-
-      <div class="phase">
-        <div class="phase-num">III.</div>
-        <h3 class="phase-title">Передача ключей.</h3>
-        <p class="phase-body">Собираем систему. Когда она готова жить автономно — уходим.</p>
-      </div>
-
-      <div class="phase">
-        <div class="phase-num">IV.</div>
-        <h3 class="phase-title">Сопровождение&nbsp;<span class="phase-title-suffix">[по&nbsp;запросу]</span>.</h3>
-        <p class="phase-body">Ежегодный мониторинг, адаптация при изменениях, кризисное реагирование. Династия — не&nbsp;проект с&nbsp;дедлайном.</p>
-      </div>
-
+<!-- XV · Финал -->
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div class="eyebrow">XV / CUSTODIA SILENTIS</div>
+    <h2>Тишина — или действие?</h2>
+    <p>Преемственность начинается задолго до передачи — в момент, когда вы решаете, что построенное должно стать больше, чем продолжение вашей личной работы.</p>
+    <div class="access">ДОСТУП ТОЛЬКО ПО РЕКОМЕНДАЦИИ</div>
+    <!-- Контакты простым текстом, без кнопок и ссылок — как на главной -->
+    <div class="contacts">
+      <div class="c-name">Давид Асатрян</div>
+      <div class="c-line">owner@custodia-silentis.com</div>
+      <div class="c-line">+7&nbsp;995&nbsp;110&nbsp;92&nbsp;98</div>
+      <div class="c-note">В первом сообщении укажите, кто вас рекомендовал.</div>
     </div>
   </div>
 </section>
+</main>
 
-
-<!-- ============================================ -->
-<!-- X · ДЛЯ КОГО                                  -->
-<!-- ============================================ -->
-<section class="section-opener">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">X</div>
-      <div class="section-meta">Для кого</div>
-      <h2 class="section-title">Для кого.</h2>
-    </div>
-  </div>
-</section>
-
-<section class="audience-section">
-  <div class="container">
-
-    <div class="criteria reveal">
-      <p class="criterion">Активы от&nbsp;5&nbsp;млрд рублей, либо выручка от&nbsp;500&nbsp;млн рублей в&nbsp;год.</p>
-      <p class="criterion">Понимают, что&nbsp;«потом разберёмся» — не&nbsp;стратегия.</p>
-      <p class="criterion">Готовы к&nbsp;разговору, который может быть некомфортным.</p>
-      <p class="criterion">Хотят систему, а&nbsp;не&nbsp;документ.</p>
-      <p class="criterion">Не&nbsp;ищут волшебную таблетку — готовы к&nbsp;реальной работе.</p>
-    </div>
-
-    <div class="scale-block reveal">
-      <div class="scale-num">5<em>–</em>7 семей в&nbsp;год.</div>
-      <p class="scale-text">Намеренно ограниченная практика. Каждый проект получает полное внимание команды.</p>
-    </div>
-
-    <div class="referral-block reveal">
-      <div class="referral-eyebrow">Доступ</div>
-      <p class="referral-text">Только по&nbsp;рекомендации. Мы&nbsp;не&nbsp;принимаем заявки и&nbsp;не&nbsp;работаем по&nbsp;холодному обращению.</p>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================ -->
-<!-- XI · КОМАНДА                                  -->
-<!-- ============================================ -->
-<section class="section-opener">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">XI</div>
-      <div class="section-meta">Команда</div>
-      <h2 class="section-title">Синдикат,<br>не&nbsp;фирма.</h2>
-      <p class="section-subtitle">Операционный штаб из&nbsp;старших специалистов. Каждый — сильнейший в&nbsp;своём домене.</p>
-    </div>
-  </div>
-</section>
-
-<section class="team">
-  <div class="container">
-
-    <div class="team-grid reveal">
-
-      <div class="team-member">
-        <img class="team-member-photo" src="uploads/David_Asatryan.webp" alt="Давид Асатрян" loading="lazy">
-        <div class="team-member-name">Давид Асатрян</div>
-        <div class="team-member-role">Управляющий партнёр, архитектор преемственности</div>
-        <p class="team-member-bio">Предприниматель второго поколения — прошёл преемственность изнутри. Совладелец девелоперской компании. Автор подхода Dynasty Engineering и&nbsp;индексов DRI&nbsp;/&nbsp;DSI. Автор книги «Создавая Титанов: стратегия преемственности в&nbsp;эпоху перемен».</p>
-      </div>
-
-      <div class="team-member">
-        <img class="team-member-photo" src="uploads/Jiri_FinalPhoto.webp" alt="Йиржи Новак" loading="lazy">
-        <div class="team-member-name">Йиржи Новак</div>
-        <div class="team-member-role">CTO, техническая инфраструктура</div>
-        <p class="team-member-bio">Управление критической инфраструктурой: T-Mobile, госпиталь Motol (Прага). Cross-border операции: Чехия, Россия, Армения. Цифровые капсулы знаний, карты активов, системы безопасности.</p>
-      </div>
-
-    </div>
-
-    <div class="team-divider reveal">
-      <div class="team-divider-label">Закрытый круг</div>
-      <h4 class="team-divider-title">Доступ — часть того,<br>что мы привносим</h4>
-    </div>
-
-    <p class="circle-intro reveal">
-      Не&nbsp;штат и&nbsp;не&nbsp;партнёрство. Люди, которые работают по&nbsp;приглашению, а&nbsp;не&nbsp;по&nbsp;контракту. Их&nbsp;экспертиза не&nbsp;публична&nbsp;— поэтому имён мы&nbsp;не&nbsp;называем.
-    </p>
-
-    <div class="advisors-list reveal">
-
-      <div class="advisor">
-        <strong>А██████&nbsp;С████████</strong>
-        <em>Юридическое структурирование.</em> 25+ лет в&nbsp;крупнейших частных состояниях (от&nbsp;$250M). CEO семейных офисов с&nbsp;активами&nbsp;>$20&nbsp;млрд. Опыт в&nbsp;Big&nbsp;4 аудиторских и&nbsp;топ-5 инвестиционных банков СНГ. Автор курса по&nbsp;преемственности в&nbsp;ведущей российской бизнес-школе.
-      </div>
-
-      <div class="advisor">
-        <strong>Б████&nbsp;Л██████</strong>
-        <em>Защита активов.</em> Основатель одной из&nbsp;ведущих российских anti-raider консалтинговых фирм. Противодействие рейдерским атакам, защита корпоративного контроля, кризисное управление в&nbsp;захватах.
-      </div>
-
-      <div class="advisor">
-        <strong>П████&nbsp;Р████</strong>
-        <em>AI-трансформация.</em> Ex-Digital&nbsp;CPO одного из&nbsp;топ-5 российских банков. 10+ корпоративных трансформаций в&nbsp;финтехе и&nbsp;промышленности.
-      </div>
-
-      <div class="advisor">
-        <strong>О████&nbsp;Б█████</strong>
-        <em>Управление капиталом.</em> Опыт в&nbsp;топ-3 глобальной стратегической консалтинговой компании и&nbsp;одном из&nbsp;топ-5 глобальных банков. Управление капиталом на&nbsp;российских и&nbsp;глобальных рынках, структурирование при&nbsp;релокации, возврат и&nbsp;разморозка активов.
-      </div>
-
-    </div>
-
-    <div class="caliber-divider reveal">
-      <div class="team-divider-label">Калибр круга</div>
-    </div>
-
-    <ul class="circle-caliber reveal">
-      <li><strong>100+&nbsp;кейсов</strong>&nbsp;·&nbsp;превентивной защиты капитала</li>
-      <li><strong>10+&nbsp;юрисдикций</strong>&nbsp;·&nbsp;cross-border операций</li>
-      <li><strong>40+&nbsp;конфликтов</strong>&nbsp;·&nbsp;высокой интенсивности</li>
-      <li><strong>M&amp;A&nbsp;+ litigation</strong>&nbsp;·&nbsp;противодействие враждебным атакам</li>
-    </ul>
-
-    <p class="team-closing reveal">Нет раздутого штата. Нет младших аналитиков.<br>Каждый&nbsp;— старший специалист с&nbsp;прямым доступом к&nbsp;проекту.</p>
-
-  </div>
-</section>
-
-
-<!-- ============================================ -->
-<!-- XII · ГРАНИЦЫ                                 -->
-<!-- ============================================ -->
-<section class="section-opener" style="background: var(--bg-soft);">
-  <div class="container reveal">
-    <div class="section-opener-inner">
-      <div class="section-roman">XII</div>
-      <div class="section-meta">Границы</div>
-      <h2 class="section-title">Когда мы<br>не&nbsp;подходим.</h2>
-      <p class="section-subtitle">Знание своих границ — наш главный инструмент отбора.</p>
-    </div>
-  </div>
-</section>
-
-<section class="borders">
-  <div class="container">
-    <div class="borders-list">
-
-      <div class="border-item reveal">
-        <h3 class="border-name">Вам нужен документ, а&nbsp;не&nbsp;система.</h3>
-        <p class="border-text">Завещание составят юристы, трасты — банкиры. Мы&nbsp;строим то, что&nbsp;стоит за&nbsp;ними. Если этого не&nbsp;нужно — мы&nbsp;лишние.</p>
-      </div>
-
-      <div class="border-item reveal">
-        <h3 class="border-name">Вы не&nbsp;готовы к&nbsp;некомфортному разговору.</h3>
-        <p class="border-text">Диагностика вскрывает то, что&nbsp;вы&nbsp;предпочли бы&nbsp;не&nbsp;видеть. Без этого работа не&nbsp;имеет смысла.</p>
-      </div>
-
-      <div class="border-item reveal">
-        <h3 class="border-name">Вы хотите делегировать и&nbsp;не&nbsp;участвовать.</h3>
-        <p class="border-text">Преемственность нельзя отдать на&nbsp;аутсорс. Без вашего личного участия систему не&nbsp;собрать.</p>
-      </div>
-
-      <div class="border-item reveal">
-        <h3 class="border-name">Вам нужно «вчера», актив уже в&nbsp;огне.</h3>
-        <p class="border-text">Это не&nbsp;к&nbsp;преемственности. Острый конфликт — другая наша практика, Intelligence.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================ -->
-<!-- ФИНАЛ (без CTA)                               -->
-<!-- ============================================ -->
-<section class="final">
-  <div class="container">
-    <h2 class="final-title reveal">Тишина — или&nbsp;<em style="color: var(--gold);">действие?</em></h2>
-    <p class="final-sub reveal">Знание исчезает вместе с&nbsp;вами — если&nbsp;вы не&nbsp;передали&nbsp;его.</p>
-    <p class="final-referral reveal">Доступ только <em>по&nbsp;рекомендации.</em></p>
-  </div>
-</section>
-
-
-<!-- ============================================ -->
-<!-- FOOTER                                        -->
-<!-- ============================================ -->
-<footer>
-  Custodia Silentis · Архитектура Преемственности · По&nbsp;рекомендации
+<footer class="footer">
+  <div class="wrap footer-inner"><span>CUSTODIA SILENTIS · АРХИТЕКТУРА УПРАВЛЯЕМОСТИ СЛОЖНЫХ СИСТЕМ</span><span>ИП АСАТРЯН ДАВИД ВАЧАГАНОВИЧ · ИНН&nbsp;230403939662</span><span><a href="/">ВСЕ ПРАКТИКИ ↗</a> &nbsp;·&nbsp; <a href="#contact">СВЯЗАТЬСЯ</a></span></div>
 </footer>
 
-
 <script>
-  (function() {
-    if (!('IntersectionObserver' in window)) {
-      document.querySelectorAll('.reveal').forEach(function(el) {
-        el.classList.add('is-visible');
-      });
-      return;
-    }
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
-    document.querySelectorAll('.reveal').forEach(function(el) {
-      observer.observe(el);
-    });
-  })();
+const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Topmenu — hamburger toggle + close on link click
-  (function() {
-    var burger = document.getElementById('topmenu-burger');
-    var close = document.getElementById('topmenu-close');
-    var overlay = document.getElementById('topmenu-overlay');
-    if (!burger || !overlay) return;
+/* ───── Мобильное меню ───── */
+(function(){
+  const btn = document.getElementById('menu'), nav = document.getElementById('navlinks');
+  function setOpen(open){ nav.classList.toggle('mobile-open', open); btn.setAttribute('aria-expanded', open); btn.textContent = open ? '✕' : '☰'; }
+  btn.addEventListener('click', ()=>setOpen(!nav.classList.contains('mobile-open')));
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setOpen(false)));
+})();
 
-    function open() {
-      overlay.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-    }
-    function shut() {
-      overlay.classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
+/* ───── Подсветка якоря текущего раздела; страница отмечена в переключателе практик ───── */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  const links = {}; document.querySelectorAll('.navlinks a[data-key]').forEach(a=>links[a.dataset.key]=a);
+  const io = new IntersectionObserver(es=>es.forEach(en=>{
+    if(!en.isIntersecting) return;
+    const k = en.target.id;
+    Object.entries(links).forEach(([key,a])=>a.classList.toggle('active', key===k));
+  }), {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('main section[id]').forEach(s=>io.observe(s));
+})();
 
-    burger.addEventListener('click', open);
-    if (close) close.addEventListener('click', shut);
-    overlay.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', shut);
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') shut();
-    });
-  })();
+/* ───── Обратный отсчёт 72 часов ───── */
+(function(){
+  const el = document.getElementById('clock'); if(!el || REDUCE) return;
+  let left = 72*3600;
+  const pad = n => String(n).padStart(2,'0');
+  setInterval(()=>{
+    left = left > 0 ? left-1 : 72*3600;
+    el.textContent = `${pad(Math.floor(left/3600))}:${pad(Math.floor(left%3600/60))}:${pad(left%60)}`;
+  }, 1000);
+})();
+
+/* ───── Граф передачи: сейчас → без основателя → после передачи, по кругу ───── */
+(function(){
+  const svg = document.getElementById('dgraph'); if(!svg) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  // Узлы: [x, y, тип, подпись, роль]. Роли: fn — основатель, cn — узел системы, sn — появляется после передачи, mn — фон
+  const N = {
+    F:[300,250,'o','ОСНОВАТЕЛЬ','fn'],
+    h:[104,104,'c','ХОЛДИНГ','cn'], a:[196,128,'c','АКТИВЫ','cn'], s:[112,186,'c','СЧЕТА','cn'],
+    d:[416,100,'p','ДИРЕКТОР','cn'], c:[510,150,'p','ФИНДИРЕКТОР','cn'], l:[404,196,'p','ЮРИСТ','cn'],
+    k1:[188,416,'c','ДОСТУПЫ','cn'], k2:[292,456,'c','ДОГОВОРЁННОСТИ','cn'], k3:[404,412,'c','КОНТАКТЫ','cn'],
+    K:[300,92,'f','СЕМЕЙНЫЙ СОВЕТ','sn'], S:[300,338,'p','ПРЕЕМНИК','sn'],
+    m1:[176,70,'m',null,'mn'], m2:[530,84,'m',null,'mn'], m3:[128,472,'m',null,'mn'], m4:[478,470,'m',null,'mn'], m5:[60,292,'m',null,'mn'], m6:[548,300,'m',null,'mn']
+  };
+  const STAR = ['h','a','s','d','c','l','k1','k2','k3'].map(n=>['F',n]);            // всё замкнуто на основателе
+  const INNER = [['h','a'],['h','s'],['d','c'],['d','l'],['k1','k2'],['k2','k3'],['m1','h'],['m2','d'],['m3','k1'],['m4','k3'],['m5','s'],['m6','c']];
+  const NEW = [['K','a'],['K','d'],['K','c'],['S','d'],['S','l'],['S','k1'],['S','k3'],['l','k3']]; // связи после передачи: совет — капитал и управление, преемник — управление и знание // связи после передачи
+  const G = [{x:44,y:50,w:204,h:170,t:'КАПИТАЛ'},{x:352,y:50,w:208,h:170,t:'УПРАВЛЕНИЕ'},{x:150,y:378,w:300,h:108,t:'ЗНАНИЕ'}];
+  const CAP = {a:'СЕЙЧАС · ВСЁ ЗАМКНУТО НА ОСНОВАТЕЛЕ', b:'ОСНОВАТЕЛЬ НЕДОСТУПЕН · СВЯЗИ ОБОРВАНЫ', c:'ПОСЛЕ ПЕРЕДАЧИ · СИСТЕМА ДЕРЖИТСЯ НЕ НА ОДНОМ ЧЕЛОВЕКЕ'};
+
+  const el = (t,a,p)=>{ const n=document.createElementNS(NS,t); for(const k in a) n.setAttribute(k,a[k]); p.appendChild(n); return n; };
+  const lHull = el('g',{class:'layer'},svg), lEdge = el('g',{class:'layer'},svg), lNew = el('g',{},svg), lNode = el('g',{class:'layer'},svg);
+  G.forEach(g=>{ el('rect',{x:g.x,y:g.y,width:g.w,height:g.h,rx:14,class:'hull'},lHull); el('text',{x:g.x+10,y:g.y-9,class:'hull-t'},lHull).textContent=g.t; });
+  const line = (cls,parent)=>([a,b])=>el('line',{x1:N[a][0],y1:N[a][1],x2:N[b][0],y2:N[b][1],class:cls},parent);
+  INNER.forEach(line('ie',lEdge)); STAR.forEach(line('se',lEdge)); NEW.forEach(line('ne',lNew));
+
+  Object.entries(N).forEach(([id,[x,y,t,label,role]])=>{
+    const g = el('g',{class:role+' '+(t==='m'?'minor':'key')+(role==='sn'?' lit':'')},lNode);
+    if(t==='p') el('circle',{cx:x,cy:y,r:6},g);
+    else if(t==='c') el('rect',{x:x-6,y:y-6,width:12,height:12},g);
+    else if(t==='f') el('polygon',{points:`${x},${y-8} ${x+8},${y} ${x},${y+8} ${x-8},${y}`},g);
+    else if(t==='o'){ el('circle',{cx:x,cy:y,r:20,class:'ring'},g); el('circle',{cx:x,cy:y,r:11},g); }
+    else el('circle',{cx:x,cy:y,r:3.5},g);
+    if(label){
+      // Подписи у правого края — слева от узла; совет — над узлом, финдиректор — под узлом (так подписи не пересекают связи)
+      let tx = x+(t==='o'?28:12), anchor='start', ty = y+5;
+      if(x>460){ tx = x-12; anchor='end'; }
+      if(id==='K'){ tx = x; anchor='middle'; ty = y-16; }
+      if(id==='c'){ tx = x; anchor='middle'; ty = y+26; }
+      el('text',{x:tx,y:ty,class:'gl','text-anchor':anchor},g).textContent = label;
+    }
+  });
+
+  const cap = document.getElementById('vcap');
+  const tabs = document.querySelectorAll('#states div');
+  function setState(s){
+    svg.classList.remove('st-a','st-b','st-c'); svg.classList.add('st-'+s);
+    tabs.forEach(t=>t.classList.toggle('on', t.dataset.s===s));
+    cap.classList.remove('show');
+    setTimeout(()=>{ cap.textContent = CAP[s]; cap.classList.add('show'); }, REDUCE ? 0 : 250);
+  }
+
+  if(REDUCE){ [lHull,lEdge,lNode].forEach(l=>l.classList.add('on')); setState('c'); return; }
+  // Появление: контуры → узлы → связи; затем цикл состояний
+  setTimeout(()=>lHull.classList.add('on'), 150);
+  setTimeout(()=>lNode.classList.add('on'), 600);
+  setTimeout(()=>lEdge.classList.add('on'), 1200);
+  const seq = [['a',4200],['b',3400],['c',5600]];
+  let i = 0;
+  function step(){ const [s,ms] = seq[i]; setState(s); i = (i+1) % seq.length; setTimeout(step, ms); }
+  setTimeout(step, 1800);
+})();
 </script>
-
 </body>
 </html>
