@@ -184,14 +184,17 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
 @keyframes flow{to{stroke-dashoffset:-22}}
 
 /* ───── 01 · С чем вы пришли: маршрутизатор ───── */
-.route{display:grid;grid-template-columns:1.05fr 1fr auto;gap:36px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line)}
+/* Единая сетка для всех строк: номер | реплика | пояснение + кнопка — колонки не разбегаются */
+.route{display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1fr);column-gap:40px;align-items:start;padding:34px 0;border-bottom:1px solid var(--line)}
 .route:last-of-type{border-bottom:0}
+.route .rn{font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--accent);padding-top:12px}
 .route q{font-size:clamp(22px,2.3vw,30px);letter-spacing:-.035em;line-height:1.2;font-weight:500;quotes:"«" "»";transition:color .2s}
-.route p{margin:0;color:var(--muted);font-size:var(--fs-ui)}
-.route .to{font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--dim);text-align:right;white-space:nowrap;transition:color .2s}
-.route .to b{display:block;font-weight:400;color:var(--text);font-size:13px;margin-bottom:4px;transition:color .2s}
-.route:hover .to,.route:hover .to b{color:var(--accent)}
+.route p{margin:4px 0 18px;color:var(--muted);font-size:var(--fs-ui);max-width:480px}
+.route .btn{display:inline-flex;align-items:center;gap:14px;border:1px solid #44515d;padding:11px 14px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--soft);transition:background .2s,color .2s,border-color .2s}
+.route .btn i{font-style:normal;color:var(--accent);transition:color .2s}
 .route:hover q{color:#fff}
+.route:hover .btn{background:#dce5ec;border-color:#dce5ec;color:#0a0d11}
+.route:hover .btn i{color:#0a0d11}
 
 /* ───── 02 · Четыре практики ───── */
 .prs{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;row-gap:64px}
@@ -294,10 +297,8 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
  .hero{grid-template-columns:1fr;min-height:auto;padding:64px 0 72px;gap:44px}
  .section-head{grid-template-columns:1fr;gap:12px;margin-bottom:48px}
  .split,.basis,.start{grid-template-columns:1fr;gap:40px}
- .route{grid-template-columns:1fr auto;gap:10px 24px}
- .route q{grid-column:1;grid-row:1}
- .route p{grid-column:1;grid-row:2}
- .route .to{grid-row:1 / span 2;grid-column:2}
+ .route{grid-template-columns:44px minmax(0,1fr);column-gap:20px}
+ .route .rd{grid-column:2;margin-top:12px}
  .adx{grid-template-columns:1fr 1fr;row-gap:44px}
  .adx:before{display:none}
  .ax .L{background:none}
@@ -326,9 +327,9 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
  .ptabs div:nth-child(2){border-right:0}
  .ptabs div:nth-child(-n+2){border-bottom:1px solid #202b35}
  .statement{font-size:21px;padding-left:18px;margin-top:44px}
- .route{grid-template-columns:1fr;gap:8px;padding:24px 0}
- .route q,.route p,.route .to{grid-column:auto;grid-row:auto}
- .route .to{text-align:left;margin-top:6px;white-space:normal}
+ .route{grid-template-columns:30px minmax(0,1fr);column-gap:12px;padding:26px 0}
+ .route .rn{padding-top:7px}
+ .route .btn{line-height:1.5}
  .prs{grid-template-columns:1fr;row-gap:48px}
  .src{grid-template-columns:1fr;gap:4px}
  .adx{grid-template-columns:1fr}
@@ -391,10 +392,10 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
       <div class="kicker">01 / С ЧЕМ ВЫ ПРИШЛИ</div>
       <div><h2>Начните с того, что происходит сейчас</h2></div>
     </div>
-    <a class="route" href="/intelligence"><q>Я не понимаю, что происходит.</q><p>Цифры не сходятся, вторая сторона — витрина, конфликт идёт, а картины нет.</p><span class="to"><b>INTELLIGENCE →</b>ПОНЯТЬ СИТУАЦИЮ</span></a>
-    <a class="route" href="/crisis"><q>Я понимаю, но теряю контроль.</q><p>Решения не исполняются, давление растёт, каждый день промедления стоит денег.</p><span class="to"><b>CRISIS MANAGEMENT →</b>ВЕРНУТЬ КОНТРОЛЬ</span></a>
-    <a class="route" href="/transformation"><q>Контроль есть, но модель не тянет будущее.</q><p>Компания выросла, стратегия поменялась, а управление осталось прежним.</p><span class="to"><b>TRANSFORMATION &amp; CHANGE →</b>ИЗМЕНИТЬ СИСТЕМУ</span></a>
-    <a class="route" href="/dynasty"><q>Всё работает, пока я рядом.</q><p>Решения, связи и знание держатся на одном человеке. Вопрос — что будет дальше.</p><span class="to"><b>DYNASTY ENGINEERING →</b>ОБЕСПЕЧИТЬ ПРОДОЛЖЕНИЕ</span></a>
+    <a class="route" href="/intelligence"><span class="rn">01</span><q>Я не понимаю, что происходит.</q><div class="rd"><p>Цифры не сходятся, вторая сторона — витрина, конфликт идёт, а картины нет.</p><span class="btn">INTELLIGENCE · ПОНЯТЬ СИТУАЦИЮ <i>→</i></span></div></a>
+    <a class="route" href="/crisis"><span class="rn">02</span><q>Я понимаю, но теряю контроль.</q><div class="rd"><p>Решения не исполняются, давление растёт, каждый день промедления стоит денег.</p><span class="btn">CRISIS MANAGEMENT · ВЕРНУТЬ КОНТРОЛЬ <i>→</i></span></div></a>
+    <a class="route" href="/transformation"><span class="rn">03</span><q>Контроль есть, но модель не тянет будущее.</q><div class="rd"><p>Компания выросла, стратегия поменялась, а управление осталось прежним.</p><span class="btn">TRANSFORMATION &amp; CHANGE · ИЗМЕНИТЬ СИСТЕМУ <i>→</i></span></div></a>
+    <a class="route" href="/dynasty"><span class="rn">04</span><q>Всё работает, пока я рядом.</q><div class="rd"><p>Решения, связи и знание держатся на одном человеке. Вопрос — что будет дальше.</p><span class="btn">DYNASTY ENGINEERING · ОБЕСПЕЧИТЬ ПРОДОЛЖЕНИЕ <i>→</i></span></div></a>
     <p class="statement">Не уверены, какая задача ваша? Это нормально — с этого обычно и начинается разговор.</p>
   </div>
 </section>

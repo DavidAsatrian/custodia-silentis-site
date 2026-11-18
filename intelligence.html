@@ -1102,7 +1102,7 @@ h1{font-size:clamp(40px,4.6vw,66px);line-height:1.02;letter-spacing:-.05em;font-
 
 <script>
 // Год в подвале
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year'); if(yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Пользователь просил меньше движения — показываем конечное состояние без анимаций
 const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
