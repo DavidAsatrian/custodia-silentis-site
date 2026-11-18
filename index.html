@@ -149,7 +149,7 @@ h2{font-size:clamp(36px,4.8vw,64px);line-height:1.04;letter-spacing:-.05em;font-
 .eyebrow{font:12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px}
 .eyebrow:before{content:"";width:27px;height:1px;background:var(--accent)}
 h1{font-size:clamp(40px,4.6vw,68px);line-height:1.04;letter-spacing:-.05em;font-weight:510;margin:28px 0 28px;max-width:700px}
-h1 .l{display:block;transition:opacity .5s,color .5s}
+h1 .l{display:block;transition:opacity .2s,color .2s}
 .js h1.cycling .l{opacity:.32}
 .js h1.cycling .l.on{opacity:1}
 .lead{font-size:var(--fs-lead);line-height:1.5;color:#c0cad3;max-width:620px;margin:0 0 36px}
@@ -162,20 +162,20 @@ h1 .l{display:block;transition:opacity .5s,color .5s}
 .vlabel.tl{top:16px;left:18px}
 .vlabel.br{bottom:16px;right:18px;text-align:right;color:var(--dim)}
 .ptabs{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #202b35;border-top:0}
-.ptabs a{padding:12px 12px;border-right:1px solid #202b35;font:var(--fs-label) var(--mono);letter-spacing:.06em;color:var(--dim);transition:color .3s,background .3s;overflow-wrap:anywhere}
+.ptabs a{padding:12px 12px;border-right:1px solid #202b35;font:var(--fs-label) var(--mono);letter-spacing:.06em;color:var(--dim);transition:color .2s,background .2s;overflow-wrap:anywhere}
 .ptabs a:last-child{border-right:0}
-.ptabs a b{display:block;font-weight:400;color:#5d6b77;margin-bottom:3px;transition:color .3s}
+.ptabs a b{display:block;font-weight:400;color:#5d6b77;margin-bottom:3px;transition:color .2s}
 .ptabs a.on,.ptabs a:hover{color:var(--text);background:rgba(155,179,200,.06)}
 .ptabs a.on b,.ptabs a:hover b{color:var(--accent)}
 /* Кольцо практик вокруг аналитической основы */
 #ring .orbit{fill:none;stroke:#3a4a57;stroke-dasharray:4 7;animation:flow 2.4s linear infinite}
 #ring .core{fill:rgba(155,179,200,.05);stroke:#9bb3c8;stroke-dasharray:2 4}
 #ring .core-t{font-family:var(--mono);font-size:12px;fill:#c9d4dd;letter-spacing:.1em;text-anchor:middle}
-#ring .spoke{stroke:#5d7385;stroke-width:1.2;opacity:.6;transition:opacity .5s,stroke .5s}
+#ring .spoke{stroke:#5d7385;stroke-width:1.2;opacity:.6;transition:opacity .2s,stroke .2s}
 #ring .spoke.on{stroke:#e2ecf3;stroke-width:1.8;opacity:1;stroke-dasharray:5 6;animation:flow 1.1s linear infinite}
-#ring .pn circle{fill:#0e151c;stroke:#9bb3c8;stroke-width:1.2;transition:fill .5s}
-#ring .pn .num{font-family:var(--mono);font-size:14px;fill:#c9d4dd;text-anchor:middle;dominant-baseline:central;transition:fill .5s}
-#ring .pn .verb{font-family:var(--sans);font-size:17px;font-weight:500;fill:#c9d4dd;text-anchor:middle;letter-spacing:-.02em;transition:fill .5s}
+#ring .pn circle{fill:#0e151c;stroke:#9bb3c8;stroke-width:1.2;transition:fill .2s}
+#ring .pn .num{font-family:var(--mono);font-size:14px;fill:#c9d4dd;text-anchor:middle;dominant-baseline:central;transition:fill .2s}
+#ring .pn .verb{font-family:var(--sans);font-size:17px;font-weight:500;fill:#c9d4dd;text-anchor:middle;letter-spacing:-.02em;transition:fill .2s}
 #ring .pn .name{font-family:var(--mono);font-size:12px;fill:#7f91a0;text-anchor:middle;letter-spacing:.1em}
 #ring .pn{cursor:pointer}
 #ring .pn.on circle{fill:#f1f6f9;filter:drop-shadow(0 0 8px rgba(200,222,238,.7))}
@@ -607,7 +607,7 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(REDUCE) return;                          // без анимации: все строки заголовка в полную силу, кольцо статично
   document.getElementById('h1').classList.add('cycling');
   set(0);
-  setInterval(()=>{ if(!paused) set((cur+1)%P.length); }, 3200);
+  setInterval(()=>{ if(!paused) set((cur+1)%P.length); }, 1800);   // шаг 1,8 с: строка заголовка загорается сразу, без «полураскраски»
 })();
 </script>
 </body>
