@@ -161,12 +161,12 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
 .vlabel{position:absolute;z-index:1;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:#8293a2}
 .vlabel.tl{top:16px;left:18px}
 .vlabel.br{bottom:16px;right:18px;text-align:right;color:var(--dim)}
-.ptabs{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #202b35;border-top:0}
-.ptabs a{padding:12px 12px;border-right:1px solid #202b35;font:var(--fs-label) var(--mono);letter-spacing:.06em;color:var(--dim);transition:color .2s,background .2s;overflow-wrap:anywhere}
-.ptabs a:last-child{border-right:0}
-.ptabs a b{display:block;font-weight:400;color:#5d6b77;margin-bottom:3px;transition:color .2s}
-.ptabs a.on,.ptabs a:hover{color:var(--text);background:rgba(155,179,200,.06)}
-.ptabs a.on b,.ptabs a:hover b{color:var(--accent)}
+.ptabs{display:grid;grid-template-columns:repeat(4,auto);border:1px solid #202b35;border-top:0}
+.ptabs div{padding:12px 12px;border-right:1px solid #202b35;font:var(--fs-label) var(--mono);letter-spacing:.06em;color:var(--dim);transition:color .2s,background .2s;white-space:nowrap}
+.ptabs div:last-child{border-right:0}
+.ptabs div b{display:block;font-weight:400;color:#5d6b77;margin-bottom:3px;transition:color .2s}
+.ptabs div.on,.ptabs div:hover{color:var(--text);background:rgba(155,179,200,.06)}
+.ptabs div.on b,.ptabs div:hover b{color:var(--accent)}
 /* Кольцо практик вокруг аналитической основы */
 #ring .orbit{fill:none;stroke:#3a4a57;stroke-dasharray:4 7;animation:flow 2.4s linear infinite}
 #ring .core{fill:rgba(155,179,200,.05);stroke:#9bb3c8;stroke-dasharray:2 4}
@@ -177,7 +177,6 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
 #ring .pn .num{font-family:var(--mono);font-size:14px;fill:#c9d4dd;text-anchor:middle;dominant-baseline:central;transition:fill .2s}
 #ring .pn .verb{font-family:var(--sans);font-size:17px;font-weight:500;fill:#c9d4dd;text-anchor:middle;letter-spacing:-.02em;transition:fill .2s}
 #ring .pn .name{font-family:var(--mono);font-size:12px;fill:#7f91a0;text-anchor:middle;letter-spacing:.1em}
-#ring .pn{cursor:pointer}
 #ring .pn.on circle{fill:#f1f6f9;filter:drop-shadow(0 0 8px rgba(200,222,238,.7))}
 #ring .pn.on .num{fill:#0a0d11}
 #ring .pn.on .verb{fill:#fff}
@@ -324,8 +323,8 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
  #ring .core-t{font-size:17px}
  #ring .pn .num{font-size:18px}
  .ptabs{grid-template-columns:1fr 1fr}
- .ptabs a:nth-child(2){border-right:0}
- .ptabs a:nth-child(-n+2){border-bottom:1px solid #202b35}
+ .ptabs div:nth-child(2){border-right:0}
+ .ptabs div:nth-child(-n+2){border-bottom:1px solid #202b35}
  .statement{font-size:21px;padding-left:18px;margin-top:44px}
  .route{grid-template-columns:1fr;gap:8px;padding:24px 0}
  .route q,.route p,.route .to{grid-column:auto;grid-row:auto}
@@ -377,10 +376,10 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
       <div class="vlabel br">ПОНЯТЬ / СТАБИЛИЗИРОВАТЬ / ИЗМЕНИТЬ / ПРОДОЛЖИТЬ</div>
     </div>
     <div class="ptabs" id="ptabs">
-      <a href="/intelligence" data-i="0"><b>01</b>ПОНЯТЬ</a>
-      <a href="/crisis" data-i="1"><b>02</b>СТАБИЛИЗИРОВАТЬ</a>
-      <a href="/transformation" data-i="2"><b>03</b>ИЗМЕНИТЬ</a>
-      <a href="/dynasty" data-i="3"><b>04</b>ПРОДОЛЖИТЬ</a>
+      <div data-i="0"><b>01</b>ПОНЯТЬ</div>
+      <div data-i="1"><b>02</b>СТАБИЛИЗИРОВАТЬ</div>
+      <div data-i="2"><b>03</b>ИЗМЕНИТЬ</div>
+      <div data-i="3"><b>04</b>ПРОДОЛЖИТЬ</div>
     </div>
   </div>
 </section>
@@ -562,7 +561,7 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setOpen(false)));
 })();
 
-/* ───── Кольцо практик: подсветка по кругу, синхронно со строками заголовка; узлы — ссылки ───── */
+/* ───── Кольцо практик: подсветка по кругу, синхронно со строками заголовка ───── */
 (function(){
   const svg = document.getElementById('ring'); if(!svg) return;
   const NS = 'http://www.w3.org/2000/svg';
@@ -585,7 +584,7 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   [['ЕДИНАЯ',-14],['АНАЛИТИЧЕСКАЯ',4],['ОСНОВА',22]].forEach(([t,dy])=>el('text',{x:C[0],y:C[1]+dy,class:'core-t'},svg).textContent=t);
   let cur = 0, paused = false;
   const nodes = P.map((p,i)=>{
-    const a = el('a',{href:p.href,class:'pn','aria-label':`${p.n} ${p.v} — ${p.name}`},svg);
+    const a = el('g',{class:'pn'},svg);   // узел — не ссылка: первый экран только показывает, маршрутизация — ниже
     el('circle',{cx:p.x,cy:p.y,r:30},a);
     el('text',{x:p.x,y:p.y,class:'num'},a).textContent = p.n;
     const vy = p.top ? p.y-60 : p.y+58, ny = p.top ? p.y-42 : p.y+78;
@@ -595,7 +594,7 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     a.addEventListener('mouseleave',()=>{ paused=false; });
     return a;
   });
-  const lines = document.querySelectorAll('#h1 .l'), tabs = document.querySelectorAll('#ptabs a');
+  const lines = document.querySelectorAll('#h1 .l'), tabs = document.querySelectorAll('#ptabs div');
   function set(i){
     cur = i;
     nodes.forEach((n,k)=>n.classList.toggle('on',k===i));
