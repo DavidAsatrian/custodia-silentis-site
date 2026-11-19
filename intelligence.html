@@ -415,6 +415,37 @@ h1{font-size:clamp(40px,4.6vw,66px);line-height:1.02;letter-spacing:-.05em;font-
 .footer{padding:28px 0 38px;color:var(--dim);font:var(--fs-label) var(--mono);letter-spacing:.08em}
 .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
+/* ───── Первый шаг: единый блок для всех страниц (лист брифа + контакты) ───── */
+.first{display:grid;grid-template-columns:.95fr 1.05fr;grid-template-areas:"txt sheet" "con sheet";column-gap:72px;row-gap:8px;align-items:start}
+.first .f-txt{grid-area:txt}
+.first .f-con{grid-area:con}
+.first .lead-p{color:var(--muted);font-size:var(--fs-text);max-width:500px;margin:0 0 28px}
+.access{display:inline-block;font:12px var(--mono);letter-spacing:.12em;color:var(--accent);border:1px solid #4a5d6c;padding:10px 14px;margin-bottom:24px}
+.contacts{display:grid;gap:8px;padding-left:24px;border-left:2px solid var(--accent)}
+.c-name{font-size:clamp(24px,2.6vw,32px);font-weight:500;letter-spacing:-.03em;margin-bottom:4px}
+.c-line{font:17px var(--mono);color:var(--soft);letter-spacing:.02em;white-space:nowrap}
+.c-note{font-size:14px;color:var(--dim);margin-top:10px}
+/* лист брифа: светлая бумага, слоистая тень по канону */
+.bsheet{grid-area:sheet;align-self:center;background:#e4eaef;color:#10161c;padding:32px 36px 38px;transform:rotate(-1.2deg);box-shadow:0 1px 0 rgba(0,0,0,.25),0 14px 28px -14px rgba(0,0,0,.6),0 46px 90px -40px rgba(0,0,0,.7)}
+.bs-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 10px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:#4a5763;border-bottom:1px solid #b9c4cd;padding-bottom:12px}
+.bs-field{padding:20px 0 4px}
+.bs-field span{font:var(--fs-label) var(--mono);color:#5b6874;letter-spacing:.1em}
+.bs-field h3{font-size:23px;margin:6px 0 4px;color:#0f151b;font-weight:600;letter-spacing:-.03em}
+.bs-field p{font-size:15px;color:#4a5763;margin:0}
+.bs-field i{display:block;height:1px;background:repeating-linear-gradient(90deg,#9aa7b2 0 3px,transparent 3px 6px);margin:16px 0 0}
+.bs-field i+i{margin-top:14px}
+@media(max-width:960px){
+ .first{grid-template-columns:1fr;grid-template-areas:"txt" "sheet" "con";row-gap:40px}
+ .first .lead-p{margin-bottom:0}
+ .bsheet{transform:none}
+}
+@media(max-width:600px){
+ .contacts{padding-left:18px}
+ .c-line{font-size:16px}
+ .bsheet{padding:24px 22px 28px}
+ .bs-field h3{font-size:20px}
+}
+
 /* ───── Меньше движения — по настройке системы ───── */
 @media (prefers-reduced-motion: reduce){
  .gn,.ge,.hull,.hull-t,.flow{transition:none}
@@ -566,9 +597,9 @@ h1{font-size:clamp(40px,4.6vw,66px);line-height:1.02;letter-spacing:-.05em;font-
     <div class="practices bar" aria-label="Практики"><a href="/">ОБЗОР</a><a href="/intelligence" class="on" aria-current="page">INTELLIGENCE</a><a href="/crisis">CRISIS</a><a href="/transformation">TRANSFORMATION</a><a href="/dynasty">DYNASTY</a></div>
     <nav class="navlinks" id="navlinks" aria-label="Практики">
       <div class="practices drop"><a href="/">ОБЗОР</a><a href="/intelligence" class="on" aria-current="page">INTELLIGENCE</a><a href="/crisis">CRISIS</a><a href="/transformation">TRANSFORMATION</a><a href="/dynasty">DYNASTY</a></div>
-      <a class="m-only" href="#start">ОПИСАТЬ ЗАДАЧУ ↓</a>
+      <a class="m-only" href="#contact">ОПИСАТЬ ЗАДАЧУ ↓</a>
     </nav>
-    <a class="nav-cta" href="#start">ОПИСАТЬ ЗАДАЧУ ↓</a>
+    <a class="nav-cta" href="#contact">ОПИСАТЬ ЗАДАЧУ ↓</a>
     <button class="menu" id="menu" aria-label="Открыть навигацию" aria-expanded="false" aria-controls="navlinks">☰</button>
   </div>
 </header>
@@ -583,7 +614,7 @@ h1{font-size:clamp(40px,4.6vw,66px);line-height:1.02;letter-spacing:-.05em;font-
     <p class="lead">Берёмся за задачи, от которых отказались другие. Когда данных слишком мало, документов слишком много, а времени уже нет.</p>
     <p class="sublead">Собственные аналитические решения работают с большими массивами данных. Люди с опытом изнутри понимают, что в них важно.</p>
     <div class="actions">
-      <a class="primary" href="#start">ОПИСАТЬ ЗАДАЧУ <span>↗</span></a>
+      <a class="primary" href="#contact">ОПИСАТЬ ЗАДАЧУ <span>↗</span></a>
       <a class="textlink" href="#method">КАК МЫ РАБОТАЕМ ↓</a>
     </div>
     <div class="hero-meta"><span>АНАЛИЗ ДАННЫХ</span><span>РЕКОНСТРУКЦИЯ</span><span>ИССЛЕДОВАНИЕ</span></div>
@@ -1060,39 +1091,33 @@ h1{font-size:clamp(40px,4.6vw,66px);line-height:1.02;letter-spacing:-.05em;font-
   </div>
 </section>
 
-<!-- 11 · Первый шаг: лист брифа -->
-<section class="section" id="start" data-nav="none">
-  <div class="wrap brief">
-    <div>
+<!-- 11 · Первый шаг: единый блок для всех страниц -->
+<section class="section" id="contact">
+  <div class="wrap first">
+    <div class="f-txt">
       <div class="kicker">11 / ПЕРВЫЙ ШАГ</div>
       <h2>Начать можно с одной страницы</h2>
       <p class="lead-p">На первом этапе покажем несколько фактов, которые обычно остаются за пределами стандартной проверки, и объясним, куда они ведут. Формат и стоимость определяем после того, как увидим материалы.</p>
-      <!-- Ведёт к контактам в конце страницы -->
-      <a class="primary" href="#contact">ОПИСАТЬ ЗАДАЧУ <span>↓</span></a>
     </div>
-    <div class="sheet" aria-label="Лист брифа из трёх полей">
-      <div class="sheet-head"><span>БРИФ · 1 СТРАНИЦА</span><span>CUSTODIA SILENTIS</span></div>
-      <div class="field"><span>01</span><h3>Что происходит</h3><p>Ситуация в двух-трёх предложениях.</p><i></i><i></i></div>
-      <div class="field"><span>02</span><h3>Один вопрос</h3><p>Что именно нужно понять.</p><i></i></div>
-      <div class="field"><span>03</span><h3>Срок</h3><p>К какой дате нужен ответ.</p><i></i></div>
+    <div class="bsheet" aria-label="Лист брифа из трёх полей">
+      <div class="bs-head"><span>БРИФ · 1 СТРАНИЦА</span><span>CUSTODIA SILENTIS</span></div>
+      <div class="bs-field"><span>01</span><h3>Что происходит</h3><p>Ситуация в двух-трёх предложениях.</p><i></i><i></i></div>
+      <div class="bs-field"><span>02</span><h3>Один вопрос</h3><p>Что именно нужно понять.</p><i></i></div>
+      <div class="bs-field"><span>03</span><h3>Срок</h3><p>К какой дате нужен ответ.</p><i></i></div>
+    </div>
+    <div class="f-con">
+      <div class="access">ОПИСАТЬ ЗАДАЧУ</div>
+      <!-- Контакты простым текстом, без кнопок и ссылок -->
+      <div class="contacts">
+        <div class="c-name">Давид Асатрян</div>
+        <div class="c-line">owner@custodia-silentis.com</div>
+        <div class="c-line">+7&nbsp;995&nbsp;110&nbsp;92&nbsp;98</div>
+        <div class="c-note">Достаточно трёх ответов — остальное обсудим голосом.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 12 · Финал -->
-<section class="contact" id="contact" data-nav="none">
-  <div class="wrap contact-inner">
-    <div class="eyebrow">CUSTODIA SILENTIS</div>
-    <h2>Некоторые ситуации требуют другого масштаба анализа</h2>
-    <p>Если стандартных методов недостаточно, а разрозненные данные не складываются в картину, расскажите нам о задаче.</p>
-    <!-- Контакты простым текстом, без кнопок и ссылок -->
-    <div class="contacts">
-      <div class="c-name">Давид Асатрян</div>
-      <div class="c-line">owner@custodia-silentis.com</div>
-      <div class="c-line">+7&nbsp;995&nbsp;110&nbsp;92&nbsp;98</div>
-    </div>
-  </div>
-</section>
 </main>
 
 <footer class="footer">

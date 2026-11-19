@@ -220,15 +220,6 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
 .manifesto{padding:150px 0;background:radial-gradient(ellipse at 15% 50%,#16232e 0,transparent 55%),var(--bg3)}
 .manifesto p{margin:24px 0 0;font-size:clamp(32px,4.6vw,64px);line-height:1.08;letter-spacing:-.05em;font-weight:500;max-width:1060px}
 
-/* ───── 05 · Архитектура управляемости A–D ───── */
-.adx{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
-.adx:before{content:"";position:absolute;left:0;right:0;top:44px;height:1px;background:repeating-linear-gradient(90deg,var(--accent) 0 6px,transparent 6px 11px)}
-.ax{padding-right:28px;position:relative}
-.ax .L{font-size:clamp(56px,5.6vw,80px);font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--accent);background:var(--bg2);display:inline-block;padding-right:14px;position:relative}
-.ax h3{font-size:22px;font-weight:500;letter-spacing:-.03em;margin:18px 0 8px}
-.ax h3 small{display:block;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:var(--dim);margin-bottom:6px;font-weight:400}
-.ax p{margin:0;color:var(--muted);font-size:15px}
-
 /* ───── 06 · Как практики работают вместе ───── */
 .path{position:relative;padding-left:34px;max-width:880px}
 .path:before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:1px;background:repeating-linear-gradient(180deg,var(--accent) 0 6px,transparent 6px 10px)}
@@ -270,6 +261,37 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
 .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .footer a:hover{color:#fff}
 
+/* ───── Первый шаг: единый блок для всех страниц (лист брифа + контакты) ───── */
+.first{display:grid;grid-template-columns:.95fr 1.05fr;grid-template-areas:"txt sheet" "con sheet";column-gap:72px;row-gap:8px;align-items:start}
+.first .f-txt{grid-area:txt}
+.first .f-con{grid-area:con}
+.first .lead-p{color:var(--muted);font-size:var(--fs-text);max-width:500px;margin:0 0 28px}
+.access{display:inline-block;font:12px var(--mono);letter-spacing:.12em;color:var(--accent);border:1px solid #4a5d6c;padding:10px 14px;margin-bottom:24px}
+.contacts{display:grid;gap:8px;padding-left:24px;border-left:2px solid var(--accent)}
+.c-name{font-size:clamp(24px,2.6vw,32px);font-weight:500;letter-spacing:-.03em;margin-bottom:4px}
+.c-line{font:17px var(--mono);color:var(--soft);letter-spacing:.02em;white-space:nowrap}
+.c-note{font-size:14px;color:var(--dim);margin-top:10px}
+/* лист брифа: светлая бумага, слоистая тень по канону */
+.bsheet{grid-area:sheet;align-self:center;background:#e4eaef;color:#10161c;padding:32px 36px 38px;transform:rotate(-1.2deg);box-shadow:0 1px 0 rgba(0,0,0,.25),0 14px 28px -14px rgba(0,0,0,.6),0 46px 90px -40px rgba(0,0,0,.7)}
+.bs-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 10px;font:var(--fs-label) var(--mono);letter-spacing:.1em;color:#4a5763;border-bottom:1px solid #b9c4cd;padding-bottom:12px}
+.bs-field{padding:20px 0 4px}
+.bs-field span{font:var(--fs-label) var(--mono);color:#5b6874;letter-spacing:.1em}
+.bs-field h3{font-size:23px;margin:6px 0 4px;color:#0f151b;font-weight:600;letter-spacing:-.03em}
+.bs-field p{font-size:15px;color:#4a5763;margin:0}
+.bs-field i{display:block;height:1px;background:repeating-linear-gradient(90deg,#9aa7b2 0 3px,transparent 3px 6px);margin:16px 0 0}
+.bs-field i+i{margin-top:14px}
+@media(max-width:960px){
+ .first{grid-template-columns:1fr;grid-template-areas:"txt" "sheet" "con";row-gap:40px}
+ .first .lead-p{margin-bottom:0}
+ .bsheet{transform:none}
+}
+@media(max-width:600px){
+ .contacts{padding-left:18px}
+ .c-line{font-size:16px}
+ .bsheet{padding:24px 22px 28px}
+ .bs-field h3{font-size:20px}
+}
+
 /* ───── Меньше движения ───── */
 @media (prefers-reduced-motion: reduce){
  #ring .orbit,#ring .spoke.on{animation:none}
@@ -299,9 +321,6 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
  .split,.basis,.start{grid-template-columns:1fr;gap:40px}
  .route{grid-template-columns:44px minmax(0,1fr);column-gap:20px}
  .route .rd{grid-column:2;margin-top:12px}
- .adx{grid-template-columns:1fr 1fr;row-gap:44px}
- .adx:before{display:none}
- .ax .L{background:none}
  .converge svg{margin-left:0}
  .manifesto{padding:112px 0}
 }
@@ -332,7 +351,6 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
  .route .btn{line-height:1.5}
  .prs{grid-template-columns:1fr;row-gap:48px}
  .src{grid-template-columns:1fr;gap:4px}
- .adx{grid-template-columns:1fr}
  .manifesto{padding:88px 0}
  .manifesto p{font-size:30px}
  .ps p{font-size:16px}
@@ -458,28 +476,12 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
   </div>
 </section>
 
-<!-- 05 · Сквозная методология: A–D -->
-<section class="section alt" id="method">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="kicker">05 / СКВОЗНАЯ МЕТОДОЛОГИЯ</div>
-      <div><h2>Архитектура управляемости</h2><p class="section-intro">Полномочия, ответственность, принятие решений и контроль — то, что проходит через все четыре практики.</p></div>
-    </div>
-    <div class="adx">
-      <div class="ax"><span class="L">A</span><h3><small>INTELLIGENCE</small>Исследует</h3><p>Где находятся реальные центры влияния, контроля и решений.</p></div>
-      <div class="ax"><span class="L">B</span><h3><small>CRISIS</small>Восстанавливает</h3><p>Способность системы принимать и исполнять решения.</p></div>
-      <div class="ax"><span class="L">C</span><h3><small>TRANSFORMATION</small>Перестраивает</h3><p>Модель управления под новую стратегию и масштаб.</p></div>
-      <div class="ax"><span class="L">D</span><h3><small>DYNASTY</small>Закрепляет</h3><p>Устойчивость системы при смене людей и поколений.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 06 · Как практики работают вместе -->
+<!-- 05 · Как практики работают вместе -->
 <section class="section" id="together">
-  <div class="ghost" aria-hidden="true">06</div>
+  <div class="ghost" aria-hidden="true">05</div>
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">06 / КАК ПРАКТИКИ РАБОТАЮТ ВМЕСТЕ</div>
+      <div class="kicker">05 / КАК ПРАКТИКИ РАБОТАЮТ ВМЕСТЕ</div>
       <div><h2>Одна ситуация может пройти через все четыре практики</h2></div>
     </div>
     <div class="illus">ТИПИЧНЫЙ ПУТЬ · ИЛЛЮСТРАЦИЯ, НЕ КЕЙС</div>
@@ -493,10 +495,10 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
   </div>
 </section>
 
-<!-- 07 · Принципы -->
+<!-- 06 · Принципы -->
 <section class="section alt" id="principles">
   <div class="wrap split">
-    <div><div class="kicker">07 / ПРИНЦИПЫ</div><h2>Правила, общие для всех практик</h2></div>
+    <div><div class="kicker">06 / ПРИНЦИПЫ</div><h2>Правила, общие для всех практик</h2></div>
     <div>
       <div class="principle"><span>01</span><div><strong>Не подгоняем ситуацию под услугу</strong><small>Сначала разбираемся, как устроена проблема, потом определяем, какая практика и какой формат нужны.</small></div></div>
       <div class="principle"><span>02</span><div><strong>Одна сторона</strong><small>В одном конфликте работаем только на одну сторону.</small></div></div>
@@ -508,11 +510,11 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
   </div>
 </section>
 
-<!-- 08 · Команда -->
+<!-- 07 · Команда -->
 <section class="section team-band" id="team">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">08 / КОМАНДА</div>
+      <div class="kicker">07 / КОМАНДА</div>
       <div><h2>Одна команда, а не четыре подрядчика</h2></div>
     </div>
     <p class="body">Люди, которые работали внутри этих систем: экономическая безопасность, защита от поглощений, семейные офисы, антикризисное управление, организационные изменения, семейные системы, технологии. Плюс сеть юристов, адвокатов и отраслевых специалистов под конкретную задачу.</p>
@@ -520,22 +522,23 @@ h1 .l{display:block;transition:opacity .2s,color .2s}
   </div>
 </section>
 
-<!-- 09 · Первый шаг + контакты -->
+<!-- 08 · Первый шаг: единый блок для всех страниц -->
 <section class="section alt" id="contact">
-  <div class="wrap start">
-    <div>
-      <div class="kicker">09 / ПЕРВЫЙ ШАГ</div>
+  <div class="wrap first">
+    <div class="f-txt">
+      <div class="kicker">08 / ПЕРВЫЙ ШАГ</div>
       <h2>Начать можно с одной страницы</h2>
-      <div class="need" style="margin-top:28px">
-        <div><span>01</span><div><b>Что происходит</b><small>Ситуация в двух-трёх предложениях.</small></div></div>
-        <div><span>02</span><div><b>Один вопрос</b><small>Что именно нужно понять или изменить.</small></div></div>
-        <div><span>03</span><div><b>Срок</b><small>К какой дате нужен ответ.</small></div></div>
-      </div>
-      <p class="after-p">Какая практика нужна, определим вместе. Формат и стоимость — после того, как увидим материалы.</p>
+      <p class="lead-p">Какая практика нужна, определим вместе. Формат и стоимость — после того, как увидим материалы.</p>
     </div>
-    <div>
+    <div class="bsheet" aria-label="Лист брифа из трёх полей">
+      <div class="bs-head"><span>БРИФ · 1 СТРАНИЦА</span><span>CUSTODIA SILENTIS</span></div>
+      <div class="bs-field"><span>01</span><h3>Что происходит</h3><p>Ситуация в двух-трёх предложениях.</p><i></i><i></i></div>
+      <div class="bs-field"><span>02</span><h3>Один вопрос</h3><p>Что именно нужно понять или изменить.</p><i></i></div>
+      <div class="bs-field"><span>03</span><h3>Срок</h3><p>К какой дате нужен ответ.</p><i></i></div>
+    </div>
+    <div class="f-con">
       <div class="access">ОБСУДИТЬ ЗАДАЧУ</div>
-      <!-- Контакты простым текстом, без кнопок и ссылок — как на остальных страницах -->
+      <!-- Контакты простым текстом, без кнопок и ссылок -->
       <div class="contacts">
         <div class="c-name">Давид Асатрян</div>
         <div class="c-line">owner@custodia-silentis.com</div>
